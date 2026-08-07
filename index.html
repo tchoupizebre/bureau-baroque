@@ -575,7 +575,7 @@ function startCRT(){
     src.buffer=buf;src.loop=true;
     var hp=ac.createBiquadFilter();hp.type='highpass';hp.frequency.value=7000;hp.Q.value=0.8;
     var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=13000;lp.Q.value=0.4;
-    var gNoise=ac.createGain();gNoise.gain.value=0.018;
+    var gNoise=ac.createGain();gNoise.gain.value=0.004;
     src.connect(hp);hp.connect(lp);lp.connect(gNoise);gNoise.connect(master);
     src.start();
 
@@ -754,7 +754,7 @@ draw()
 
 var zTop=100;
 var open=new Set();
-var BASE='https://www.hugo.formation-wordpress.fr/wp-content/uploads/2026/07/';
+var BASE='assets/motion/';
 
 var PROJECTS=[
 {id:'pw-affiches',cat:'wp',title:'Affiches libres',tagline:'Affiches événementielles & artwork',client:'Divers',annee:'2024—2026',disciplines:'Affiche · Typographie · Print',desc:'Affiches pour la scène culturelle montpelliéraine.',
