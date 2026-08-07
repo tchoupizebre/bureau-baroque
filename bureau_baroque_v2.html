@@ -1,0 +1,649 @@
+﻿<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;900&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+:root{--bg:#0a0a0a;--text:#ffffff;--dim:#555;--border:#ffffff;--green:#E8007A;--pink:#E8007A;--red:#CC1111;--purple:#1F28CC;--gold:#E8007A}
+html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:'IBM Plex Mono',monospace}
+
+#cur{position:fixed;width:22px;height:22px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s}
+#cur::before,#cur::after{content:'';position:absolute;background:var(--green)}
+#cur::before{width:1px;height:100%;left:calc(50% - .5px);top:0}
+#cur::after{width:100%;height:1px;top:calc(50% - .5px);left:0}
+#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(0,255,65,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease}
+.cur-dot{position:fixed;width:3px;height:3px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%)}
+
+#boot-flicker{position:fixed;inset:0;pointer-events:none;z-index:1002;background:var(--bg);animation:flicker .1s steps(1) 4 forwards}
+@keyframes flicker{0%{opacity:1}25%{opacity:0}50%{opacity:.7}75%{opacity:0}100%{opacity:0}}
+#boot-scan{position:fixed;inset:0;pointer-events:none;z-index:1001;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.18) 2px,rgba(0,0,0,.18) 4px);animation:scanmove 10s linear infinite}
+@keyframes scanmove{from{background-position:0 0}to{background-position:0 80px}}
+#boot-vignette{position:fixed;inset:0;pointer-events:none;z-index:999;background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.85) 100%)}
+
+#boot{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:1000}
+#boot-inner{width:560px;max-width:88vw}
+#boot-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,5vw,50px);color:var(--green);letter-spacing:.18em;text-align:center;margin-bottom:6px;position:relative;animation:glitch 4s infinite}
+@keyframes glitch{
+0%,88%,100%{text-shadow:none;transform:none}
+89%{text-shadow:-3px 0 var(--pink),3px 0 var(--purple);transform:translateX(2px)}
+90%{text-shadow:3px 0 var(--pink),-3px 0 var(--purple);transform:translateX(-2px)}
+91%{text-shadow:-2px 0 var(--green);transform:translateX(1px)}
+92%{text-shadow:none;transform:none}
+}
+#boot-sub{font-size:9px;color:var(--dim);letter-spacing:.35em;text-align:center;margin-bottom:44px;text-transform:uppercase}
+#boot-log{min-height:160px;font-size:11px;line-height:2;color:var(--dim)}
+#boot-log .ok{color:var(--green)}
+#boot-log .err{color:var(--red)}
+#boot-bar-wrap{margin-top:20px;height:1px;background:rgba(255,255,255,.08);position:relative}
+#boot-bar{height:1px;width:0%;background:var(--green);box-shadow:0 0 10px var(--green),0 0 20px rgba(0,255,65,.3);transition:width .2s linear}
+#boot-pct{font-size:9px;color:var(--green);text-align:right;margin-top:6px;letter-spacing:.15em}
+
+#desk{position:fixed;inset:0;display:none}
+#grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04}
+#scan-persist{position:fixed;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.05) 3px,rgba(0,0,0,.05) 4px)}
+#vignette-desk{position:fixed;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse 90% 90% at 50% 50%,transparent 50%,rgba(0,0,0,.6) 100%)}
+
+#icons{position:absolute;top:48px;left:48px;display:grid;grid-template-columns:76px;gap:28px;z-index:10}
+.icon{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px;border-radius:3px;cursor:none;user-select:none;transition:background .15s,box-shadow .15s}
+.icon:hover{background:rgba(255,255,255,.05);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.icon:hover .isym{filter:drop-shadow(0 0 8px currentColor)}
+.isym{font-size:26px;line-height:1;transition:filter .15s;font-family:'Bebas Neue',sans-serif;font-variant-emoji:text}
+.ilbl{font-size:8px;letter-spacing:.14em;text-align:center;color:rgba(255,255,255,.45);text-transform:uppercase}
+
+.win{position:absolute;min-width:300px;min-height:180px;background:#0c0c0c;border:1px solid #1e1e1e;display:none;flex-direction:column;transform:scale(.92) translateY(6px);opacity:0;filter:blur(8px);transition:transform .25s cubic-bezier(.34,1.4,.64,1),opacity .2s ease,filter .25s ease;box-shadow:0 24px 80px rgba(0,0,0,.8),0 0 0 .5px rgba(255,255,255,.04)}
+.win.open{display:flex}
+.win.vis{transform:scale(1) translateY(0);opacity:1;filter:blur(0)}
+.wtb{height:30px;display:flex;align-items:center;padding:0 10px;gap:8px;cursor:grab;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.05)}
+.wtb:active{cursor:grabbing}
+.wtitle{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.6);flex:1;text-transform:uppercase}
+.wclose{width:10px;height:10px;border-radius:50%;cursor:none;border:none;flex-shrink:0;opacity:.8;transition:opacity .15s,transform .15s}
+.wclose:hover{opacity:1;transform:scale(1.2)}
+.wbody{flex:1;overflow:auto;padding:18px 20px;font-family:'IBM Plex Mono',monospace;color:var(--text);line-height:1.75;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
+.wrz{position:absolute;bottom:0;right:0;width:16px;height:16px;cursor:se-resize;opacity:.25;transition:opacity .15s}
+.wrz::before,.wrz::after{content:'';position:absolute;background:var(--dim)}
+.wrz::before{width:1px;height:10px;right:4px;bottom:3px}
+.wrz::after{width:10px;height:1px;right:3px;bottom:4px}
+.wrz:hover{opacity:.6}
+.wh{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.15em;margin-bottom:14px;text-transform:uppercase}
+.wp{font-size:15px;margin-bottom:10px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin-top:14px}
+.gi{aspect-ratio:1;background:#141414;border:1px solid #1e1e1e;cursor:none;overflow:hidden;transition:border-color .15s,transform .15s}
+.gi:hover{border-color:rgba(255,255,255,.2);transform:scale(1.02)}
+.gi img{width:100%;height:100%;object-fit:cover;display:block}
+.tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;padding:2px 7px;border:1px solid var(--dim);color:var(--dim);margin:2px 2px 2px 0}
+
+#tbar{position:fixed;bottom:0;left:0;right:0;height:30px;background:rgba(6,6,6,.95);border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 14px;gap:14px;z-index:500;backdrop-filter:blur(12px)}
+#tbar-logo{font-family:'Bebas Neue',sans-serif;font-size:8px;color:var(--gold);letter-spacing:.22em;white-space:nowrap}
+#tbar-wins{flex:1;display:flex;gap:4px;overflow:hidden}
+.tbtn{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:.1em;padding:2px 7px;border:1px solid #1e1e1e;background:transparent;cursor:none;transition:all .15s;text-transform:uppercase;white-space:nowrap}
+.tbtn.act{color:var(--green);border-color:rgba(0,255,65,.3)}
+#tbar-clock{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.08em;white-space:nowrap}
+
+#mdesk{display:none}
+.mcard{border:1px solid #1e1e1e;margin-bottom:10px;background:#0c0c0c;overflow:hidden}
+.mhead{display:flex;align-items:center;gap:12px;padding:16px 14px}
+.mhead .isym{font-size:24px}
+.mtitle{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.16em;flex:1;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.mchev{font-size:10px;color:var(--dim);transition:transform .25s}
+.mcard.on .mchev{transform:rotate(180deg)}
+.mbody{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.mcard.on .mbody{max-height:700px}
+.mbody-in{padding:0 16px 18px;font-family:'IBM Plex Mono',monospace;color:var(--text);line-height:1.7}
+#tbar-m{display:none}
+@media (max-width:768px){
+#icons,#tbar,#vignette-desk{display:none}
+.win{display:none!important}
+#mdesk{display:block;position:relative;z-index:10;padding:24px 16px 70px;height:100%;overflow-y:auto}
+#cur,#cur-ring,.cur-dot{display:none}
+html,body{cursor:auto}
+.icon,.wclose,.ci,.wrz,.mhead{cursor:pointer}
+#tbar-m{display:flex;position:fixed;bottom:0;left:0;right:0;height:36px;background:rgba(6,6,6,.95);border-top:1px solid #1a1a1a;align-items:center;justify-content:space-between;padding:0 16px;z-index:500}
+}
+#mb-logo{font-family:'Bebas Neue',sans-serif;font-size:8px;color:var(--gold);letter-spacing:.2em}
+#mb-clock{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)}
+
+#ctx{position:fixed;background:#0e0e0e;border:1px solid #222;padding:3px 0;z-index:5000;display:none;min-width:150px;box-shadow:0 8px 32px rgba(0,0,0,.8)}
+.ci{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(255,255,255,.6);padding:6px 14px;cursor:none;letter-spacing:.08em;transition:background .1s,color .1s}
+.ci:hover{background:rgba(255,255,255,.05);color:var(--green)}
+.csep{height:1px;background:#1a1a1a;margin:3px 0}
+
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:2000;display:none;align-items:center;justify-content:center}
+#lb img{max-width:90vw;max-height:88vh;object-fit:contain;display:block}
+#lb-x{position:absolute;top:20px;right:28px;font-family:'IBM Plex Mono',monospace;font-size:18px;color:rgba(255,255,255,.4);cursor:none;transition:color .15s}
+#lb-x:hover{color:var(--text)}
+</style>
+
+<div id="boot-flicker"></div>
+<div id="boot-scan"></div>
+<div id="boot-vignette"></div>
+
+<div id="boot">
+  <div id="boot-inner">
+    <div id="boot-logo">TCHOUPIZZ</div>
+    <div id="boot-sub">Bureau Baroque — Système v2.0</div>
+    <div id="boot-log"></div>
+    <div id="boot-bar-wrap"><div id="boot-bar"></div></div>
+    <div id="boot-pct">0%</div>
+  </div>
+</div>
+
+<div id="desk">
+  <canvas id="grain"></canvas>
+  <div id="scan-persist"></div>
+  <div id="vignette-desk"></div>
+
+  <div id="icons">
+    <div class="icon" data-win="wp"><div class="isym" style="color:var(--border)">✠︎</div><div class="ilbl">Print</div></div>
+    <div class="icon" data-win="wt"><div class="isym" style="color:var(--pink)">⚜︎</div><div class="ilbl">Textile</div></div>
+    <div class="icon" data-win="ws"><div class="isym" style="color:var(--purple)">♛︎</div><div class="ilbl">DA</div></div>
+    <div class="icon" data-win="wm"><div class="isym" style="color:var(--green)">❧︎</div><div class="ilbl">Motion</div></div>
+    <div class="icon" data-win="wd"><div class="isym" style="color:var(--red)">✾︎</div><div class="ilbl">Digital</div></div>
+    <div class="icon" data-win="wa"><div class="isym" style="color:var(--gold)">❦︎</div><div class="ilbl">About</div></div>
+  </div>
+
+  <div class="win" id="wp" style="width:480px;top:60px;left:160px">
+    <div class="wtb" style="border-bottom-color:rgba(221,221,221,.07)">
+      <span class="wtitle" style="color:rgba(221,221,221,.7)">✠︎ Print</span>
+      <button class="wclose" style="background:var(--border)" data-w="wp"></button>
+    </div>
+    <div class="wbody">
+      <div class="wh">Impression & Édition</div>
+      <p class="wp">Affiches, identités, zines, livrets. Chaque pièce imprimée traite le papier comme une matière vivante.</p>
+      <span class="tag">Affiche</span><span class="tag">Print</span><span class="tag">Identité événementielle</span>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— Affiches</p>
+      <div class="gallery">
+        <div class="gi"><img src="assets/print/affiche1.jpg" alt="Affiche 1" title="Affiche"></div>
+        <div class="gi"><img src="assets/print/affiche2.jpg" alt="Affiche 2" title="Affiche"></div>
+        <div class="gi"><img src="assets/print/affiche3.jpg" alt="Affiche 3" title="Affiche"></div>
+        <div class="gi"><img src="assets/print/artwork.jpg" alt="Artwork" title="Artwork"></div>
+        <div class="gi"><img src="assets/print/feu-chatterton.jpg" alt="Feu! Chatterton" title="Feu! Chatterton"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— La Moustiquaire</p>
+      <div class="gallery">
+        <div class="gi"><img src="assets/print/mlq1.jpg" alt="La Moustiquaire — Affiche 1" title="La Moustiquaire"></div>
+        <div class="gi"><img src="assets/print/mlq2.jpg" alt="La Moustiquaire — Affiche 2" title="La Moustiquaire"></div>
+        <div class="gi"><img src="assets/print/mlq3.jpg" alt="La Moustiquaire — Affiche 3" title="La Moustiquaire"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— SHIPMENT</p>
+      <div class="gallery">
+        <div class="gi"><img src="assets/print/shipment1.jpg" alt="SHIPMENT — Affiche 1" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment2.jpg" alt="SHIPMENT — Affiche 2" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment3.jpg" alt="SHIPMENT — Affiche 3" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment4.jpg" alt="SHIPMENT — Affiche 4" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment5.jpg" alt="SHIPMENT — Affiche off" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment6.jpg" alt="SHIPMENT — Billetterie story" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment7.jpg" alt="SHIPMENT — Billetterie story 2" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment8.jpg" alt="SHIPMENT — Post focus 1H42" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment9.jpg" alt="SHIPMENT — Post focus Colleg" title="SHIPMENT"></div>
+        <div class="gi"><img src="assets/print/shipment10.jpg" alt="SHIPMENT — Post focus UNSHO" title="SHIPMENT"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— Fait Maison</p>
+      <div class="gallery">
+        <div class="gi"><img src="assets/print/faitmaison1.jpg" alt="Fait Maison 1" title="Fait Maison"></div>
+        <div class="gi"><img src="assets/print/faitmaison2.jpg" alt="Fait Maison 2" title="Fait Maison"></div>
+        <div class="gi"><img src="assets/print/faitmaison3.jpg" alt="Fait Maison 3" title="Fait Maison"></div>
+        <div class="gi"><img src="assets/print/faitmaison4.jpg" alt="Fait Maison 4" title="Fait Maison"></div>
+        <div class="gi"><img src="assets/print/faitmaison5.jpg" alt="Fait Maison 5" title="Fait Maison"></div>
+        <div class="gi"><img src="assets/print/faitmaison6.jpg" alt="Fait Maison post 2" title="Fait Maison"></div>
+        <div class="gi"><img src="assets/print/faitmaison7.jpg" alt="Fait Maison post 1" title="Fait Maison"></div>
+        <div class="gi"><img src="assets/print/faitmaison-lumni.jpg" alt="Fait Maison — Julia Lumni" title="Fait Maison · Julia Lumni"></div>
+        <div class="gi"><img src="assets/print/faitmaison-hammel.jpg" alt="Fait Maison — Lois Hammel" title="Fait Maison · Lois Hammel"></div>
+        <div class="gi"><img src="assets/print/faitmaison-ryo.jpg" alt="Fait Maison — Ryo$" title="Fait Maison · Ryo$"></div>
+        <div class="gi"><img src="assets/print/faitmaison-sameer.jpg" alt="Fait Maison — Sameer Ahmad" title="Fait Maison · Sameer Ahmad"></div>
+        <div class="gi"><img src="assets/print/faitmaison-yhuna.jpg" alt="Fait Maison — Yhuna Foster" title="Fait Maison · Yhuna Foster"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— LCDI</p>
+      <div class="gallery">
+        <div class="gi"><img src="assets/print/lcdi1.jpg" alt="LCDI — Atelier Autotune" title="LCDI · Atelier Autotune"></div>
+        <div class="gi"><img src="assets/print/lcdi2.jpg" alt="LCDI — Habitat Jeunes" title="LCDI · Habitat Jeunes"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— La Ruche</p>
+      <div class="gallery">
+        <div class="gi"><img src="assets/print/laruche1.jpg" alt="La Ruche donne des ailes" title="La Ruche"></div>
+        <div class="gi"><img src="assets/print/laruche2.jpg" alt="La Ruche donne des ailes 2" title="La Ruche"></div>
+        <div class="gi"><img src="assets/print/larucheckoi1.jpg" alt="La Ruche — post 1" title="La Ruche"></div>
+        <div class="gi"><img src="assets/print/larucheckoi2.jpg" alt="La Ruche — post 2" title="La Ruche"></div>
+        <div class="gi"><img src="assets/print/larucheckoi3.jpg" alt="La Ruche — post 3" title="La Ruche"></div>
+        <div class="gi"><img src="assets/print/larucheckoi4.jpg" alt="La Ruche — post 4" title="La Ruche"></div>
+        <div class="gi"><img src="assets/print/larucheckoi5.jpg" alt="La Ruche — post 5" title="La Ruche"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— Musée Fabre</p>
+      <div class="gallery">
+        <div class="gi"><img src="assets/print/musee-fabre1.jpg" alt="Musée Fabre — visuel 1" title="Musée Fabre"></div>
+        <div class="gi"><img src="assets/print/musee-fabre2.jpg" alt="Musée Fabre — visuel 2" title="Musée Fabre"></div>
+      </div>
+    </div>
+    <div class="wrz"></div>
+  </div>
+
+  <div class="win" id="wt" style="width:460px;top:80px;left:200px">
+    <div class="wtb" style="border-bottom-color:rgba(255,0,85,.1)">
+      <span class="wtitle" style="color:var(--pink)">⚜︎ Textile</span>
+      <button class="wclose" style="background:var(--pink)" data-w="wt"></button>
+    </div>
+    <div class="wbody">
+      <div class="wh">Textile & Upcycling</div>
+      <p class="wp">Pièces uniques nées de matériaux récupérés. L'upcycling comme processus créatif, pas comme contrainte.</p>
+      <p class="wp" style="font-size:13px;color:rgba(255,255,255,.55)">BACKSTABBERS — Capsule I · 4 pièces sérigraphiées sur bases vintage Grade A · 30€/pièce · S—XL</p>
+      <span class="tag">Upcycling</span><span class="tag">Sérigraphie</span><span class="tag">Pièce unique</span>
+      <div class="gallery">
+        <div class="gi"><img src="assets/backstabbers/AVANT.jpg" alt="N°01 Art Thieves — face" title="N°01 ART THIEVES"></div>
+        <div class="gi"><img src="assets/backstabbers/DOS.jpg" alt="N°01 Art Thieves — dos" title="N°01 ART THIEVES — dos"></div>
+        <div class="gi"><img src="assets/backstabbers/AVANT2.jpg" alt="N°02 Thief Kebab — face" title="N°02 THIEF KEBAB"></div>
+        <div class="gi"><img src="assets/backstabbers/DOS2.jpg" alt="N°02 Thief Kebab — dos" title="N°02 THIEF KEBAB — dos"></div>
+        <div class="gi"><img src="assets/backstabbers/AVANT3.jpg" alt="N°03 Rescuer Syndrome — face" title="N°03 RESCUER SYNDROME"></div>
+        <div class="gi"><img src="assets/backstabbers/DOS3.jpg" alt="N°03 Rescuer Syndrome — dos" title="N°03 RESCUER SYNDROME — dos"></div>
+        <div class="gi"><img src="assets/backstabbers/AVANT4.jpg" alt="N°04 69 Trauma — face" title="N°04 69 TRAUMA"></div>
+        <div class="gi"><img src="assets/backstabbers/DOS4.jpg" alt="N°04 69 Trauma — dos" title="N°04 69 TRAUMA — dos"></div>
+      </div>
+      <a href="https://instagram.com/tchoupi_zebre" target="_blank" class="ilbl" style="display:inline-block;margin-top:14px;color:var(--pink);text-decoration:none;border:1px solid var(--pink);padding:6px 12px">Acheter sur Instagram ↗</a>
+    </div>
+    <div class="wrz"></div>
+  </div>
+
+  <div class="win" id="ws" style="width:440px;top:100px;left:240px">
+    <div class="wtb" style="border-bottom-color:rgba(136,0,255,.1)">
+      <span class="wtitle" style="color:var(--purple)">♛︎ DA & Identité</span>
+      <button class="wclose" style="background:var(--purple)" data-w="ws"></button>
+    </div>
+    <div class="wbody">
+      <div class="wh">Direction Artistique</div>
+      <p class="wp">Conception globale de l'univers visuel — DA, logo, charte, covers. De la réflexion stratégique à l'exécution graphique.</p>
+      <p class="wp" style="font-size:13px;color:rgba(255,255,255,.55)">Tengo John — Multicolore Mixtape · Pochette & étiquette vinyle 33T</p>
+      <span class="tag">Vinyle</span><span class="tag">Packaging</span><span class="tag">DA musicale</span>
+      <div class="gallery">
+        <div class="gi"><img src="assets/da/tengo-front.jpg" alt="Tengo John — pochette vinyle Multicolore Mixtape" title="Tengo John · Pochette vinyle"></div>
+        <div class="gi"><img src="assets/da/tengo-label.jpg" alt="Tengo John — étiquette vinyle" title="Tengo John · Étiquette vinyle"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:20px;text-transform:uppercase">— FIVE · Covers & DA</p>
+      <div class="gallery" style="margin-top:8px">
+        <div class="gi"><img src="assets/da/five-logo.jpg" alt="FIVE — Logo" title="FIVE · Logo"></div>
+        <div class="gi"><img src="assets/da/coverfive1.jpg" alt="FIVE — Cover 1" title="FIVE · Cover 1"></div>
+        <div class="gi"><img src="assets/da/coverfive2.jpg" alt="FIVE — Cover 2" title="FIVE · Cover 2"></div>
+        <div class="gi"><img src="assets/da/coverfive3.jpg" alt="FIVE — Cover 3" title="FIVE · Cover 3"></div>
+        <div class="gi"><img src="assets/da/coverfive4.jpg" alt="FIVE — Cover 4" title="FIVE · Cover 4"></div>
+        <div class="gi"><img src="assets/da/coverfive5.jpg" alt="FIVE — Cover 5" title="FIVE · Cover 5"></div>
+        <div class="gi"><img src="assets/da/coverfive6.jpg" alt="FIVE — Cover 6" title="FIVE · Cover 6"></div>
+        <div class="gi"><img src="assets/da/coverfive7.jpg" alt="FIVE — Cover 7" title="FIVE · Cover 7"></div>
+        <div class="gi"><img src="assets/da/coverfive8.jpg" alt="FIVE — Cover 8" title="FIVE · Cover 8"></div>
+        <div class="gi"><img src="assets/da/coverfive9.jpg" alt="FIVE — Cover 9" title="FIVE · Cover 9"></div>
+        <div class="gi"><img src="assets/da/coverfive11.jpg" alt="FIVE — Cover 11" title="FIVE · Cover 11"></div>
+        <div class="gi"><img src="assets/da/five-bam1.jpg" alt="FIVE — BAM cover 1" title="FIVE · BAM 1"></div>
+        <div class="gi"><img src="assets/da/five-bam2.jpg" alt="FIVE — BAM cover 2" title="FIVE · BAM 2"></div>
+        <div class="gi"><img src="assets/da/five-orchestral.jpg" alt="FIVE — Orchestral Library" title="FIVE · Orchestral Library"></div>
+        <div class="gi"><img src="assets/da/five-piano.jpg" alt="FIVE — Piano cover" title="FIVE · Piano"></div>
+        <div class="gi"><img src="assets/da/five-spotify1.jpg" alt="FIVE — Spotify cover 1" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify2.jpg" alt="FIVE — Spotify cover 2" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify3.jpg" alt="FIVE — Spotify cover 3" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify4.jpg" alt="FIVE — Spotify cover 4" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify5.jpg" alt="FIVE — Spotify cover 5" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify6.jpg" alt="FIVE — Spotify cover 6" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify7.jpg" alt="FIVE — Spotify cover 7" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify8.jpg" alt="FIVE — Spotify cover 8" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify9.jpg" alt="FIVE — Spotify cover 9" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-spotify10.jpg" alt="FIVE — Spotify cover 10" title="FIVE · Spotify"></div>
+        <div class="gi"><img src="assets/da/five-carlos1.jpg" alt="Carlos Garo — Neon Mirage" title="Carlos Garo · Neon Mirage"></div>
+        <div class="gi"><img src="assets/da/five-carlos2.jpg" alt="Carlos Garo — Rising Light" title="Carlos Garo · Rising Light"></div>
+        <div class="gi"><img src="assets/da/five-carlos3.jpg" alt="Carlos Garo — Velvet Sunset" title="Carlos Garo · Velvet Sunset"></div>
+      </div>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:20px;text-transform:uppercase">— Fichiers de production</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+        <object data="assets/da/tengo-vinyle-1.pdf" type="application/pdf" style="width:100%;height:320px;border:1px solid #1e1e1e">
+          <a href="assets/da/tengo-vinyle-1.pdf" target="_blank" class="ilbl" style="display:inline-block;padding:8px 12px;border:1px solid var(--purple);color:var(--purple);text-decoration:none">Pochette vinyle — fichier 1 ↗</a>
+        </object>
+        <object data="assets/da/tengo-vinyle-2.pdf" type="application/pdf" style="width:100%;height:320px;border:1px solid #1e1e1e">
+          <a href="assets/da/tengo-vinyle-2.pdf" target="_blank" class="ilbl" style="display:inline-block;padding:8px 12px;border:1px solid var(--purple);color:var(--purple);text-decoration:none">Pochette vinyle — fichier 2 ↗</a>
+        </object>
+      </div>
+    </div>
+    <div class="wrz"></div>
+  </div>
+
+  <div class="win" id="wm" style="width:460px;top:120px;left:280px">
+    <div class="wtb" style="border-bottom-color:rgba(0,255,65,.07)">
+      <span class="wtitle" style="color:var(--green)">❧︎ Motion</span>
+      <button class="wclose" style="background:var(--green)" data-w="wm"></button>
+    </div>
+    <div class="wbody">
+      <div class="wh">Motion & Vidéo</div>
+      <p class="wp">Montage, after effects, motion design. Du found footage au reel événementiel.</p>
+      <span class="tag">After Effects</span><span class="tag">Montage</span><span class="tag">Motion Design</span>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— Carrousel Macabre · AEP</p>
+      <video src="assets/motion/comp1.mp4" style="width:100%;margin-top:8px;border:1px solid #1e1e1e" controls muted loop playsinline></video>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— Master Carrousel Macabre</p>
+      <video src="assets/motion/carrousel.mp4" style="width:100%;margin-top:8px;border:1px solid #1e1e1e" controls muted loop playsinline></video>
+      <p class="wp" style="font-size:10px;letter-spacing:.18em;color:var(--dim);margin-top:16px;text-transform:uppercase">— SHIPMENT · Reel</p>
+      <video src="assets/motion/shipment.mp4" style="width:100%;margin-top:8px;border:1px solid #1e1e1e" controls muted loop playsinline></video>
+    </div>
+    <div class="wrz"></div>
+  </div>
+
+  <div class="win" id="wd" style="width:440px;top:80px;left:260px">
+    <div class="wtb" style="border-bottom-color:rgba(204,0,0,.1)">
+      <span class="wtitle" style="color:var(--red)">✾︎ Digital</span>
+      <button class="wclose" style="background:var(--red)" data-w="wd"></button>
+    </div>
+    <div class="wbody">
+      <div class="wh">Digital & Web</div>
+      <p class="wp">Interfaces, typographies numériques, expériences interactives. Ce site en est la preuve.</p>
+      <p class="wp" style="font-size:13px;color:rgba(255,255,255,.55)">Bureau Baroque v2 — boot cinématique, fenêtres drag/resize, curseur custom, fallback mobile. Conçu pour concourir sur Awwwards.</p>
+      <span class="tag">Web</span><span class="tag">UI</span><span class="tag">Interactif</span>
+    </div>
+    <div class="wrz"></div>
+  </div>
+
+  <div class="win" id="wa" style="width:400px;top:100px;left:300px">
+    <div class="wtb" style="border-bottom-color:rgba(184,150,62,.08)">
+      <span class="wtitle" style="color:var(--gold)">❦︎ About</span>
+      <button class="wclose" style="background:var(--gold)" data-w="wa"></button>
+    </div>
+    <div class="wbody">
+      <div class="wh">Tchoupizébré</div>
+      <p class="wp">Graphisme, DA, identité visuelle — pour des projets culturels, engagés, alternatifs. Ceux qui ont une âme.</p>
+      <p class="wp" style="font-size:13px;color:rgba(255,255,255,.55)">Créer sans engagement c'est du vide. J'arrive avec une DA tranchée, une culture underground et militante, et un regard qui va chercher la beauté là où personne regarde. Je bosse avec les gens, pas pour eux.</p>
+      <p class="wp" style="font-size:13px;color:rgba(255,255,255,.55)">Montpellier · Rap Académie · Maison GDA · La Moustiquaire · Tchoupiz.</p>
+      <div style="margin-top:20px;display:flex;gap:16px;flex-wrap:wrap">
+        <a href="https://instagram.com/tchoupi_zebre" target="_blank" class="ilbl" style="color:var(--dim);text-decoration:none;transition:color .15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--dim)'">Instagram</a>
+        <a href="https://linkedin.com/in/hugo-galtier-d-auriac" target="_blank" class="ilbl" style="color:var(--dim);text-decoration:none;transition:color .15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--dim)'">LinkedIn</a>
+        <a href="mailto:tchoupi.zebre@gmail.com" class="ilbl" style="color:var(--dim);text-decoration:none;transition:color .15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--dim)'">Contact</a>
+      </div>
+    </div>
+    <div class="wrz"></div>
+  </div>
+
+  <div id="tbar">
+    <div id="tbar-logo">✠︎ TCHOUPIZZ</div>
+    <div id="tbar-wins"></div>
+    <div id="tbar-clock"></div>
+  </div>
+
+  <div id="ctx">
+    <div class="ci" data-a="wp">✠︎ Print</div>
+    <div class="ci" data-a="wt">⚜︎ Textile</div>
+    <div class="ci" data-a="ws">♛︎ DA & Identité</div>
+    <div class="ci" data-a="wm">❧︎ Motion</div>
+    <div class="ci" data-a="wd">✾︎ Digital</div>
+    <div class="ci" data-a="wa">❦︎ About</div>
+    <div class="csep"></div>
+    <div class="ci" data-a="reload">↺︎ Rafraîchir</div>
+  </div>
+
+  <div id="lb"><span id="lb-x">✕︎</span><img id="lb-img" src="" alt=""></div>
+
+  <div id="mdesk"></div>
+  <div id="tbar-m"><span id="mb-logo">✠︎ TCHOUPIZZ</span><span id="mb-clock"></span></div>
+</div>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<script>
+(function(){
+
+var cur=document.getElementById('cur');
+var ring=document.getElementById('cur-ring');
+var dots=[];
+var tx=[],ty=[];
+for(var i=0;i<6;i++){tx.push(0);ty.push(0)}
+for(var i=0;i<4;i++){
+var d=document.createElement('div');
+d.className='cur-dot';
+d.style.cssText='opacity:'+(1-i*.2)+';width:'+(4-i*.5)+'px;height:'+(4-i*.5)+'px';
+document.body.appendChild(d);
+dots.push(d)
+}
+var mx=0,my=0;
+document.addEventListener('mousemove',function(e){
+mx=e.clientX;my=e.clientY;
+cur.style.left=mx+'px';cur.style.top=my+'px';
+ring.style.left=mx+'px';ring.style.top=my+'px'
+});
+(function trail(){
+tx.unshift(mx);tx.pop();ty.unshift(my);ty.pop();
+dots.forEach(function(d,i){d.style.left=tx[i+1]+'px';d.style.top=ty[i+1]+'px'});
+requestAnimationFrame(trail)
+})();
+
+document.querySelectorAll('.icon,.tbtn,.wclose,.ci,.wrz,.ilbl a').forEach(function(el){
+el.addEventListener('mouseenter',function(){cur.style.transform='translate(-50%,-50%) scale(1.4)'});
+el.addEventListener('mouseleave',function(){cur.style.transform='translate(-50%,-50%) scale(1)'})
+});
+
+function bootChime(){
+try{
+var ac=new(window.AudioContext||window.webkitAudioContext)();
+var t=ac.currentTime;
+[[180,0],[270,.1],[360,.22],[540,.36]].forEach(function(fr){
+var o=ac.createOscillator();var g=ac.createGain();
+o.connect(g);g.connect(ac.destination);
+o.frequency.value=fr[0];o.type='sine';
+g.gain.setValueAtTime(0,t+fr[1]);
+g.gain.linearRampToValueAtTime(.07,t+fr[1]+.06);
+g.gain.exponentialRampToValueAtTime(.001,t+fr[1]+.5);
+o.start(t+fr[1]);o.stop(t+fr[1]+.6)
+})
+}catch(e){}
+}
+
+var log=document.getElementById('boot-log');
+var bar=document.getElementById('boot-bar');
+var pct=document.getElementById('boot-pct');
+var msgs=[
+['Initialisation du noyau baroque.......',260,'ok'],
+['Chargement des polices sacrées........',200,'ok'],
+['Vérification des modules créatifs.....',240,'ok'],
+['Print ................... CHARGÉ',160,'ok'],
+['Textile ................. CHARGÉ',160,'ok'],
+['Space ................... CHARGÉ',180,'ok'],
+['Motion .................. CHARGÉ',160,'ok'],
+['Digital ................. CHARGÉ',140,'ok'],
+['About ................... CHARGÉ',140,'ok'],
+['Bureau Baroque v2.0 — PRÊT',300,'ok']
+];
+var mi=0;
+
+function typeLine(text,cls,cb){
+var ln=document.createElement('div');
+log.appendChild(ln);
+var i=0;
+var iv=setInterval(function(){
+var suffix=cls==='ok'&&i>=text.length?' <span class="ok">[ OK ]</span>':'';
+ln.innerHTML=text.slice(0,i)+(i<text.length?'<span style="opacity:.4">_</span>':'')+suffix;
+i++;
+if(i>text.length){clearInterval(iv);setTimeout(cb,100)}
+},14)
+}
+
+function nextMsg(){
+if(mi>=msgs.length){setTimeout(launch,700);return}
+var m=msgs[mi++];
+var p=Math.round(mi/msgs.length*100);
+bar.style.width=p+'%';
+pct.textContent=p+'%';
+setTimeout(function(){typeLine(m[0],m[2],nextMsg)},m[1])
+}
+
+setTimeout(function(){
+bootChime();
+document.getElementById('boot-flicker').style.display='none';
+nextMsg()
+},380);
+
+function launch(){
+var boot=document.getElementById('boot');
+var desk=document.getElementById('desk');
+boot.style.transition='opacity .7s ease';
+boot.style.opacity='0';
+document.getElementById('boot-scan').style.transition='opacity .7s ease';
+document.getElementById('boot-scan').style.opacity='0';
+setTimeout(function(){
+boot.style.display='none';
+desk.style.display='block';
+initGrain();
+initDesk()
+},720)
+}
+
+function initGrain(){
+var c=document.getElementById('grain');
+var ctx=c.getContext('2d');
+var tw=128,th=128;
+c.width=tw;c.height=th;
+c.style.width='100%';c.style.height='100%';
+ctx.imageSmoothingEnabled=false;
+var id=ctx.createImageData(tw,th);
+var d=id.data;
+function draw(){
+for(var i=0;i<d.length;i+=4){var v=Math.random()*255|0;d[i]=d[i+1]=d[i+2]=v;d[i+3]=255}
+ctx.putImageData(id,0,0);
+setTimeout(function(){requestAnimationFrame(draw)},90)
+}
+draw()
+}
+
+var zTop=100;
+var open=new Set();
+
+function openW(id){
+var w=document.getElementById(id);
+if(!w)return;
+if(open.has(id)){w.style.zIndex=++zTop;return}
+open.add(id);
+w.style.zIndex=++zTop;
+w.classList.add('open');
+requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('vis')})});
+updateTbar()
+}
+
+function closeW(id){
+var w=document.getElementById(id);
+if(!w)return;
+open.delete(id);
+w.classList.remove('vis');
+setTimeout(function(){w.classList.remove('open')},240);
+updateTbar()
+}
+
+function updateTbar(){
+var tb=document.getElementById('tbar-wins');
+tb.innerHTML='';
+open.forEach(function(id){
+var w=document.getElementById(id);
+var title=w.querySelector('.wtitle').textContent.trim();
+var b=document.createElement('button');
+b.className='tbtn act';b.textContent=title;
+b.addEventListener('click',function(){w.style.zIndex=++zTop});
+tb.appendChild(b)
+})
+}
+
+function buildMobile(){
+var md=document.getElementById('mdesk');
+if(md.childElementCount)return;
+document.querySelectorAll('.win').forEach(function(w){
+var icon=document.querySelector('.icon[data-win="'+w.id+'"] .isym');
+var titleEl=w.querySelector('.wtitle');
+var title=titleEl.textContent.trim().replace(/^\S+\s/,'');
+var card=document.createElement('div');
+card.className='mcard';
+var head=document.createElement('div');
+head.className='mhead';
+head.innerHTML='<span class="isym" style="color:'+(icon?icon.style.color:'#eee')+'">'+(icon?icon.innerHTML:'')+'</span><span class="mtitle">'+title+'</span><span class="mchev">▾</span>';
+var body=document.createElement('div');
+body.className='mbody';
+body.innerHTML='<div class="mbody-in">'+w.querySelector('.wbody').innerHTML+'</div>';
+head.addEventListener('click',function(){card.classList.toggle('on')});
+card.appendChild(head);card.appendChild(body);
+md.appendChild(card)
+});
+var mclk=document.getElementById('mb-clock');
+function mtick(){var n=new Date();mclk.textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
+mtick();setInterval(mtick,1000)
+}
+
+function initDesk(){
+buildMobile();
+var clk=document.getElementById('tbar-clock');
+function tick(){
+var n=new Date();
+clk.textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)+':'+('0'+n.getSeconds()).slice(-2)
+}
+tick();setInterval(tick,1000);
+
+document.querySelectorAll('.icon').forEach(function(ic,i){
+ic.style.opacity='0';ic.style.transform='translateY(10px)';
+setTimeout(function(){
+ic.style.transition='opacity .35s,transform .35s';
+ic.style.opacity='1';ic.style.transform='none'
+},i*70+100);
+ic.addEventListener('dblclick',function(){openW(ic.dataset.win)});
+});
+
+document.querySelectorAll('.win').forEach(function(w){drag(w);resize(w)});
+
+document.querySelectorAll('.wclose').forEach(function(b){
+b.addEventListener('click',function(){closeW(b.dataset.w)})
+});
+
+document.addEventListener('contextmenu',function(e){
+e.preventDefault();
+var c=document.getElementById('ctx');
+c.style.display='block';
+c.style.left=Math.min(e.clientX,innerWidth-160)+'px';
+c.style.top=Math.min(e.clientY,innerHeight-220)+'px'
+});
+document.addEventListener('click',function(){document.getElementById('ctx').style.display='none'});
+
+document.querySelectorAll('.ci').forEach(function(ci){
+ci.addEventListener('click',function(){
+var a=ci.dataset.a;
+if(a==='reload')location.reload();
+else if(a)openW(a)
+})
+});
+
+document.querySelectorAll('.gi').forEach(function(gi){
+gi.addEventListener('click',function(){
+var img=gi.querySelector('img');
+if(!img)return;
+document.getElementById('lb-img').src=img.src;
+document.getElementById('lb').style.display='flex'
+})
+});
+
+document.getElementById('lb-x').addEventListener('click',function(){document.getElementById('lb').style.display='none'});
+document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)this.style.display='none'});
+}
+
+function drag(w){
+var tb=w.querySelector('.wtb');
+var ox,oy,on=false;
+tb.addEventListener('mousedown',function(e){
+if(e.target.classList.contains('wclose'))return;
+on=true;ox=e.clientX-w.offsetLeft;oy=e.clientY-w.offsetTop;
+w.style.zIndex=++zTop;e.preventDefault()
+});
+document.addEventListener('mousemove',function(e){
+if(!on)return;
+w.style.left=Math.max(0,Math.min(e.clientX-ox,innerWidth-w.offsetWidth))+'px';
+w.style.top=Math.max(0,Math.min(e.clientY-oy,innerHeight-30-w.offsetHeight))+'px'
+});
+document.addEventListener('mouseup',function(){on=false})
+}
+
+function resize(w){
+var rz=w.querySelector('.wrz');
+var on=false,sx,sy,sw,sh;
+rz.addEventListener('mousedown',function(e){
+on=true;sx=e.clientX;sy=e.clientY;sw=w.offsetWidth;sh=w.offsetHeight;e.preventDefault()
+});
+document.addEventListener('mousemove',function(e){
+if(!on)return;
+w.style.width=Math.max(280,sw+e.clientX-sx)+'px';
+w.style.height=Math.max(160,sh+e.clientY-sy)+'px'
+});
+document.addEventListener('mouseup',function(){on=false})
+}
+
+})();
+</script>
+
+
