@@ -917,7 +917,7 @@ cats.forEach(function(cat){
       if(empty)empty.style.display='none';
     });
     item.addEventListener('mouseenter',function(){sndClick&&sndClick()});
-    item.addEventListener('dblclick',function(){openProject(proj.id)});
+    item.addEventListener('click',function(){openProject(proj.id)});
     lb.appendChild(item);
   });
 });
