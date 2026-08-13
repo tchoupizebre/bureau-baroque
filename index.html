@@ -6,7 +6,7 @@
 <meta property="og:description" content="Graphisme · DA · Identité · Textile · Motion. Une interface bureau pour un portfolio qui a une âme.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#E8007A">
-<meta property="og:url" content="https://bureau-baroque.netlify.app/">
+<meta property="og:url" content="https://le-monde-tchoupiz.fr/">
 <meta property="og:image" content="assets/ui/bb-og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -186,6 +186,25 @@ html,body{cursor:auto}
 .wstatusbar{height:20px;background:#0a0a0a;border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 10px 0 70px;gap:12px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.12em;color:rgba(232,0,122,.5);text-transform:uppercase;white-space:nowrap;overflow:hidden}
 .wstatusbar span+span::before{content:'·';margin-right:12px;opacity:.4}
 
+/* 10 — Texture papier dans les fenêtres */
+.win .wsplit-right,.win .wbody{background-image:url('assets/ui/bb-texture-papier.png');background-repeat:repeat;background-blend-mode:overlay;background-color:#0c0c0c}
+/* 8 — Curseur contextuel */
+.win .wtb{cursor:grab!important}
+.win .wtb:active{cursor:grabbing!important}
+.wbtn{cursor:pointer!important}
+.wlist-item,.wcat-hint,.icon{cursor:default!important}
+/* 11 — Glitch VHS sur thumbs au hover */
+@keyframes vhs-glitch{
+  0%,100%{clip-path:inset(0 0 100% 0);transform:translate(0)}
+  10%{clip-path:inset(20% 0 60% 0);transform:translate(-3px,0)}
+  20%{clip-path:inset(60% 0 10% 0);transform:translate(3px,0)}
+  30%{clip-path:inset(0 0 0 0);transform:translate(0)}
+  40%{clip-path:inset(40% 0 40% 0);transform:translate(-2px,0)}
+  50%{clip-path:inset(0 0 0 0);transform:translate(0)}
+}
+.wcat-thumb{transition:filter .2s}
+.wcat-pane:hover .wcat-thumb{filter:contrast(1.15) saturate(1.2)}
+.wlist-item.sel~div .wcat-thumb,.wcat-thumb.glitch{animation:vhs-glitch .35s steps(1) 1}
 /* Project window carousel */
 .wcar-wrap{flex:1;position:relative;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .wcar-media{max-width:100%;max-height:100%;object-fit:contain;display:block;width:100%;height:100%}
@@ -1034,6 +1053,7 @@ function openW(id){
 var w=document.getElementById(id);
 if(!w)return;
 if(open.has(id)){w.style.zIndex=++zTop;setActive(id);return}
+playOpen();
 cur.classList.add('loading');
 setTimeout(function(){cur.classList.remove('loading');},400);
 open.add(id);
@@ -1191,8 +1211,9 @@ ic.addEventListener('dblclick',function(){openW(ic.dataset.win)});
 
 document.querySelectorAll('.win').forEach(function(w){drag(w);resize(w)});
 
-/* 6 — bip Win98 */
+/* 6+7 — sons UI */
 function playBip(){try{var ac=new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator();var g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=880;o.type='square';g.gain.setValueAtTime(0.06,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.08);o.start();o.stop(ac.currentTime+0.08);}catch(e){}}
+function playOpen(){try{var ac=new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator();var g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.setValueAtTime(220,ac.currentTime);o.frequency.linearRampToValueAtTime(440,ac.currentTime+0.12);o.type='triangle';g.gain.setValueAtTime(0.08,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.18);o.start();o.stop(ac.currentTime+0.18);}catch(e){}}
 
 document.querySelectorAll('.wclose').forEach(function(b){
 b.addEventListener('click',function(){playBip();closeW(b.dataset.w)})
@@ -1225,6 +1246,41 @@ document.getElementById('desk').addEventListener('mousedown',function(e){
 var w=e.target.closest('.win');
 if(w){w.style.zIndex=++zTop;setActive(w.id);}
 });
+
+/* 6 — Échap ferme la fenêtre active */
+document.addEventListener('keydown',function(e){
+if(e.key==='Escape'){
+  var act=document.querySelector('.win.active');
+  if(act&&act.id){playBip();closeW(act.id);}
+  document.getElementById('lb').style.display='none';
+  var vm=document.getElementById('vmodal');
+  if(vm)vm.style.display='none';
+}
+});
+
+/* 9 — Favicon animé sur onglet inactif */
+(function(){
+  var cv=document.createElement('canvas');cv.width=32;cv.height=32;
+  var cx=cv.getContext('2d');
+  var fav=document.querySelector('link[rel="icon"]');
+  var img=new Image();img.src='assets/ui/bb-favicon.png';
+  var pulse=0,dir=1,raf;
+  function drawFav(){
+    cx.clearRect(0,0,32,32);
+    cx.globalAlpha=1;cx.drawImage(img,0,0,32,32);
+    cx.globalAlpha=0.35+0.35*Math.sin(pulse);
+    cx.fillStyle='#E8007A';cx.fillRect(0,0,32,32);
+    cx.globalAlpha=1;
+    fav.href=cv.toDataURL();
+    pulse+=0.15*dir;
+  }
+  img.onload=function(){
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden){raf=setInterval(drawFav,60);}
+      else{clearInterval(raf);fav.href='assets/ui/bb-favicon.png';}
+    });
+  };
+})();
 
 document.addEventListener('contextmenu',function(e){
 e.preventDefault();
