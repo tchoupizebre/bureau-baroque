@@ -175,6 +175,16 @@ html,body{cursor:auto}
 /* Fenêtre active — glow magenta */
 .win.active{box-shadow:0 24px 80px rgba(0,0,0,.8),0 0 0 1px rgba(232,0,122,.45),0 0 28px rgba(232,0,122,.18)}
 .win.active .wtb{box-shadow:0 0 14px rgba(232,0,122,.35)}
+/* 1 — Animation baroque ouverture */
+.win{transform:scale(.88) translateY(10px) rotate(-1.5deg);filter:blur(10px)}
+.win.vis{transform:scale(1) translateY(0) rotate(0deg);filter:blur(0)}
+/* 1 — Scrollbar magenta custom */
+.wsplit-left,.wsplit-right,.wbody,.wlistbox{scrollbar-width:thin;scrollbar-color:rgba(232,0,122,.6) rgba(0,0,0,.2)}
+.wsplit-left::-webkit-scrollbar,.wsplit-right::-webkit-scrollbar,.wbody::-webkit-scrollbar{width:4px;background:rgba(0,0,0,.2)}
+.wsplit-left::-webkit-scrollbar-thumb,.wsplit-right::-webkit-scrollbar-thumb,.wbody::-webkit-scrollbar-thumb{background:rgba(232,0,122,.6);border-radius:2px}
+/* 7 — Barre de statut */
+.wstatusbar{height:20px;background:#0a0a0a;border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 10px 0 70px;gap:12px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.12em;color:rgba(232,0,122,.5);text-transform:uppercase;white-space:nowrap;overflow:hidden}
+.wstatusbar span+span::before{content:'·';margin-right:12px;opacity:.4}
 
 /* Project window carousel */
 .wcar-wrap{flex:1;position:relative;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -915,9 +925,11 @@ var linkHTML=proj.link?'<a href="'+proj.link.url+'" target="_blank" style="displ
 
 var iconSrc=CAT_ICON[proj.cat]?BASE+CAT_ICON[proj.cat]:'';
 var iconTag=iconSrc?'<img src="'+iconSrc+'" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0">':'';
+var CAT_LABEL={wp:'Print',wt:'Textile',ws:'DA',wm:'Motion',wd:'Digital'};
+var breadcrumb=(CAT_LABEL[proj.cat]?CAT_LABEL[proj.cat]+' › ':'')+proj.title;
 w.innerHTML=
 '<div class="wtb">'+
-  '<div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">'+iconTag+'<span class="wtitle">'+proj.title+'</span></div>'+
+  '<div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">'+iconTag+'<span class="wtitle">'+breadcrumb+'</span></div>'+
   '<button class="wbtn wmax" data-w="'+projId+'">□</button>'+
   '<button class="wbtn wclose" data-w="'+projId+'">✕</button>'+
 '</div>'+
@@ -931,6 +943,7 @@ w.innerHTML=
     linkHTML+
   '</div>'+
 '</div>'+
+'<div class="wstatusbar"><span>'+proj.annee+'</span><span>'+proj.client+'</span><span>'+(proj.media.length)+' média'+(proj.media.length>1?'s':'')+'</span></div>'+
 '<div class="wrz"></div>';
 
 document.getElementById('desk').appendChild(w);
@@ -1145,6 +1158,16 @@ mtick();setInterval(mtick,1000)
 
 function initDesk(){
 buildCatWins();
+/* 7 — status bar catégories */
+var CAT_COUNTS={wp:6,wt:4,ws:5,wm:3,wd:2,wa:1};
+var CAT_NAMES={wp:'Print',wt:'Textile',ws:'DA & Identité',wm:'Motion',wd:'Digital',wa:'About'};
+document.querySelectorAll('.win').forEach(function(w){
+  var sb=document.createElement('div');
+  sb.className='wstatusbar';
+  var n=CAT_COUNTS[w.id]||'';
+  sb.innerHTML='<span>'+CAT_NAMES[w.id]+'</span>'+(n?'<span>'+n+' projet'+(n>1?'s':'')+'</span>':'')+'<span>Tchoupizébré · 2026</span>';
+  w.insertBefore(sb,w.querySelector('.wrz'));
+});
 buildMobile();
 setTimeout(function(){
   var al=document.getElementById('win98-alert');
@@ -1168,12 +1191,16 @@ ic.addEventListener('dblclick',function(){openW(ic.dataset.win)});
 
 document.querySelectorAll('.win').forEach(function(w){drag(w);resize(w)});
 
+/* 6 — bip Win98 */
+function playBip(){try{var ac=new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator();var g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=880;o.type='square';g.gain.setValueAtTime(0.06,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.08);o.start();o.stop(ac.currentTime+0.08);}catch(e){}}
+
 document.querySelectorAll('.wclose').forEach(function(b){
-b.addEventListener('click',function(){closeW(b.dataset.w)})
+b.addEventListener('click',function(){playBip();closeW(b.dataset.w)})
 });
 
 document.querySelectorAll('.wmax').forEach(function(b){
 b.addEventListener('click',function(){
+playBip();
 var w=document.getElementById(b.dataset.w);
 if(!w)return;
 if(w.classList.contains('maximized')){
@@ -1183,6 +1210,14 @@ w.style.width='';w.style.height='';
 w.classList.add('maximized');
 w.style.zIndex=++zTop;
 }
+})
+});
+
+/* 5 — double-clic titlebar = maximiser */
+document.querySelectorAll('.wtb').forEach(function(tb){
+tb.addEventListener('dblclick',function(){
+var w=tb.closest('.win');if(!w||!w.id)return;
+var maxBtn=w.querySelector('.wmax');if(maxBtn)maxBtn.click();
 })
 });
 
