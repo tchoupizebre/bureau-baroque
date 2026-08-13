@@ -246,8 +246,8 @@ html,body{cursor:auto}
 .win::before{
   content:'';
   position:absolute;
-  top:-80px;left:-20px;right:-20px;bottom:-80px;
-  background:url('assets/ui/bb-cadre-colonnes.png') center/auto auto no-repeat;
+  top:-80px;left:0;right:0;bottom:-80px;
+  background:url('assets/ui/bb-cadre-colonnes.png') center/100% auto no-repeat;
   pointer-events:none;
   z-index:20;
 }
@@ -1272,8 +1272,11 @@ function jeffScream(){
   el.style.display='flex';
   /* déplacer l'overlay hors du flux de #desk pour qu'il couvre tout */
   if(el.parentNode!==document.body)document.body.appendChild(el);
-  try{var sa=new Audio('assets/ui/bb-screamer.mp3');sa.volume=1;sa.play();}catch(e){}
-  setTimeout(function(){el.style.display='none';},3500);
+  try{
+    var sa=new Audio('assets/ui/bb-screamer.mp3');sa.volume=1;
+    sa.addEventListener('ended',function(){el.style.display='none';});
+    sa.play().catch(function(){setTimeout(function(){el.style.display='none';},3500);});
+  }catch(e){setTimeout(function(){el.style.display='none';},3500);}
 }
 ['mousemove','mousedown','keydown','touchstart'].forEach(function(ev){
   document.addEventListener(ev,function(){
