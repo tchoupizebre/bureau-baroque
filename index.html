@@ -20,7 +20,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
 :root{--bg:#0a0a0a;--text:#ffffff;--dim:#555;--border:#ffffff;--green:#E8007A;--pink:#E8007A;--accent:#E8007A;--red:#CC1111;--purple:#1F28CC;--gold:#E8007A}
 html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:'IBM Plex Mono',monospace}
-*{cursor:none!important}
+*,*::before,*::after,a,button,input,select,textarea,label,[role="button"]{cursor:none!important}
 
 #cur{position:fixed;width:80px;height:80px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s}
 #cur.loading #cur-img{display:none}
@@ -843,6 +843,14 @@ cats.forEach(function(cat){
   var lb=document.getElementById('wlb-'+cat);
   if(!lb)return;
   var catProjs=PROJECTS.filter(function(p){return p.cat===cat});
+  /* preview cliquable — bindé une seule fois par catégorie */
+  (function(){
+    var pane=document.getElementById('wcpane-'+cat);
+    if(pane){pane.addEventListener('click',function(){
+      var sel=lb.querySelector('.wlist-item.sel');
+      if(sel&&sel.dataset.proj)openProject(sel.dataset.proj);
+    });}
+  })();
   catProjs.forEach(function(proj){
     var item=document.createElement('div');
     item.className='wlist-item';
@@ -910,16 +918,6 @@ cats.forEach(function(cat){
     });
     item.addEventListener('mouseenter',function(){sndClick&&sndClick()});
     item.addEventListener('dblclick',function(){openProject(proj.id)});
-    /* preview cliquable → ouvre le projet */
-    var pane=document.getElementById('wcpane-'+cat);
-    if(pane&&!pane._clickBound){
-      pane._clickBound=true;
-      pane.style.cursor='none';
-      pane.addEventListener('click',function(){
-        var sel=lb.querySelector('.wlist-item.sel');
-        if(sel&&sel.dataset.proj)openProject(sel.dataset.proj);
-      });
-    }
     lb.appendChild(item);
   });
 });
