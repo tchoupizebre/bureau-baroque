@@ -246,8 +246,8 @@ html,body{cursor:auto}
 .win::before{
   content:'';
   position:absolute;
-  top:-120px;left:0;right:0;bottom:-120px;
-  background:url('assets/ui/bb-cadre-colonnes.png') center/100% auto no-repeat;
+  top:-80px;left:-20px;right:-20px;bottom:-80px;
+  background:url('assets/ui/bb-cadre-colonnes.png') center/auto auto no-repeat;
   pointer-events:none;
   z-index:20;
 }
@@ -1264,7 +1264,7 @@ var jeffTimer;
 function resetSsTimer(){
   clearTimeout(ssTimer);clearTimeout(jeffTimer);
   ssTimer=setTimeout(ssStart,30000);
-  jeffTimer=setTimeout(jeffScream,60000);
+  jeffTimer=setTimeout(jeffScream,10000);
 }
 function jeffScream(){
   var el=document.getElementById('jeff-overlay');
