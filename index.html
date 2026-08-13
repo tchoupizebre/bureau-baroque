@@ -245,8 +245,9 @@ html,body{cursor:auto}
 .win{position:absolute;overflow:visible}
 .win::before{
   content:'';
-  position:absolute;inset:0;
-  background:url('assets/ui/bb-cadre-colonnes.png') center/auto 100% no-repeat;
+  position:absolute;
+  top:-60px;left:0;right:0;bottom:-60px;
+  background:url('assets/ui/bb-cadre-colonnes.png') center/100% auto no-repeat;
   pointer-events:none;
   z-index:20;
 }
@@ -558,7 +559,7 @@ function startCRT(){
     src.buffer=buf;src.loop=true;
     var hp=ac.createBiquadFilter();hp.type='highpass';hp.frequency.value=7000;hp.Q.value=0.8;
     var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=13000;lp.Q.value=0.4;
-    var gNoise=ac.createGain();gNoise.gain.value=0.004;
+    var gNoise=ac.createGain();gNoise.gain.value=0.001;
     src.connect(hp);hp.connect(lp);lp.connect(gNoise);gNoise.connect(master);
     src.start();
 
