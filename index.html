@@ -1,8 +1,8 @@
 ﻿<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TCHOUPIZÉBRÉ — Bureau Baroque</title>
+<title>LE MONDE TCHOUPIZ</title>
 <meta name="description" content="Portfolio interactif de Hugo Galtier d'Auriac — graphisme, DA, textile, motion. Montpellier.">
-<meta property="og:title" content="TCHOUPIZÉBRÉ — Bureau Baroque">
+<meta property="og:title" content="LE MONDE TCHOUPIZ">
 <meta property="og:description" content="Graphisme · DA · Identité · Textile · Motion. Une interface bureau pour un portfolio qui a une âme.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#E8007A">
@@ -311,7 +311,7 @@ html,body{cursor:auto}
 <div id="boot">
   <div id="boot-inner">
     <div id="boot-logo">TCHOUPIZZ</div>
-    <div id="boot-sub">Bureau Baroque — Système v2.0</div>
+    <div id="boot-sub">Le Monde Tchoupiz — Système v2.0</div>
     <div id="boot-log"></div>
     <div id="boot-bar-wrap"><div id="boot-bar"></div></div>
     <div id="boot-pct">0%</div>
@@ -436,7 +436,7 @@ html,body{cursor:auto}
   <!-- Fenêtre About -->
   <div class="win" id="wa" style="width:620px;height:500px;top:90px;left:260px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="bb-icone-2.png" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">About — Tchoupizébré</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-2.png" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">About — Tchoupizébré</span></div>
       <button class="wbtn wmax" data-w="wa">□</button><button class="wbtn wclose" data-w="wa">✕</button>
     </div>
     <div class="wbody-split" style="flex:none;align-items:stretch">
@@ -525,7 +525,7 @@ html,body{cursor:auto}
   <div id="vhs-modal" style="display:none;position:fixed;inset:0;z-index:8000;align-items:center;justify-content:center;background:rgba(0,0,0,.88)">
     <div style="position:relative;width:min(720px,92vw);background:#000;border:2px solid #E8007A;box-shadow:0 0 40px rgba(232,0,122,.4)">
       <div style="background:linear-gradient(90deg,#E8007A,#9a0050);height:26px;display:flex;align-items:center;padding:0 8px;gap:8px">
-        <img src="bb-icone-chaos.png" style="width:14px;height:14px;filter:brightness(0)">
+        <img src="assets/ui/bb-icone-chaos.png" style="width:14px;height:14px;filter:brightness(0)">
         <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;font-weight:700;letter-spacing:.12em;flex:1">SECRET FOUND — VHS #001</span>
         <button id="vhs-close" style="background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;width:18px;height:16px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
       </div>
@@ -711,7 +711,7 @@ var msgs=[
 ['Motion .................. CHARGÉ',160,'ok'],
 ['Digital ................. CHARGÉ',140,'ok'],
 ['About ................... CHARGÉ',140,'ok'],
-['Bureau Baroque v2.0 — PRÊT',300,'ok']
+['Le Monde Tchoupiz v2.0 — PRÊT',300,'ok']
 ];
 var mi=0;
 
@@ -803,7 +803,7 @@ var PROJECTS=[
  media:[{t:'vid',src:'comp1.mp4'},{t:'vid',src:'carrousel.mp4'}]},
 {id:'pw-shipreel',cat:'wm',title:'SHIPMENT — Reel',tagline:'Reel événementiel',client:'SHIPMENT',annee:'2025',disciplines:'Montage · Reel · Événementiel',desc:'Reel de communication pour le festival SHIPMENT.',
  media:[{t:'vid',src:'shipment.mp4'}]},
-{id:'pw-bb',cat:'wd',title:'Bureau Baroque v2',tagline:'Portfolio interactif — expérience desktop',client:'Projet perso',annee:'2026',disciplines:'HTML · CSS · JS · WordPress',desc:'Boot cinématique, fenêtres drag/resize, curseur custom, fallback mobile. Target Awwwards.',
+{id:'pw-bb',cat:'wd',title:'Le Monde Tchoupiz v2',tagline:'Portfolio interactif — expérience desktop',client:'Projet perso',annee:'2026',disciplines:'HTML · CSS · JS · WordPress',desc:'Boot cinématique, fenêtres drag/resize, curseur custom, fallback mobile. Target Awwwards.',
  media:[]}
 ];
 
@@ -1428,7 +1428,7 @@ document.addEventListener('keydown',function(e){
 }
 
 var CAT_LABEL={wp:'Print',wt:'Textile',ws:'DA',wm:'Motion',wd:'Digital'};
-var CAT_ICON={wp:'bb-icone-1.png',wt:'bb-icone-chaos.png',ws:'bb-icone-4.png',wm:'bb-icone-3.png',wd:'bb-icone-6.png'};
+var CAT_ICON={wp:'assets/ui/bb-icone-1.png',wt:'assets/ui/bb-icone-chaos.png',ws:'assets/ui/bb-icone-4.png',wm:'assets/ui/bb-icone-3.png',wd:'assets/ui/bb-icone-6.png'};
 function initHScroll(){
 var c=document.getElementById('hscroll');
 if(!c)return;
