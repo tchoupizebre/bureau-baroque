@@ -254,15 +254,25 @@ html,body{cursor:auto}
   --baroque-tex:url('assets/ui/bb-texture-papier.png');
 }
 
-/* Cadre colonnes baroques sur toutes les fenêtres */
+/* Cadre colonnes baroques — gauche et droite séparées */
 .win{position:absolute;overflow:visible}
-.win::before{
+.win::before,.win::after{
   content:'';
   position:absolute;
-  top:-80px;left:-55px;right:-55px;bottom:-80px;
-  background:url('assets/ui/bb-cadre-colonnes.png') center/calc(100% + 110px) auto no-repeat;
+  top:-80px;bottom:-80px;
+  width:110px;
+  background:url('assets/ui/bb-cadre-colonnes.png') no-repeat;
+  background-size:auto 100%;
   pointer-events:none;
   z-index:20;
+}
+.win::before{
+  left:-55px;
+  background-position:left top;
+}
+.win::after{
+  right:-55px;
+  background-position:right top;
 }
 
 /* Séparateur baroque entre wstat-block */
