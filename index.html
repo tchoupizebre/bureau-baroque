@@ -1046,7 +1046,7 @@ if(catWin){
   w.style.transform='translate('+dx2+'px,'+dy2+'px) scale('+sx2+','+sy2+')';
   w.style.opacity='0';w.style.filter='blur(6px)';
   open.add(projId);w.style.zIndex=++zTop;
-  history.replaceState(null,'','#'+projId);
+  try{history.replaceState(null,'','#'+projId);}catch(e){}
   sndOpen();
   requestAnimationFrame(function(){requestAnimationFrame(function(){
     w.style.transition='';w.style.transform='';w.style.opacity='';w.style.filter='';
@@ -1083,7 +1083,7 @@ if(id==='wa'){
 }
 setActive(id);
 sndOpen();
-history.replaceState(null,'','#'+id);
+try{history.replaceState(null,'','#'+id);}catch(e){}
 var icon=document.querySelector('.icon[data-win="'+id.replace(/^pw-/,'')+'"], .icon[data-win="'+id+'"]');
 if(icon){
   var ir=icon.getBoundingClientRect();
@@ -1113,7 +1113,7 @@ function closeW(id){
 var w=document.getElementById(id);
 if(!w)return;
 open.delete(id);
-history.replaceState(null,'','#');
+try{history.replaceState(null,'','#');}catch(e){}
 sndClose();
 updateTbar();
 /* Reverse FLIP — vers la fenêtre catégorie ou l'icône */
@@ -1465,7 +1465,7 @@ document.getElementById('vhs-modal').addEventListener('click',function(e){if(e.t
     if(proj)openProject(proj.id);
   }
   /* nettoyer le hash au chargement sans ouvrir de fenêtre */
-  history.replaceState(null,'',location.pathname);
+  try{history.replaceState(null,'',location.pathname);}catch(e){}
   window.addEventListener('hashchange',hashOpen);
 
   /* tooltip icônes */
