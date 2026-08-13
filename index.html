@@ -20,6 +20,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
 :root{--bg:#0a0a0a;--text:#ffffff;--dim:#555;--border:#ffffff;--green:#E8007A;--pink:#E8007A;--accent:#E8007A;--red:#CC1111;--purple:#1F28CC;--gold:#E8007A}
 html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:'IBM Plex Mono',monospace}
+*{cursor:none!important}
 
 #cur{position:fixed;width:80px;height:80px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s}
 #cur.loading #cur-img{display:none}
@@ -363,7 +364,7 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre Print -->
-  <div class="win" id="wp" style="width:520px;height:420px;top:60px;left:60px">
+  <div class="win" id="wp" style="width:560px;height:460px;top:60px;left:60px">
     <div class="wtb">
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-1.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Print</span></div>
       <button class="wbtn wmax" data-w="wp">□</button><button class="wbtn wclose" data-w="wp">✕</button>
@@ -383,7 +384,7 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre Textile -->
-  <div class="win" id="wt" style="width:520px;height:380px;top:80px;left:100px">
+  <div class="win" id="wt" style="width:560px;height:460px;top:80px;left:100px">
     <div class="wtb">
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-chaos.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Textile</span></div>
       <button class="wbtn wmax" data-w="wt">□</button><button class="wbtn wclose" data-w="wt">✕</button>
@@ -403,7 +404,7 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre DA -->
-  <div class="win" id="ws" style="width:520px;height:380px;top:100px;left:140px">
+  <div class="win" id="ws" style="width:560px;height:460px;top:100px;left:140px">
     <div class="wtb">
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-4.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">DA & Identité</span></div>
       <button class="wbtn wmax" data-w="ws">□</button><button class="wbtn wclose" data-w="ws">✕</button>
@@ -423,7 +424,7 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre Motion -->
-  <div class="win" id="wm" style="width:520px;height:380px;top:110px;left:180px">
+  <div class="win" id="wm" style="width:560px;height:460px;top:110px;left:180px">
     <div class="wtb">
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-3.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Motion</span></div>
       <button class="wbtn wmax" data-w="wm">□</button><button class="wbtn wclose" data-w="wm">✕</button>
@@ -443,7 +444,7 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre Digital -->
-  <div class="win" id="wd" style="width:520px;height:380px;top:120px;left:220px">
+  <div class="win" id="wd" style="width:560px;height:460px;top:120px;left:220px">
     <div class="wtb">
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-6.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Digital</span></div>
       <button class="wbtn wmax" data-w="wd">□</button><button class="wbtn wclose" data-w="wd">✕</button>
@@ -909,6 +910,16 @@ cats.forEach(function(cat){
     });
     item.addEventListener('mouseenter',function(){sndClick&&sndClick()});
     item.addEventListener('dblclick',function(){openProject(proj.id)});
+    /* preview cliquable → ouvre le projet */
+    var pane=document.getElementById('wcpane-'+cat);
+    if(pane&&!pane._clickBound){
+      pane._clickBound=true;
+      pane.style.cursor='none';
+      pane.addEventListener('click',function(){
+        var sel=lb.querySelector('.wlist-item.sel');
+        if(sel&&sel.dataset.proj)openProject(sel.dataset.proj);
+      });
+    }
     lb.appendChild(item);
   });
 });
@@ -924,7 +935,7 @@ w.className='win proj-win';
 w.id=projId;
 var topOff=90+Math.floor(Math.random()*50);
 var leftOff=130+Math.floor(Math.random()*80);
-w.style.cssText='width:740px;height:520px;top:'+topOff+'px;left:'+leftOff+'px';
+w.style.cssText='width:560px;height:460px;top:'+topOff+'px;left:'+leftOff+'px';
 
 var mediaIdx=0;
 
