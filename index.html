@@ -241,31 +241,17 @@ html,body{cursor:auto}
   --baroque-tex:url('assets/ui/bb-texture-papier.png');
 }
 
-/* Cadre ornemental sur toutes les fenêtres */
+/* Cadre colonnes baroques sur toutes les fenêtres */
 .win{position:absolute}
 .win::before{
   content:'';
   position:absolute;inset:0;
-  background:var(--baroque-cadre) center/100% 100% no-repeat;
-  mix-blend-mode:screen;
-  filter:invert(14%) sepia(100%) saturate(6000%) hue-rotate(310deg) brightness(.9);
-  opacity:.18;
+  background:url('assets/ui/bb-cadre-colonnes.png') center/100% 100% no-repeat;
+  mix-blend-mode:normal;
+  opacity:.85;
   pointer-events:none;
   z-index:20;
   border-radius:inherit;
-}
-
-/* Coins baroques — top-left natif, autres via transform */
-.win::after{
-  content:'';
-  position:absolute;top:-2px;left:-2px;
-  width:60px;height:60px;
-  background:var(--baroque-coin) left top/contain no-repeat;
-  mix-blend-mode:screen;
-  filter:invert(14%) sepia(100%) saturate(6000%) hue-rotate(310deg) brightness(1.1);
-  opacity:.5;
-  pointer-events:none;
-  z-index:21;
 }
 
 /* Séparateur baroque entre wstat-block */
