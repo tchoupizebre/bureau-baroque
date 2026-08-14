@@ -179,7 +179,14 @@ html,body{cursor:auto}
 .win-fbtn:active{border-color:#808080 #fff #fff #808080;background:#b0b0b0}
 .win-fbtn.def{outline:1px dotted #000;outline-offset:-3px}
 /* Listbox Win98 */
-.wlistbox{background:#E8007A;border:2px solid;border-color:#111 #c0006a #c0006a #111;overflow-y:auto;height:100%;box-sizing:border-box;font-family:"jetsam-collection-basilea",sans-serif;color:#000;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.3) transparent}
+.wlistbox{background:#E8007A;border:2px solid;border-color:#111 #c0006a #c0006a #111;overflow-y:auto;height:100%;box-sizing:border-box;font-family:"jetsam-collection-basilea",sans-serif;color:#000;scrollbar-color:#c0c0c0 #a0005a}
+/* Scrollbar Win98 authentique sur listbox */
+.wlistbox::-webkit-scrollbar{width:16px;background:#c0c0c0}
+.wlistbox::-webkit-scrollbar-track{background:#c0c0c0;border-left:1px solid #808080}
+.wlistbox::-webkit-scrollbar-thumb{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;min-height:24px}
+.wlistbox::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff}
+.wlistbox::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.wlistbox::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 .wlist-item{padding:5px 12px;cursor:default;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px;line-height:1.6;border-bottom:1px solid rgba(0,0,0,.12);letter-spacing:.02em;color:#000;transition:background .1s,color .1s}
 .wlist-item:hover{background:rgba(0,0,0,.18)}
 .wlist-item.sel{background:rgba(0,0,0,.3);border-left:3px solid #000}
@@ -193,10 +200,14 @@ html,body{cursor:auto}
 /* 1 — Animation baroque ouverture */
 .win{transform:scale(.88) translateY(10px) rotate(-1.5deg);filter:blur(10px)}
 .win.vis{transform:scale(1) translateY(0) rotate(0deg);filter:blur(0)}
-/* 1 — Scrollbar magenta custom */
-.wsplit-left,.wsplit-right,.wbody,.wlistbox{scrollbar-width:thin;scrollbar-color:rgba(232,0,122,.6) rgba(0,0,0,.2)}
-.wsplit-left::-webkit-scrollbar,.wsplit-right::-webkit-scrollbar,.wbody::-webkit-scrollbar{width:4px;background:rgba(0,0,0,.2)}
-.wsplit-left::-webkit-scrollbar-thumb,.wsplit-right::-webkit-scrollbar-thumb,.wbody::-webkit-scrollbar-thumb{background:rgba(232,0,122,.6);border-radius:2px}
+/* Scrollbar Win98 panneau droit + wbody */
+.wsplit-right,.wbody{scrollbar-color:#c0c0c0 #1a1a1a}
+.wsplit-right::-webkit-scrollbar,.wbody::-webkit-scrollbar{width:16px;background:#1a1a1a}
+.wsplit-right::-webkit-scrollbar-track,.wbody::-webkit-scrollbar-track{background:#1a1a1a;border-left:1px solid #333}
+.wsplit-right::-webkit-scrollbar-thumb,.wbody::-webkit-scrollbar-thumb{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;min-height:24px}
+.wsplit-right::-webkit-scrollbar-button,.wbody::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff}
+.wsplit-right::-webkit-scrollbar-button:vertical:start,.wbody::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.wsplit-right::-webkit-scrollbar-button:vertical:end,.wbody::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 /* 7 — Barre de statut */
 .wstatusbar{height:20px;background:#0a0a0a;border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 10px 0 70px;gap:12px;flex-shrink:0;font-family:"bd-terminal-vf",sans-serif;font-size:8px;letter-spacing:.12em;color:rgba(232,0,122,.5);text-transform:uppercase;white-space:nowrap;overflow:hidden}
 .wstatusbar span+span::before{content:'·';margin-right:12px;opacity:.4}
@@ -1330,7 +1341,8 @@ document.querySelectorAll('.win').forEach(function(w){
   var f=document.createElement('div');
   f.className='win-footer';
   f.innerHTML='<button class="win-fbtn def" onclick="closeW(\''+id+'\')">Fermer</button>';
-  w.insertBefore(f,w.querySelector('.wrz'));
+  var sb=w.querySelector('.wstatusbar');
+  w.insertBefore(f,sb||w.querySelector('.wrz'));
 });
 buildMobile();
 var clk=document.getElementById('tbar-clock');
