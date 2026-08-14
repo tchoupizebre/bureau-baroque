@@ -1062,7 +1062,7 @@ function openW(id){
 var w=document.getElementById(id);
 if(!w)return;
 if(open.has(id)){w.style.zIndex=++zTop;setActive(id);return}
-playOpen();
+sndOpen();
 cur.classList.add('loading');
 setTimeout(function(){cur.classList.remove('loading');},400);
 open.add(id);
