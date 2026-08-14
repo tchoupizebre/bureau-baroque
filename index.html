@@ -187,13 +187,16 @@ html,body{cursor:auto}
 .wlistbox::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff}
 .wlistbox::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 .wlistbox::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
-.wlist-item{padding:5px 12px;cursor:default;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px;line-height:1.6;border-bottom:1px solid rgba(0,0,0,.12);letter-spacing:.02em;color:#000;transition:background .1s,color .1s}
-.wlist-item:hover{background:rgba(0,0,0,.18)}
-.wlist-item.sel{background:rgba(0,0,0,.3);border-left:3px solid #000}
+.wlist-item{padding:6px 12px;cursor:default;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px;line-height:1.6;border-bottom:1px solid rgba(0,0,0,.28);letter-spacing:.02em;color:#000;transition:background .1s,color .1s}
+.wlist-item:hover{background:rgba(0,0,0,.22);color:#000}
+.wlist-item.sel{background:#000!important;color:#fff!important;border-left:3px solid var(--pink);padding-left:9px}
 /* Category preview panel */
-.wcat-pane{padding:8px;display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box}
-.wcat-thumb{width:100%;max-height:58%;object-fit:contain;border:2px solid;border-color:#111 #383838 #383838 #111;background:#0a0a0a;display:block}
-.wcat-hint{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,0,122,.45);font-family:"bd-terminal-vf",sans-serif;text-align:center;padding-top:4px;margin-top:auto}
+.wcat-pane{padding:0;display:flex;flex-direction:column;gap:0;height:100%;box-sizing:border-box;position:relative;z-index:1}
+.wcat-thumb{width:100%;flex:0 0 auto;max-height:55%;object-fit:contain;border-bottom:2px solid;border-color:#111 #383838 #383838 #111;background:#080808;display:block}
+.wcat-pane .wstat-block{border:none;background:transparent;border-bottom:1px solid #1c1c1c;padding:8px 12px;margin-bottom:0}
+.wcat-pane .wstat-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:17px;color:#fff;letter-spacing:.02em;line-height:1.15;margin-bottom:3px}
+.wcat-pane .wstat-line{font-size:8px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;font-family:"bd-terminal-vf",sans-serif}
+.wcat-hint{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#E8007A;font-family:"bd-terminal-vf",sans-serif;text-align:center;padding:6px 8px;margin-top:auto;border-top:1px solid rgba(232,0,122,.35);position:relative;z-index:2}
 /* Fenêtre active — glow magenta */
 .win.active{box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8),0 0 28px rgba(232,0,122,.22);border-color:#E8007A #6a0035 #6a0035 #E8007A}
 .win.active .wtb{box-shadow:0 0 14px rgba(232,0,122,.35)}
@@ -894,10 +897,8 @@ var PROJECTS=[
  media:[{t:'img',src:'mlq1.webp'},{t:'img',src:'mlq2.webp'},{t:'img',src:'mlq3.webp'}]},
 {id:'pw-shipment',cat:'wp',title:'Shipment',tagline:'Identité événementielle complète',client:'SHIPMENT',annee:'2025',disciplines:'Affiche · Social media · Billetterie',desc:'DA complète pour le festival SHIPMENT — affiches, stories, posts.',
  media:[{t:'img',src:'shipment1.webp'},{t:'img',src:'shipment2.webp'},{t:'img',src:'shipment3.webp'},{t:'img',src:'shipment4.webp'},{t:'img',src:'shipment5.webp'},{t:'img',src:'shipment6.webp'},{t:'img',src:'shipment7.webp'},{t:'img',src:'shipment8.webp'},{t:'img',src:'shipment9.webp'},{t:'img',src:'shipment10.webp'}]},
-{id:'pw-faitmaison',cat:'wp',title:'Fait Maison',tagline:'Résidence musicale — print & réseaux',client:'Fait Maison Résidence',annee:'2024—2025',disciplines:'Print · Social · Photo edit',desc:'Identité print et réseaux sociaux pour la résidence Fait Maison.',
- media:[{t:'img',src:'faitmaison1.webp'},{t:'img',src:'faitmaison2.webp'},{t:'img',src:'faitmaison3.webp'},{t:'img',src:'faitmaison4.webp'},{t:'img',src:'faitmaison5.webp'},{t:'img',src:'faitmaison6.webp'},{t:'img',src:'faitmaison7.webp'},{t:'img',src:'faitmaison-lumni.webp'},{t:'img',src:'faitmaison-hammel.webp'},{t:'img',src:'faitmaison-ryo.webp'},{t:'img',src:'faitmaison-sameer.webp'},{t:'img',src:'faitmaison-yhuna.webp'}]},
-{id:'pw-lcdi',cat:'wp',title:'LCDI & La Ruche',tagline:'Structures culturelles — affiches',client:'LCDI / La Ruche',annee:'2024',disciplines:'Affiche · Print',desc:'Affiches pour le LCDI et La Ruche, structures culturelles montpelliéraines.',
- media:[{t:'img',src:'lcdi1.webp'},{t:'img',src:'lcdi2.webp'},{t:'img',src:'laruche1.webp'},{t:'img',src:'laruche2.webp'},{t:'img',src:'larucheckoi1.webp'},{t:'img',src:'larucheckoi2.webp'},{t:'img',src:'larucheckoi3.webp'}]},
+{id:'pw-lcdi',cat:'wp',title:'Rap Académie',tagline:'Résidence musicale · structures culturelles',client:'Fait Maison / LCDI / La Ruche',annee:'2024—2025',disciplines:'Affiche · Print · Social · Photo edit',desc:'Identité print, réseaux sociaux et affiches pour Fait Maison, le LCDI et La Ruche.',
+ media:[{t:'sep',label:'Fait Maison'},{t:'img',src:'faitmaison1.webp'},{t:'img',src:'faitmaison2.webp'},{t:'img',src:'faitmaison3.webp'},{t:'img',src:'faitmaison4.webp'},{t:'img',src:'faitmaison5.webp'},{t:'img',src:'faitmaison6.webp'},{t:'img',src:'faitmaison7.webp'},{t:'img',src:'faitmaison-lumni.webp'},{t:'img',src:'faitmaison-hammel.webp'},{t:'img',src:'faitmaison-ryo.webp'},{t:'img',src:'faitmaison-sameer.webp'},{t:'img',src:'faitmaison-yhuna.webp'},{t:'sep',label:'Le Combat des Invisibles'},{t:'img',src:'lcdi1.webp'},{t:'img',src:'lcdi2.webp'},{t:'sep',label:'La Ruche'},{t:'img',src:'laruche1.webp'},{t:'img',src:'laruche2.webp'},{t:'img',src:'larucheckoi1.webp'},{t:'img',src:'larucheckoi2.webp'},{t:'img',src:'larucheckoi3.webp'}]},
 {id:'pw-fabre',cat:'wp',title:'Musée Fabre',tagline:'Communication visuelle musée',client:'Musée Fabre',annee:'2025',disciplines:'Print · Médiation culturelle',desc:'Visuels de communication pour le Musée Fabre de Montpellier.',
  media:[{t:'img',src:'musee-fabre1.webp'},{t:'img',src:'musee-fabre2.webp'}]},
 {id:'pw-backstabbers',cat:'wt',title:'Backstabbers — Capsule I',tagline:'4 pièces sérigraphiées sur vintage',client:'Projet perso',annee:'2026',disciplines:'Upcycling · Sérigraphie · Textile',desc:'Capsule 4 pièces. Bases vintage Grade A sérigraphiées. 30€/pièce S—XL.',
@@ -1017,6 +1018,7 @@ w.style.cssText='width:560px;height:460px;top:'+topOff+'px;left:'+leftOff+'px';
 var mediaIdx=0;
 
 function mediaHTML(m){
+  if(m.t==='sep')return '<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0a0a0a;gap:10px"><div style="font-family:\'jetsam-collection-basilea\',sans-serif;font-size:32px;color:#fff;letter-spacing:.04em;text-align:center">'+m.label+'</div><div style="width:60px;height:1px;background:var(--pink)"></div></div>';
   if(m.t==='vid')return '<video style="max-width:100%;max-height:100%;display:block;width:100%;height:100%;object-fit:contain;background:#000" src="'+BASE+m.src+'" controls playsinline></video>';
   return '<img style="max-width:100%;max-height:100%;display:block;width:100%;height:100%;object-fit:contain" src="'+BASE+m.src+'" alt="">';
 }
@@ -1078,12 +1080,18 @@ if(proj.media.length>0){
     var vid=carWrap.querySelector('video');if(vid)vid.pause();
     var btns=Array.prototype.slice.call(carWrap.querySelectorAll('.wcar-btn'));
     var m=proj.media[mediaIdx];
+    if(cntEl)cntEl.textContent=(mediaIdx+1)+' / '+proj.media.length;
+    var vctrl=document.getElementById('vpc-'+projId);
+    /* séparateur de section — affichage direct sans loader */
+    if(m.t==='sep'){
+      carWrap.innerHTML=mediaHTML(m);
+      btns.forEach(function(b){carWrap.appendChild(b)});
+      if(vctrl)vctrl.classList.remove('on');
+      return;
+    }
     /* show loader */
     carWrap.innerHTML=loaderHTML();
     btns.forEach(function(b){carWrap.appendChild(b)});
-    if(cntEl)cntEl.textContent=(mediaIdx+1)+' / '+proj.media.length;
-    /* load media off-screen then swap */
-    var vctrl=document.getElementById('vpc-'+projId);
     if(m.t==='img'){
       if(vctrl)vctrl.classList.remove('on');
       var img=new Image();
