@@ -946,12 +946,12 @@ function mediaHTML(m){
 
 var leftHTML;
 if(proj.media.length===0){
-  leftHTML='<div style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:9px;letter-spacing:.1em;font-family:\'IBM Plex Mono\',monospace">MÉDIA À VENIR</div>';
+  leftHTML='<div style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:9px;letter-spacing:.1em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">Média à venir</div>';
 }else{
   leftHTML='<div class="wcar-wrap" id="wcar-'+projId+'">'+mediaHTML(proj.media[0])+'<button class="wcar-btn wcar-prev" id="wcp-'+projId+'">◀</button><button class="wcar-btn wcar-next" id="wcn-'+projId+'">▶</button></div><div class="wcar-count" id="wcc-'+projId+'">'+(proj.media.length>1?'1 / '+proj.media.length:'')+'</div>';
 }
 
-var linkHTML=proj.link?'<a href="'+proj.link.url+'" target="_blank" style="display:inline-block;margin-top:6px;color:var(--pink);text-decoration:none;border:1px solid rgba(232,0,122,.45);padding:5px 10px;font-size:9px;letter-spacing:.12em;font-family:\'IBM Plex Mono\',monospace">'+proj.link.label+'</a>':'';
+var linkHTML=proj.link?'<a href="'+proj.link.url+'" target="_blank" style="display:inline-block;margin-top:6px;color:var(--pink);text-decoration:none;border:1px solid rgba(232,0,122,.45);padding:5px 10px;font-size:9px;letter-spacing:.12em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">'+proj.link.label+'</a>':'';
 
 var iconSrc=CAT_ICON[proj.cat]?BASE+CAT_ICON[proj.cat]:'';
 var iconTag=iconSrc?'<img src="'+iconSrc+'" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0">':'';
