@@ -856,7 +856,7 @@ cats.forEach(function(cat){
   catProjs.forEach(function(proj){
     var item=document.createElement('div');
     item.className='wlist-item';
-    item.textContent=proj.title.toUpperCase();
+    item.textContent=proj.title;
     item.dataset.proj=proj.id;
     item.addEventListener('mouseenter',function(){
       lb.querySelectorAll('.wlist-item').forEach(function(el){el.classList.remove('sel')});
