@@ -531,12 +531,12 @@ html,body{cursor:auto}
 
   <div id="win98-alert">
     <div id="win98-alert-box">
-      <div id="win98-alert-tb"><span id="win98-alert-ico">⚠</span><span id="win98-alert-ttl">BUREAU BAROQUE — AVERTISSEMENT</span></div>
+      <div id="win98-alert-tb"><span id="win98-alert-ico">⚠</span><span id="win98-alert-ttl">Le Monde Tchoupiz — Avertissement</span></div>
       <div id="win98-alert-body">
         <div id="win98-alert-sym">!</div>
-        <div id="win98-alert-msg">Ce bureau est sous surveillance.<br>Toute inactivité prolongée<br>sera sanctionnée.<br><br>Vous avez été prévenu.</div>
+        <div id="win98-alert-msg">Êtes-vous encore là ?<br><br>Ce bureau est en veille.<br>Toute inactivité prolongée<br>sera sanctionnée.</div>
       </div>
-      <div id="win98-alert-footer"><button id="win98-alert-ok" onclick="document.getElementById('win98-alert').style.display='none'">OK</button></div>
+      <div id="win98-alert-footer"><button id="win98-alert-ok" onclick="ssStop();document.getElementById('win98-alert').style.display='none'">OK</button></div>
     </div>
   </div>
 
@@ -1208,10 +1208,6 @@ document.querySelectorAll('.win').forEach(function(w){
   w.insertBefore(sb,w.querySelector('.wrz'));
 });
 buildMobile();
-setTimeout(function(){
-  var al=document.getElementById('win98-alert');
-  if(al)al.style.display='flex';
-},1200);
 var clk=document.getElementById('tbar-clock');
 function tick(){
 var n=new Date();
@@ -1378,6 +1374,8 @@ var ssTimer,ssRaf,ssActive=false,ssData={};
 function ssStart(){
   if(ssActive||open.size===0)return;
   ssActive=true;
+  var al=document.getElementById('win98-alert');
+  if(al)al.style.display='flex';
   var desk=document.getElementById('desk');
   desk.classList.add('ss','ss-txt');
   ssData={};
