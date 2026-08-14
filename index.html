@@ -154,26 +154,39 @@ html,body{cursor:auto}
 .win .wmax::before{display:none!important}
 #vmodal-tb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%)!important}
 #vmodal-close{background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;color:#000!important;font-weight:700}
-/* Layout général split */
-.wbody-split{display:flex;flex:1;overflow:hidden}
-.wsplit-left{flex:0 0 55%;overflow:hidden;border-right:1px solid #1a1a1a;background:#060606;box-sizing:border-box}
-.wsplit-right{flex:1;overflow-y:auto;overflow-x:hidden;padding:14px 12px;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent;font-family:"bd-terminal-vf",sans-serif;font-size:10px;color:var(--text);line-height:1.75}
-/* HUD panels */
-.wstat-block{border:1px solid rgba(232,0,122,.35);padding:8px 10px;margin-bottom:8px;background:rgba(232,0,122,.03);position:relative}
-.wstat-block::before,.wstat-block::after{content:'';position:absolute;width:7px;height:7px}
-.wstat-block::before{top:-1px;left:-1px;border-top:2px solid var(--pink);border-left:2px solid var(--pink)}
-.wstat-block::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--pink);border-right:2px solid var(--pink)}
-.wstat-title{font-size:11px;letter-spacing:.04em;color:var(--pink);margin-bottom:4px;font-family:"jetsam-collection-basilea",sans-serif;text-transform:none}
-.wstat-line{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);line-height:1.9;font-family:"bd-terminal-vf",sans-serif}
+/* ── Layout Win98 Wizard ───────────────────────────────────────────────── */
+.wbody-split{display:flex;flex:1;overflow:hidden;padding:6px;gap:4px;background:#111}
+/* Panneau gauche : sunken inset */
+.wsplit-left{flex:0 0 55%;overflow:hidden;border:2px solid;border-color:#111 #383838 #383838 #111;background:#060606;box-sizing:border-box}
+/* Panneau droit : zone wizard */
+.wsplit-right{flex:1;overflow-y:auto;overflow-x:hidden;padding:14px 14px 10px;box-sizing:border-box;border:2px solid;border-color:#111 #383838 #383838 #111;background:#0c0c0c;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:rgba(232,0,122,.5) rgba(0,0,0,.2)}
+.wsplit-right::-webkit-scrollbar{width:4px;background:rgba(0,0,0,.2)}
+.wsplit-right::-webkit-scrollbar-thumb{background:rgba(232,0,122,.5)}
+/* Titre wizard en Basilea (grand) */
+.wiz-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:22px;color:#fff;letter-spacing:.03em;line-height:1.1;margin-bottom:4px}
+.wiz-sub{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:var(--pink);letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+/* Séparateur Win98 horizontal */
+.win98-hr{height:0;border:0;border-top:1px solid #1c1c1c;border-bottom:1px solid #383838;margin:8px 0}
+/* Champ stat : sunken field Win98 */
+.wstat-block{border:2px solid;border-color:#111 #383838 #383838 #111;padding:5px 8px;margin-bottom:5px;background:#080808;position:relative}
+.wstat-block::before,.wstat-block::after{display:none}
+.wstat-title{font-size:10px;letter-spacing:.05em;color:var(--pink);margin-bottom:2px;font-family:"jetsam-collection-basilea",sans-serif;text-transform:none}
+.wstat-line{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7);line-height:1.85;font-family:"bd-terminal-vf",sans-serif}
+/* Footer boutons Win98 */
+.win-footer{height:36px;background:#0f0f0f;border-top:2px solid;border-color:#111 #383838 #383838 #111;display:flex;align-items:center;justify-content:flex-end;padding:0 84px;gap:5px;flex-shrink:0}
+.win-fbtn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 0;font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;width:76px;text-align:center;text-transform:uppercase;flex-shrink:0}
+.win-fbtn:hover{background:#d8d8d8}
+.win-fbtn:active{border-color:#808080 #fff #fff #808080;background:#b0b0b0}
+.win-fbtn.def{outline:1px dotted #000;outline-offset:-3px}
 /* Listbox Win98 */
-.wlistbox{background:#E8007A;border:1px solid #c0006a;border-right:none;overflow-y:auto;height:100%;box-sizing:border-box;font-family:"jetsam-collection-basilea",sans-serif;font-size:10px;color:#000;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.3) transparent}
+.wlistbox{background:#E8007A;border:2px solid;border-color:#111 #c0006a #c0006a #111;overflow-y:auto;height:100%;box-sizing:border-box;font-family:"jetsam-collection-basilea",sans-serif;color:#000;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.3) transparent}
 .wlist-item{padding:5px 12px;cursor:default;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px;line-height:1.6;border-bottom:1px solid rgba(0,0,0,.12);letter-spacing:.02em;color:#000;transition:background .1s,color .1s}
-.wlist-item:hover{background:rgba(0,0,0,.18);color:#000}
-.wlist-item.sel{background:rgba(0,0,0,.28);color:#000;border-left:2px solid #000}
-/* Category window preview panel */
-.wcat-pane{padding:10px;display:flex;flex-direction:column;gap:8px;height:100%;box-sizing:border-box}
-.wcat-thumb{width:100%;max-height:60%;object-fit:contain;border:1px solid rgba(232,0,122,.3);background:#0a0a0a;display:block}
-.wcat-hint{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,0,122,.5);font-family:"bd-terminal-vf",sans-serif;text-align:center;padding-top:6px;margin-top:auto}
+.wlist-item:hover{background:rgba(0,0,0,.18)}
+.wlist-item.sel{background:rgba(0,0,0,.3);border-left:3px solid #000}
+/* Category preview panel */
+.wcat-pane{padding:8px;display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box}
+.wcat-thumb{width:100%;max-height:58%;object-fit:contain;border:2px solid;border-color:#111 #383838 #383838 #111;background:#0a0a0a;display:block}
+.wcat-hint{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,0,122,.45);font-family:"bd-terminal-vf",sans-serif;text-align:center;padding-top:4px;margin-top:auto}
 /* Fenêtre active — glow magenta */
 .win.active{box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8),0 0 28px rgba(232,0,122,.22);border-color:#E8007A #6a0035 #6a0035 #E8007A}
 .win.active .wtb{box-shadow:0 0 14px rgba(232,0,122,.35)}
@@ -1047,12 +1060,17 @@ w.innerHTML=
 '<div class="wbody-split">'+
   '<div class="wsplit-left" style="flex:0 0 58%;display:flex;flex-direction:column;background:#000;overflow:hidden">'+leftHTML+'</div>'+
   '<div class="wsplit-right">'+
-    '<div class="wstat-block"><div class="wstat-title">Projet</div><div class="wstat-line">'+proj.title+'</div></div>'+
-    '<div class="wstat-block"><div class="wstat-title">Client · Année</div><div class="wstat-line">'+proj.client+'<br>'+proj.annee+'</div></div>'+
-    '<div class="wstat-block"><div class="wstat-title">Disciplines</div><div class="wstat-line">'+proj.disciplines.split(' · ').join('<br>')+'</div></div>'+
+    '<div class="wiz-title">'+proj.title+'</div>'+
+    '<div class="wiz-sub">'+proj.disciplines.split(' · ').join(' · ')+'</div>'+
+    '<div class="win98-hr"></div>'+
+    '<div class="wstat-block"><div class="wstat-title">Client</div><div class="wstat-line">'+proj.client+'</div></div>'+
+    '<div class="wstat-block"><div class="wstat-title">Année</div><div class="wstat-line">'+proj.annee+'</div></div>'+
     '<div class="wstat-block"><div class="wstat-title">Note</div><div class="wstat-line">'+proj.desc+'</div></div>'+
     linkHTML+
   '</div>'+
+'</div>'+
+'<div class="win-footer">'+
+  '<button class="win-fbtn" onclick="closeW(\''+projId+'\')">Fermer</button>'+
 '</div>'+
 '<div class="wstatusbar"><span>'+proj.annee+'</span><span>'+proj.client+'</span><span>'+(proj.media.length)+' média'+(proj.media.length>1?'s':'')+'</span></div>'+
 '<div class="wrz"></div>';
@@ -1305,6 +1323,14 @@ document.querySelectorAll('.win').forEach(function(w){
   var n=CAT_COUNTS[w.id]||'';
   sb.innerHTML='<span>'+CAT_NAMES[w.id]+'</span>'+(n?'<span>'+n+' projet'+(n>1?'s':'')+'</span>':'')+'<span>Tchoupizébré · 2026</span>';
   w.insertBefore(sb,w.querySelector('.wrz'));
+});
+/* Footer Win98 sur fenêtres catégorie */
+['wp','wt','ws','wm','wd','wa'].forEach(function(id){
+  var w=document.getElementById(id);if(!w)return;
+  var f=document.createElement('div');
+  f.className='win-footer';
+  f.innerHTML='<button class="win-fbtn def" onclick="closeW(\''+id+'\')">Fermer</button>';
+  w.insertBefore(f,w.querySelector('.wrz'));
 });
 buildMobile();
 var clk=document.getElementById('tbar-clock');
