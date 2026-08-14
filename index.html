@@ -20,7 +20,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
 :root{--bg:#0a0a0a;--text:#ffffff;--dim:#555;--border:#ffffff;--green:#E8007A;--pink:#E8007A;--accent:#E8007A;--red:#CC1111;--purple:#1F28CC;--gold:#E8007A}
-html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:"bd-terminal-vf",sans-serif;font-variation-settings:"wdth" 75,"wght" 400}
+html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:"bd-terminal-vf",sans-serif;font-size:9px;font-variation-settings:"wdth" 75,"wght" 400}
 *,*::before,*::after,a,button,input,select,textarea,label,[role="button"]{cursor:none!important}
 
 #cur{position:fixed;width:80px;height:80px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s}
@@ -47,7 +47,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 92%{text-shadow:none;transform:none}
 }
 #boot-sub{font-family:"jetsam-collection-basilea",sans-serif;font-size:14px;color:var(--dim);letter-spacing:.12em;text-align:center;margin-bottom:44px}
-#boot-log{min-height:160px;font-size:11px;line-height:2;color:var(--dim)}
+#boot-log{min-height:160px;font-size:9px;line-height:2;color:var(--dim);letter-spacing:.08em}
 #boot-log .ok{color:var(--green)}
 #boot-log .err{color:var(--red)}
 #boot-bar-wrap{margin-top:20px;height:1px;background:rgba(255,255,255,.08);position:relative}
@@ -147,7 +147,7 @@ html,body{cursor:auto}
 #lb-x:hover{color:var(--text)}
 /* Win98 magenta titlebar — toutes les fenêtres */
 .win .wtb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%)!important;border-bottom:2px solid #6a0035!important;height:30px;padding:0 8px;gap:6px}
-.win .wtitle{color:#fff!important;font-weight:400;font-family:"jetsam-collection-basilea",sans-serif!important;font-size:16px!important;letter-spacing:.02em;text-shadow:1px 1px 0 rgba(0,0,0,.4)}
+.win .wtitle{color:#fff!important;font-weight:400;font-family:"jetsam-collection-basilea",sans-serif!important;font-size:20px!important;letter-spacing:.02em;text-shadow:1px 1px 0 rgba(0,0,0,.4)}
 .win .wbtn{border-radius:0!important;background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;width:20px!important;height:18px!important;color:#000!important;font-size:11px!important;line-height:1;display:flex!important;align-items:center!important;justify-content:center!important;opacity:1!important;padding:0;cursor:pointer;font-weight:700}
 .win .wbtn:hover{background:#d8d8d8!important;transform:none!important}
 .win .wbtn:active{border-color:#808080 #fff #fff #808080!important;background:#b0b0b0!important}
@@ -163,11 +163,11 @@ html,body{cursor:auto}
 .wstat-block::before,.wstat-block::after{content:'';position:absolute;width:7px;height:7px}
 .wstat-block::before{top:-1px;left:-1px;border-top:2px solid var(--pink);border-left:2px solid var(--pink)}
 .wstat-block::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--pink);border-right:2px solid var(--pink)}
-.wstat-title{font-size:13px;letter-spacing:.04em;color:var(--pink);margin-bottom:6px;font-family:"jetsam-collection-basilea",sans-serif;text-transform:none}
+.wstat-title{font-size:11px;letter-spacing:.04em;color:var(--pink);margin-bottom:4px;font-family:"jetsam-collection-basilea",sans-serif;text-transform:none}
 .wstat-line{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);line-height:1.9;font-family:"bd-terminal-vf",sans-serif}
 /* Listbox Win98 */
 .wlistbox{background:#E8007A;border:1px solid #c0006a;border-right:none;overflow-y:auto;height:100%;box-sizing:border-box;font-family:"jetsam-collection-basilea",sans-serif;font-size:10px;color:#000;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.3) transparent}
-.wlist-item{padding:5px 12px;cursor:default;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;line-height:1.7;border-bottom:1px solid rgba(0,0,0,.12);letter-spacing:.02em;color:#000;transition:background .1s,color .1s}
+.wlist-item{padding:5px 12px;cursor:default;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px;line-height:1.6;border-bottom:1px solid rgba(0,0,0,.12);letter-spacing:.02em;color:#000;transition:background .1s,color .1s}
 .wlist-item:hover{background:rgba(0,0,0,.18);color:#000}
 .wlist-item.sel{background:rgba(0,0,0,.28);color:#000;border-left:2px solid #000}
 /* Category window preview panel */
@@ -785,8 +785,25 @@ setTimeout(function(){
 boot.style.display='none';
 desk.style.display='block';
 initGrain();
-initDesk()
+initDesk();
+initBdVary();
 },720)
+}
+
+function initBdVary(){
+  /* Variation aléatoire indépendante par élément BD Terminal VF */
+  var els=Array.from(document.querySelectorAll(
+    '.wstat-line,.wstatusbar,.tbtn,.wcat-hint,.wcar-count,.wcar-loader-txt,#boot-log,#boot-sub,.wcat-dl-txt,.wcat-dl-pct'
+  ));
+  function varyEl(el){
+    var wdth=62+Math.random()*26;   /* 62–88 */
+    var wght=340+Math.random()*100; /* 340–440 */
+    el.style.fontVariationSettings='"wdth" '+wdth.toFixed(1)+',"wght" '+wght.toFixed(1);
+    setTimeout(function(){varyEl(el)},80+Math.random()*340);
+  }
+  els.forEach(function(el){
+    setTimeout(function(){varyEl(el)},Math.random()*600);
+  });
 }
 
 function initGrain(){
