@@ -268,6 +268,28 @@ html,body{cursor:auto}
 #win98-alert-ok{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 22px;font-family:"bd-terminal-vf",sans-serif;font-size:10px;color:#000;cursor:pointer;letter-spacing:.08em}
 #win98-alert-ok:active{border-color:#808080 #fff #fff #808080}
 
+/* Rage-click cascade windows */
+.rage-win{position:fixed;z-index:99990;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;width:280px;pointer-events:all;user-select:none}
+.rage-tb{background:linear-gradient(90deg,#E8007A,#9a0050);padding:3px 6px;display:flex;align-items:center;gap:6px;cursor:move}
+.rage-tb-ttl{font-size:10px;color:#fff;font-weight:700;letter-spacing:.1em;flex:1;font-family:"bd-terminal-vf",sans-serif}
+.rage-tb-x{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;width:16px;height:14px;font-size:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#000;font-weight:700;font-family:monospace;flex-shrink:0}
+.rage-tb-x:active{border-color:#808080 #fff #fff #808080}
+.rage-body{padding:18px 14px 12px;display:flex;gap:12px;align-items:flex-start}
+.rage-sym{font-size:30px;line-height:1;flex-shrink:0}
+.rage-msg{font-size:9px;color:#000;line-height:1.7;letter-spacing:.04em;font-family:"bd-terminal-vf",sans-serif}
+.rage-foot{padding:6px 14px 12px;display:flex;justify-content:center}
+.rage-btn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 22px;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;font-family:"bd-terminal-vf",sans-serif}
+.rage-btn:active{border-color:#808080 #fff #fff #808080}
+
+/* Custom video player controls */
+.vplayer-ctrl{height:28px;background:#0a0a0a;border-top:1px solid #1a1a1a;display:none;align-items:center;gap:5px;padding:0 7px;flex-shrink:0}
+.vplayer-ctrl.on{display:flex}
+.vplayer-btn{background:none;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75);width:20px;height:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:9px;transition:background .1s,border-color .1s;font-family:monospace;flex-shrink:0}
+.vplayer-btn:hover{background:rgba(232,0,122,.35);border-color:var(--pink);color:#fff}
+.vplayer-prog{flex:1;height:3px;background:#2a2a2a;cursor:pointer;position:relative;border:1px solid #333}
+.vplayer-prog-fill{position:absolute;left:0;top:0;height:100%;background:#E8007A;width:0%;pointer-events:none}
+.vplayer-time{font-size:8px;color:rgba(255,255,255,.4);letter-spacing:.06em;white-space:nowrap;font-family:"bd-terminal-vf",sans-serif;min-width:58px;text-align:right}
+
 /* Screensaver */
 #desk.ss{filter:brightness(.55) saturate(.7);transition:filter 1.5s ease}
 #desk.ss-txt::after{content:'— BUREAU EN VEILLE —';position:fixed;bottom:54px;left:50%;transform:translateX(-50%);font-family:"bd-terminal-vf",sans-serif;font-size:8px;letter-spacing:.35em;color:rgba(232,0,122,.4);pointer-events:none;z-index:9990;animation:ssblink 2s steps(1) infinite}
@@ -359,7 +381,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Print -->
   <div class="win" id="wp" style="width:560px;height:460px;top:60px;left:60px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-1.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Print</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><span style="font-size:13px;flex-shrink:0;line-height:1">🖨</span><span class="wtitle">Print</span></div>
       <button class="wbtn wmax" data-w="wp">□</button><button class="wbtn wclose" data-w="wp">✕</button>
     </div>
     <div class="wbody-split">
@@ -379,7 +401,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Textile -->
   <div class="win" id="wt" style="width:560px;height:460px;top:80px;left:100px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-chaos.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Textile</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><span style="font-size:13px;flex-shrink:0;line-height:1">✂</span><span class="wtitle">Textile</span></div>
       <button class="wbtn wmax" data-w="wt">□</button><button class="wbtn wclose" data-w="wt">✕</button>
     </div>
     <div class="wbody-split">
@@ -399,7 +421,7 @@ html,body{cursor:auto}
   <!-- Fenêtre DA -->
   <div class="win" id="ws" style="width:560px;height:460px;top:100px;left:140px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-4.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">DA & Identité</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><span style="font-size:13px;flex-shrink:0;line-height:1">🎨</span><span class="wtitle">DA & Identité</span></div>
       <button class="wbtn wmax" data-w="ws">□</button><button class="wbtn wclose" data-w="ws">✕</button>
     </div>
     <div class="wbody-split">
@@ -419,7 +441,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Motion -->
   <div class="win" id="wm" style="width:560px;height:460px;top:110px;left:180px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-3.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Motion</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><span style="font-size:13px;flex-shrink:0;line-height:1">📽</span><span class="wtitle">Motion</span></div>
       <button class="wbtn wmax" data-w="wm">□</button><button class="wbtn wclose" data-w="wm">✕</button>
     </div>
     <div class="wbody-split">
@@ -439,7 +461,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Digital -->
   <div class="win" id="wd" style="width:560px;height:460px;top:120px;left:220px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-6.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Digital</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><span style="font-size:13px;flex-shrink:0;line-height:1">💾</span><span class="wtitle">Digital</span></div>
       <button class="wbtn wmax" data-w="wd">□</button><button class="wbtn wclose" data-w="wd">✕</button>
     </div>
     <div class="wbody-split">
@@ -459,7 +481,7 @@ html,body{cursor:auto}
   <!-- Fenêtre About -->
   <div class="win" id="wa" style="width:620px;height:500px;top:90px;left:260px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-2.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">About — Tchoupizébré</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><span style="font-size:13px;flex-shrink:0;line-height:1">✦</span><span class="wtitle">About — Tchoupizébré</span></div>
       <button class="wbtn wmax" data-w="wa">□</button><button class="wbtn wclose" data-w="wa">✕</button>
     </div>
     <div class="wbody-split" style="flex:none;align-items:stretch">
@@ -778,6 +800,7 @@ desk.style.display='block';
 initGrain();
 initDesk();
 initBdVary();
+initRageClick();
 },720)
 }
 
@@ -794,6 +817,51 @@ function initBdVary(){
   }
   els.forEach(function(el){
     setTimeout(function(){varyEl(el)},Math.random()*600);
+  });
+}
+
+function initRageClick(){
+  var clicks=[],rageActive=false;
+  var MSGS=[
+    {ttl:'ERREUR CRITIQUE',sym:'💀',msg:'Trop de clics détectés.<br>Le système va exploser.'},
+    {ttl:'STOP !!',sym:'⚠',msg:'Vous avez cassé quelque chose.<br>Contactez le support.'},
+    {ttl:'FATAL ERROR',sym:'⛔',msg:'Exception non gérée<br>dans le module principal.'},
+    {ttl:'ALERTE SÉCURITÉ',sym:'🚨',msg:'Activité suspecte détectée.<br>Les autorités ont été prévenues.'},
+    {ttl:'LE MONDE TCHOUPIZ',sym:'!',msg:"C'est votre faute.<br>C'est vous qui avez fait ça."},
+  ];
+  function checkDone(){if(!document.querySelector('.rage-win'))rageActive=false;}
+  function makeDraggable(d){
+    var tb=d.querySelector('.rage-tb');
+    var ox=0,oy=0,drag=false;
+    tb.addEventListener('mousedown',function(e){if(e.target.classList.contains('rage-tb-x'))return;drag=true;ox=e.clientX-d.offsetLeft;oy=e.clientY-d.offsetTop;e.preventDefault();});
+    document.addEventListener('mousemove',function(e){if(drag){d.style.left=(e.clientX-ox)+'px';d.style.top=(e.clientY-oy)+'px';}});
+    document.addEventListener('mouseup',function(){drag=false;});
+  }
+  function spawnRage(){
+    rageActive=true;
+    var cx=window.innerWidth/2,cy=window.innerHeight/2;
+    MSGS.forEach(function(m,i){
+      setTimeout(function(){
+        var d=document.createElement('div');
+        d.className='rage-win';
+        d.style.cssText='left:'+(cx-140+i*26)+'px;top:'+(cy-90+i*22)+'px;z-index:'+(99990+i);
+        d.innerHTML=
+          '<div class="rage-tb"><span class="rage-tb-ttl">'+m.ttl+'</span>'+
+          '<button class="rage-tb-x" onclick="this.closest(\'.rage-win\').remove();(function(){if(!document.querySelector(\'.rage-win\'))window._rageActive=false;})()">✕</button></div>'+
+          '<div class="rage-body"><div class="rage-sym">'+m.sym+'</div><div class="rage-msg">'+m.msg+'</div></div>'+
+          '<div class="rage-foot"><button class="rage-btn" onclick="this.closest(\'.rage-win\').remove();(function(){if(!document.querySelector(\'.rage-win\'))window._rageActive=false;})()">OK</button></div>';
+        document.body.appendChild(d);
+        makeDraggable(d);
+      },i*110);
+    });
+  }
+  window._rageActive=false;
+  document.addEventListener('click',function(){
+    if(window._rageActive)return;
+    var now=Date.now();
+    clicks.push(now);
+    clicks=clicks.filter(function(t){return now-t<1500;});
+    if(clicks.length>=5){clicks=[];window._rageActive=true;spawnRage();}
   });
 }
 
@@ -956,13 +1024,19 @@ var leftHTML;
 if(proj.media.length===0){
   leftHTML='<div style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:9px;letter-spacing:.1em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">Média à venir</div>';
 }else{
-  leftHTML='<div class="wcar-wrap" id="wcar-'+projId+'">'+mediaHTML(proj.media[0])+'<button class="wcar-btn wcar-prev" id="wcp-'+projId+'">◀</button><button class="wcar-btn wcar-next" id="wcn-'+projId+'">▶</button></div><div class="wcar-count" id="wcc-'+projId+'">'+(proj.media.length>1?'1 / '+proj.media.length:'')+'</div>';
+  leftHTML='<div class="wcar-wrap" id="wcar-'+projId+'">'+mediaHTML(proj.media[0])+'<button class="wcar-btn wcar-prev" id="wcp-'+projId+'">◀</button><button class="wcar-btn wcar-next" id="wcn-'+projId+'">▶</button></div><div class="wcar-count" id="wcc-'+projId+'">'+(proj.media.length>1?'1 / '+proj.media.length:'')+'</div>'+
+  '<div class="vplayer-ctrl" id="vpc-'+projId+'">'+
+    '<button class="vplayer-btn" id="vpp-'+projId+'">▶</button>'+
+    '<button class="vplayer-btn" id="vps-'+projId+'">⏹</button>'+
+    '<div class="vplayer-prog" id="vpb-'+projId+'"><div class="vplayer-prog-fill" id="vpf-'+projId+'"></div></div>'+
+    '<span class="vplayer-time" id="vpt-'+projId+'">0:00 / 0:00</span>'+
+  '</div>';
 }
 
 var linkHTML=proj.link?'<a href="'+proj.link.url+'" target="_blank" style="display:inline-block;margin-top:6px;color:var(--pink);text-decoration:none;border:1px solid rgba(232,0,122,.45);padding:5px 10px;font-size:9px;letter-spacing:.12em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">'+proj.link.label+'</a>':'';
 
-var iconSrc=CAT_ICON[proj.cat]?BASE+CAT_ICON[proj.cat]:'';
-var iconTag=iconSrc?'<img src="'+iconSrc+'" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0">':'';
+var CAT_EMOJI_MAP={wp:'🖨',wt:'✂',ws:'🎨',wm:'📽',wd:'💾'};
+var iconTag=CAT_EMOJI_MAP[proj.cat]?'<span style="font-size:13px;flex-shrink:0;line-height:1">'+CAT_EMOJI_MAP[proj.cat]+'</span>':'';
 var CAT_LABEL={wp:'Print',wt:'Textile',ws:'DA',wm:'Motion',wd:'Digital'};
 var breadcrumb=(CAT_LABEL[proj.cat]?CAT_LABEL[proj.cat]+' › ':'')+proj.title;
 w.innerHTML=
@@ -1004,7 +1078,9 @@ if(proj.media.length>0){
     btns.forEach(function(b){carWrap.appendChild(b)});
     if(cntEl)cntEl.textContent=(mediaIdx+1)+' / '+proj.media.length;
     /* load media off-screen then swap */
+    var vctrl=document.getElementById('vpc-'+projId);
     if(m.t==='img'){
+      if(vctrl)vctrl.classList.remove('on');
       var img=new Image();
       img.onload=function(){
         var loader=carWrap.querySelector('.wcar-loader');
@@ -1017,13 +1093,37 @@ if(proj.media.length>0){
       img.onerror=img.onload;
       img.src=BASE+m.src;
     }else{
-      /* video: insert directly, remove loader on canplay */
+      /* video: custom player */
       var loader=carWrap.querySelector('.wcar-loader');
       var vel=document.createElement('video');
       vel.style.cssText='max-width:100%;max-height:100%;display:block;width:100%;height:100%;object-fit:contain;background:#000';
-      vel.src=BASE+m.src;vel.controls=true;vel.setAttribute('playsinline','');
+      vel.src=BASE+m.src;vel.setAttribute('playsinline','');
       vel.addEventListener('canplay',function(){if(loader&&loader.parentNode)loader.remove()},{once:true});
       carWrap.insertBefore(vel,carWrap.firstChild);
+      /* show custom controls */
+      var ctrl=document.getElementById('vpc-'+projId);
+      var ppBtn=document.getElementById('vpp-'+projId);
+      var psBtn=document.getElementById('vps-'+projId);
+      var prog=document.getElementById('vpb-'+projId);
+      var fill=document.getElementById('vpf-'+projId);
+      var timeEl=document.getElementById('vpt-'+projId);
+      if(ctrl){
+        ctrl.classList.add('on');
+        function fmtT(s){var m2=Math.floor(s/60),s2=Math.floor(s%60);return m2+':'+(s2<10?'0':'')+s2;}
+        vel.addEventListener('timeupdate',function(){
+          if(!vel.duration)return;
+          fill.style.width=(vel.currentTime/vel.duration*100)+'%';
+          timeEl.textContent=fmtT(vel.currentTime)+' / '+fmtT(vel.duration);
+        });
+        ppBtn.onclick=function(){vel.paused?vel.play():vel.pause();ppBtn.textContent=vel.paused?'▶':'⏸';};
+        vel.addEventListener('play',function(){ppBtn.textContent='⏸';});
+        vel.addEventListener('pause',function(){ppBtn.textContent='▶';});
+        psBtn.onclick=function(){vel.pause();vel.currentTime=0;ppBtn.textContent='▶';};
+        prog.addEventListener('click',function(e){
+          var r=prog.getBoundingClientRect();
+          vel.currentTime=(e.clientX-r.left)/r.width*vel.duration;
+        });
+      }
     }
   }
 
