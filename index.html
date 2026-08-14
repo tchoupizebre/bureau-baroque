@@ -75,7 +75,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .isym img{width:72px;height:72px;object-fit:contain;display:block;filter:invert(1) brightness(.40)}
 .ilbl{font-family:"jetsam-collection-basilea",sans-serif;font-size:13px;letter-spacing:.02em;text-align:center;color:var(--pink);transition:color .18s;line-height:1.3}
 
-.win{position:absolute;min-width:300px;min-height:180px;height:500px;background:#0c0c0c;border:1px solid #1e1e1e;display:none;flex-direction:column;transform:scale(.92) translateY(6px);opacity:0;filter:blur(8px);transition:transform .25s cubic-bezier(.34,1.4,.64,1),opacity .2s ease,filter .25s ease;box-shadow:0 24px 80px rgba(0,0,0,.8),0 0 0 .5px rgba(255,255,255,.04)}
+.win{position:absolute;min-width:300px;min-height:180px;height:500px;background:#0f0f0f;border:2px solid;border-color:#444 #111 #111 #444;outline:1px solid #222;display:none;flex-direction:column;transform:scale(.92) translateY(6px);opacity:0;filter:blur(8px);transition:transform .25s cubic-bezier(.34,1.4,.64,1),opacity .2s ease,filter .25s ease;box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8)}
 .win.open{display:flex}
 .win.vis{transform:scale(1) translateY(0);opacity:1;filter:blur(0)}
 .win.maximized{top:0!important;left:0!important;width:100%!important;height:calc(100% - 30px)!important;border-radius:0;transition:none}
@@ -146,11 +146,11 @@ html,body{cursor:auto}
 #lb-x{position:absolute;top:20px;right:28px;font-family:"bd-terminal-vf",sans-serif;font-size:18px;color:rgba(255,255,255,.4);cursor:none;transition:color .15s}
 #lb-x:hover{color:var(--text)}
 /* Win98 magenta titlebar — toutes les fenêtres */
-.win .wtb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%)!important;border-bottom:1px solid #6a0035!important;height:26px;padding:0 6px}
-.win .wtitle{color:#fff!important;font-weight:400;font-family:"jetsam-collection-basilea",sans-serif!important;font-size:18px!important;letter-spacing:.02em}
-.win .wbtn{border-radius:0!important;background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;width:18px!important;height:16px!important;color:#000!important;font-size:10px!important;line-height:1;display:flex!important;align-items:center!important;justify-content:center!important;opacity:1!important;padding:0;cursor:pointer}
+.win .wtb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%)!important;border-bottom:2px solid #6a0035!important;height:30px;padding:0 8px;gap:6px}
+.win .wtitle{color:#fff!important;font-weight:400;font-family:"jetsam-collection-basilea",sans-serif!important;font-size:16px!important;letter-spacing:.02em;text-shadow:1px 1px 0 rgba(0,0,0,.4)}
+.win .wbtn{border-radius:0!important;background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;width:20px!important;height:18px!important;color:#000!important;font-size:11px!important;line-height:1;display:flex!important;align-items:center!important;justify-content:center!important;opacity:1!important;padding:0;cursor:pointer;font-weight:700}
 .win .wbtn:hover{background:#d8d8d8!important;transform:none!important}
-.win .wbtn:active{border-color:#808080 #fff #fff #808080!important}
+.win .wbtn:active{border-color:#808080 #fff #fff #808080!important;background:#b0b0b0!important}
 .win .wmax::before{display:none!important}
 #vmodal-tb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%)!important}
 #vmodal-close{background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;color:#000!important;font-weight:700}
@@ -175,7 +175,7 @@ html,body{cursor:auto}
 .wcat-thumb{width:100%;max-height:60%;object-fit:contain;border:1px solid rgba(232,0,122,.3);background:#0a0a0a;display:block}
 .wcat-hint{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,0,122,.5);font-family:"bd-terminal-vf",sans-serif;text-align:center;padding-top:6px;margin-top:auto}
 /* Fenêtre active — glow magenta */
-.win.active{box-shadow:0 24px 80px rgba(0,0,0,.8),0 0 0 1px rgba(232,0,122,.45),0 0 28px rgba(232,0,122,.18)}
+.win.active{box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8),0 0 28px rgba(232,0,122,.22);border-color:#E8007A #6a0035 #6a0035 #E8007A}
 .win.active .wtb{box-shadow:0 0 14px rgba(232,0,122,.35)}
 /* 1 — Animation baroque ouverture */
 .win{transform:scale(.88) translateY(10px) rotate(-1.5deg);filter:blur(10px)}
