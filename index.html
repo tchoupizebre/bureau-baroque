@@ -559,7 +559,7 @@ html,body{cursor:auto}
         <div id="win98-alert-sym">!</div>
         <div id="win98-alert-msg">Êtes-vous encore là ?<br><br>Ce bureau est en veille.<br>Toute inactivité prolongée<br>sera sanctionnée.</div>
       </div>
-      <div id="win98-alert-footer"><button id="win98-alert-ok" onclick="ssStop();document.getElementById('win98-alert').style.display='none'">OK</button></div>
+      <div id="win98-alert-footer"><button id="win98-alert-ok">OK</button></div>
     </div>
   </div>
 
@@ -1523,7 +1523,9 @@ function ssStop(){
     setTimeout(function(){w.style.transition=''},650);
   });
   ssData={};resetSsTimer();
+  var al=document.getElementById('win98-alert');if(al)al.style.display='none';
 }
+document.getElementById('win98-alert-ok').addEventListener('click',function(){ssStop();});
 var jeffTimer;
 function resetSsTimer(){
   clearTimeout(ssTimer);clearTimeout(jeffTimer);
