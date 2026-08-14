@@ -311,16 +311,7 @@ html,body{cursor:auto}
 /* titlebar s'étend exactement jusqu'aux bords extérieurs des colonnes (left:-30px, width:110px → ±30px) */
 .win .wtb{margin-left:-30px!important;width:calc(100% + 60px)!important;padding-left:110px!important;padding-right:110px!important;box-sizing:border-box!important}
 
-/* Séparateur baroque entre wstat-block */
-.wstat-block+.wstat-block::before{
-  content:'';
-  display:block;
-  height:12px;
-  margin:-4px -10px 6px;
-  background:var(--baroque-sep) center/auto 100% no-repeat;
-  opacity:.35;
-  filter:invert(14%) sepia(100%) saturate(6000%) hue-rotate(310deg);
-}
+/* Séparateur baroque supprimé — visuel indésirable */
 
 /* Texture papier légère sur les panneaux de contenu */
 .wsplit-right::before,.mbody-in::before{
@@ -368,7 +359,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Print -->
   <div class="win" id="wp" style="width:560px;height:460px;top:60px;left:60px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-1.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Print</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-1.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Print</span></div>
       <button class="wbtn wmax" data-w="wp">□</button><button class="wbtn wclose" data-w="wp">✕</button>
     </div>
     <div class="wbody-split">
@@ -388,7 +379,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Textile -->
   <div class="win" id="wt" style="width:560px;height:460px;top:80px;left:100px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-chaos.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Textile</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-chaos.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Textile</span></div>
       <button class="wbtn wmax" data-w="wt">□</button><button class="wbtn wclose" data-w="wt">✕</button>
     </div>
     <div class="wbody-split">
@@ -408,7 +399,7 @@ html,body{cursor:auto}
   <!-- Fenêtre DA -->
   <div class="win" id="ws" style="width:560px;height:460px;top:100px;left:140px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-4.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">DA & Identité</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-4.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">DA & Identité</span></div>
       <button class="wbtn wmax" data-w="ws">□</button><button class="wbtn wclose" data-w="ws">✕</button>
     </div>
     <div class="wbody-split">
@@ -428,7 +419,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Motion -->
   <div class="win" id="wm" style="width:560px;height:460px;top:110px;left:180px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-3.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Motion</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-3.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Motion</span></div>
       <button class="wbtn wmax" data-w="wm">□</button><button class="wbtn wclose" data-w="wm">✕</button>
     </div>
     <div class="wbody-split">
@@ -448,7 +439,7 @@ html,body{cursor:auto}
   <!-- Fenêtre Digital -->
   <div class="win" id="wd" style="width:560px;height:460px;top:120px;left:220px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-6.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">Digital</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-6.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Digital</span></div>
       <button class="wbtn wmax" data-w="wd">□</button><button class="wbtn wclose" data-w="wd">✕</button>
     </div>
     <div class="wbody-split">
@@ -468,7 +459,7 @@ html,body{cursor:auto}
   <!-- Fenêtre About -->
   <div class="win" id="wa" style="width:620px;height:500px;top:90px;left:260px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-2.webp" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0"><span class="wtitle">About — Tchoupizébré</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-2.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">About — Tchoupizébré</span></div>
       <button class="wbtn wmax" data-w="wa">□</button><button class="wbtn wclose" data-w="wa">✕</button>
     </div>
     <div class="wbody-split" style="flex:none;align-items:stretch">
@@ -971,7 +962,7 @@ if(proj.media.length===0){
 var linkHTML=proj.link?'<a href="'+proj.link.url+'" target="_blank" style="display:inline-block;margin-top:6px;color:var(--pink);text-decoration:none;border:1px solid rgba(232,0,122,.45);padding:5px 10px;font-size:9px;letter-spacing:.12em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">'+proj.link.label+'</a>':'';
 
 var iconSrc=CAT_ICON[proj.cat]?BASE+CAT_ICON[proj.cat]:'';
-var iconTag=iconSrc?'<img src="'+iconSrc+'" style="width:14px;height:14px;filter:brightness(0);flex-shrink:0">':'';
+var iconTag=iconSrc?'<img src="'+iconSrc+'" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0">':'';
 var CAT_LABEL={wp:'Print',wt:'Textile',ws:'DA',wm:'Motion',wd:'Digital'};
 var breadcrumb=(CAT_LABEL[proj.cat]?CAT_LABEL[proj.cat]+' › ':'')+proj.title;
 w.innerHTML=
