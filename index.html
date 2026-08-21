@@ -1543,6 +1543,24 @@ if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
   closeW(act.id);
   setTimeout(function(){buildProjWin(next.id);},120);
 }
+if(e.key==='ArrowUp'||e.key==='ArrowDown'){
+  e.preventDefault();
+  var CATS=['wp','wt','ws','wm','wd'];
+  var act=document.querySelector('.win.active');
+  if(!act)return;
+  var proj=PROJECTS.find(function(p){return p.id===act.id});
+  var curCat=proj?proj.cat:act.id;
+  var catIdx=CATS.indexOf(curCat);
+  if(catIdx===-1)return;
+  var nextCat=e.key==='ArrowDown'?CATS[catIdx+1]:CATS[catIdx-1];
+  if(!nextCat)return;
+  closeW(act.id);
+  setTimeout(function(){
+    var firstProj=PROJECTS.find(function(p){return p.cat===nextCat});
+    if(firstProj)buildProjWin(firstProj.id);
+    else openW(nextCat);
+  },120);
+}
 });
 
 /* 9 — Favicon animé sur onglet inactif */
