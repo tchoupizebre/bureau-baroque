@@ -21,7 +21,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
 :root{--bg:#0a0a0a;--text:#ffffff;--dim:#555;--border:#ffffff;--green:#E8007A;--pink:#E8007A;--accent:#E8007A;--red:#CC1111;--purple:#1F28CC;--gold:#E8007A}
-html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;font-variation-settings:"wght" 380}
+html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;font-variation-settings:"wght" 450}
 *,*::before,*::after,a,button,input,select,textarea,label,[role="button"]{cursor:none!important}
 
 #cur{position:fixed;width:80px;height:80px;pointer-events:none;z-index:999999;transform:translate(-50%,-50%);transition:transform .08s}
@@ -48,12 +48,12 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 92%{text-shadow:none;transform:none}
 }
 #boot-sub{font-family:"jetsam-collection-basilea",sans-serif;font-size:20px;color:var(--dim);letter-spacing:.12em;text-align:center;margin-bottom:44px}
-#boot-log{min-height:160px;font-family:"bd-terminal-vf",sans-serif;font-size:13px;line-height:2.2;color:var(--dim);letter-spacing:.1em}
+#boot-log{min-height:160px;font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 420;font-size:13px;line-height:2.2;color:var(--dim);letter-spacing:.1em}
 #boot-log .ok{color:var(--green)}
 #boot-log .err{color:var(--red)}
 #boot-bar-wrap{margin-top:20px;height:2px;background:rgba(255,255,255,.08);position:relative}
 #boot-bar{height:2px;width:0%;background:var(--green);box-shadow:0 0 10px var(--green),0 0 20px rgba(232,0,122,.3);transition:width .2s linear}
-#boot-pct{font-family:"bd-terminal-vf",sans-serif;font-size:13px;color:var(--green);text-align:right;margin-top:6px;letter-spacing:.15em}
+#boot-pct{font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 420;font-size:13px;color:var(--green);text-align:right;margin-top:6px;letter-spacing:.15em}
 
 #desk{position:fixed;inset:0;display:none;user-select:none;overflow:visible}
 #grain{display:none}
@@ -90,7 +90,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .wclose{background:var(--red)}
 .wmax{background:#555;position:relative}
 .wmax::before{content:'';position:absolute;inset:2px;border:1px solid rgba(255,255,255,.5);border-radius:1px}
-.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:"ltr-ncnd-variable",sans-serif;font-size:12px;font-variation-settings:"wght" 380;color:var(--text);line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:"ltr-ncnd-variable",sans-serif;font-size:12px;font-variation-settings:"wght" 450;color:var(--text);line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
 .wrz{position:absolute;bottom:0;right:0;width:22px;height:22px;cursor:se-resize;opacity:.4;transition:opacity .15s;display:flex;align-items:flex-end;justify-content:flex-end;padding:3px}
 .wrz::before{content:'···';color:var(--dim);font-size:10px;line-height:1;transform:rotate(45deg);display:block}
 .wrz:hover{opacity:.9}
@@ -169,14 +169,14 @@ html,body{cursor:auto}
 .wsplit-right::-webkit-scrollbar-thumb{background:rgba(232,0,122,.5)}
 /* Titre wizard en Basilea (grand) */
 .wiz-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:clamp(22px,3.2vw,38px);color:#fff;letter-spacing:.03em;line-height:1.05;margin-bottom:6px}
-.wiz-sub{font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;font-variation-settings:"wght" 600;color:var(--pink);letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+.wiz-sub{font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;font-variation-settings:"wght" 700;color:var(--pink);letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
 /* Séparateur Win98 horizontal */
 .win98-hr{height:0;border:0;border-top:1px solid #1c1c1c;border-bottom:1px solid #383838;margin:8px 0}
 /* Champ stat : sunken field Win98 */
 .wstat-block{border:2px solid;border-color:#111 #383838 #383838 #111;padding:5px 8px;margin-bottom:5px;background:#080808;position:relative}
 .wstat-block::before,.wstat-block::after{display:none}
 .wstat-title{font-size:16px;letter-spacing:.05em;color:var(--pink);margin-bottom:4px;font-family:"jetsam-collection-basilea",sans-serif;text-transform:none}
-.wstat-line{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.7;font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 500}
+.wstat-line{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.7;font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 600}
 /* Footer boutons Win98 */
 .win-footer{height:36px;background:#0f0f0f;border-top:2px solid;border-color:#111 #383838 #383838 #111;display:flex;align-items:center;justify-content:flex-end;padding:0 84px;gap:5px;flex-shrink:0}
 .win-fbtn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 0;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;width:76px;text-align:center;text-transform:uppercase;flex-shrink:0}
@@ -264,7 +264,7 @@ html,body{cursor:auto}
 .wiz-meta-row{display:flex;gap:0;border-bottom:1px solid #1a1a1a;padding:5px 0}
 .wiz-meta-key{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(232,0,122,.7);letter-spacing:.12em;text-transform:uppercase;width:64px;flex-shrink:0}
 .wiz-meta-val{font-family:"jetsam-collection-basilea",sans-serif;font-size:14px;color:rgba(255,255,255,.85);letter-spacing:.01em;line-height:1.3}
-.wiz-desc{font-family:"ltr-ncnd-variable",sans-serif;font-size:13px;font-variation-settings:"wght" 360;color:rgba(255,255,255,.75);letter-spacing:.02em;line-height:1.75;margin-top:2px}
+.wiz-desc{font-family:"ltr-ncnd-variable",sans-serif;font-size:13px;font-variation-settings:"wght" 430;color:rgba(255,255,255,.8);letter-spacing:.02em;line-height:1.75;margin-top:2px}
 /* Footer wizard nav */
 .win-footer-wiz{height:38px;background:#0f0f0f;border-top:2px solid;border-color:#111 #383838 #383838 #111;display:flex;align-items:center;padding:0 10px;gap:6px;flex-shrink:0}
 .wiz-nav-count{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.12em;flex:1;text-align:center}
@@ -527,24 +527,24 @@ html,body{cursor:auto}
         <div style="margin-bottom:14px;border-left:1px solid rgba(232,0,122,.25);padding-left:10px;display:flex;flex-direction:column;gap:10px">
           <div>
             <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pourquoi</div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 370;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Créer sans engagement c'est du vide. Le design peut être une arme — rendre visible ce qu'on ignore ou qu'on veut ignorer, donner une forme à ce qui résiste. J'ai une fascination pour l'imperfection, le rejeté, le brut. Je choisis mes projets parce qu'ils me ressemblent et qu'il y a une démarche derrière.</div>
+            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Créer sans engagement c'est du vide. Le design peut être une arme — rendre visible ce qu'on ignore ou qu'on veut ignorer, donner une forme à ce qui résiste. J'ai une fascination pour l'imperfection, le rejeté, le brut. Je choisis mes projets parce qu'ils me ressemblent et qu'il y a une démarche derrière.</div>
           </div>
           <div>
             <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Comment</div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 370;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">DA tranchée, culture underground et militante, regard qui va chercher la beauté là où personne regarde. Je bosse avec les gens, pas pour eux. Tarification éthique — les projets sans âme qui paient bien financent ceux qui ont du sens.</div>
+            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">DA tranchée, culture underground et militante, regard qui va chercher la beauté là où personne regarde. Je bosse avec les gens, pas pour eux. Tarification éthique — les projets sans âme qui paient bien financent ceux qui ont du sens.</div>
           </div>
           <div>
             <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pour qui</div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 370;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Projets culturels, engagés, alternatifs. Ceux qui ont une âme. J'occupe un espace que personne d'autre n'occupe sur mon territoire — avec un pied dedans depuis le début.</div>
+            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Projets culturels, engagés, alternatifs. Ceux qui ont une âme. J'occupe un espace que personne d'autre n'occupe sur mon territoire — avec un pied dedans depuis le début.</div>
           </div>
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Prestations</div>
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 370;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">Direction artistique visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
+          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">Direction artistique visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Formation</div>
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 370;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">ESDAC — Design de mode<br>LISAA — Master Graphisme du numérique<br>ERB — École des Beaux-Arts de Bordeaux</div>
+          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">ESDAC — Design de mode<br>LISAA — Master Graphisme du numérique<br>ERB — École des Beaux-Arts de Bordeaux</div>
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Outils</div>
@@ -1407,12 +1407,19 @@ function syncCol(w){
 var col=w._col;if(!col)return;
 if(w.classList.contains('maximized')){col.style.display='none';return;}
 col.style.display='';
-col.style.left=(w.offsetLeft-COL_OX)+'px';
-col.style.top=(w.offsetTop-COL_OY)+'px';
-col.style.width=(w.offsetWidth+COL_OX*2)+'px';
-col.style.height=(w.offsetHeight+COL_OY*2)+'px';
-col.style.zIndex=String(parseInt(w.style.zIndex||'0')-1);
-col.style.clipPath='';
+var ox=COL_OX,oy=COL_OY;
+var cw=w.offsetWidth+ox*2;
+var ch=w.offsetHeight+oy*2;
+col.style.left=(w.offsetLeft-ox)+'px';
+col.style.top=(w.offsetTop-oy)+'px';
+col.style.width=cw+'px';
+col.style.height=ch+'px';
+/* Colonne au-dessus de la fenêtre mais intérieur découpé — frame décorative visible sur les bords */
+col.style.zIndex=String(parseInt(w.style.zIndex||'0')+1);
+col.style.clipPath='polygon('
+  +'0px 0px,'+cw+'px 0px,'+cw+'px '+ch+'px,0px '+ch+'px,0px 0px,'
+  +ox+'px '+oy+'px,'+ox+'px '+(ch-oy)+'px,'+(cw-ox)+'px '+(ch-oy)+'px,'+(cw-ox)+'px '+oy+'px,'+ox+'px '+oy+'px'
+  +')';
 }
 
 function buildMobile(){
