@@ -114,6 +114,9 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .tbtn{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:var(--dim);letter-spacing:.1em;padding:2px 7px;border:1px solid #1e1e1e;background:transparent;cursor:none;transition:all .15s;text-transform:uppercase;white-space:nowrap}
 .tbtn.act{color:var(--green);border-color:rgba(232,0,122,.3)}
 #tbar-clock{font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:var(--dim);letter-spacing:.08em;white-space:nowrap}
+#tbar-discipline{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.5);letter-spacing:.1em;white-space:nowrap;text-transform:uppercase}
+#tbar-contact{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.4);letter-spacing:.08em;white-space:nowrap;text-decoration:none;border-bottom:1px solid rgba(232,0,122,.25);padding-bottom:1px;transition:color .15s,border-color .15s}
+#tbar-contact:hover{color:var(--pink);border-color:var(--pink)}
 
 #mdesk{display:none}
 .mcard{border:1px solid #1e1e1e;margin-bottom:10px;background:#0c0c0c;overflow:hidden}
@@ -555,6 +558,8 @@ html,body{cursor:auto}
   <div id="tbar">
     <div id="tbar-logo">✠︎ TCHOUPIZZ</div>
     <div id="tbar-wins"></div>
+    <div id="tbar-discipline">Graphisme · DA · Textile · Motion</div>
+    <a id="tbar-contact" href="mailto:tchoupi.zebre@gmail.com">tchoupi.zebre@gmail.com</a>
     <div id="tbar-clock"></div>
   </div>
 
@@ -820,6 +825,10 @@ boot.style.display='none';
 desk.style.display='block';
 initGrain();
 initDesk();
+/* Auto-open flagship project after boot */
+setTimeout(function(){
+  if(!open.size){buildProjWin('pw-mlq');}
+},2200);
 initBdVary();
 initRageClick();
 initScramble();
