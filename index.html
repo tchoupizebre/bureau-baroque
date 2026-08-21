@@ -870,6 +870,17 @@ initBdVary();
 initRageClick();
 initScramble();
 initSpotlight();
+/* Onboarding hint — disparaît après 5s ou au premier clic */
+setTimeout(function(){
+  var hint=document.createElement('div');
+  hint.id='hint-boot';
+  hint.innerHTML='DBL-CLIC <span style="opacity:.5">→</span> ouvrir &nbsp;·&nbsp; <span style="opacity:.5">←→</span> naviguer &nbsp;·&nbsp; <span style="opacity:.5">↑↓</span> changer de catégorie';
+  hint.style.cssText='position:fixed;bottom:44px;left:50%;transform:translateX(-50%);background:rgba(10,10,10,.88);border:1px solid rgba(232,0,122,.4);padding:6px 16px;font-family:"ltr-ncnd-variable",sans-serif;font-size:10px;font-variation-settings:"wght" 500;letter-spacing:.12em;color:rgba(255,255,255,.6);text-transform:uppercase;white-space:nowrap;z-index:800;pointer-events:none;transition:opacity .6s';
+  document.body.appendChild(hint);
+  var fadeHint=function(){hint.style.opacity='0';setTimeout(function(){hint.remove();},700);};
+  setTimeout(fadeHint,5000);
+  document.addEventListener('mousedown',fadeHint,{once:true});
+},2800);
 },720)
 }
 
@@ -1004,7 +1015,7 @@ var PROJECTS=[
 {id:'pw-shipment',cat:'wp',title:'Shipment',tagline:'Identité événementielle complète',client:'SHIPMENT',annee:'2025',disciplines:'Affiche · Social media · Billetterie',desc:'DA complète pour le festival SHIPMENT — affiches, stories, posts.',
  media:[{t:'img',src:'shipment1.webp'},{t:'img',src:'shipment2.webp'},{t:'img',src:'shipment3.webp'},{t:'img',src:'shipment4.webp'},{t:'img',src:'shipment5.webp'},{t:'img',src:'shipment6.webp'},{t:'img',src:'shipment7.webp'},{t:'img',src:'shipment8.webp'},{t:'img',src:'shipment9.webp'},{t:'img',src:'shipment10.webp'}]},
 {id:'pw-lcdi',cat:'wp',title:'Rap Académie',tagline:'Résidence musicale · structures culturelles',client:'Fait Maison / LCDI / La Ruche',annee:'2024—2025',disciplines:'Affiche · Print · Social · Photo edit',desc:'Identité print, réseaux sociaux et affiches pour Fait Maison, le LCDI et La Ruche.',
- media:[{t:'sep',label:'Fait Maison'},{t:'img',src:'faitmaison1.webp'},{t:'img',src:'faitmaison2.webp'},{t:'img',src:'faitmaison3.webp'},{t:'img',src:'faitmaison4.webp'},{t:'img',src:'faitmaison5.webp'},{t:'img',src:'faitmaison6.webp'},{t:'img',src:'faitmaison7.webp'},{t:'img',src:'faitmaison-lumni.webp'},{t:'img',src:'faitmaison-hammel.webp'},{t:'img',src:'faitmaison-ryo.webp'},{t:'img',src:'faitmaison-sameer.webp'},{t:'img',src:'faitmaison-yhuna.webp'},{t:'sep',label:'Le Combat des Invisibles'},{t:'img',src:'lcdi1.webp'},{t:'img',src:'lcdi2.webp'},{t:'sep',label:'La Ruche'},{t:'img',src:'laruche1.webp'},{t:'img',src:'laruche2.webp'},{t:'img',src:'larucheckoi1.webp'},{t:'img',src:'larucheckoi2.webp'},{t:'img',src:'larucheckoi3.webp'}]},
+ media:[{t:'sep',label:'Fait Maison'},{t:'img',src:'faitmaison1.webp'},{t:'img',src:'faitmaison2.webp'},{t:'img',src:'faitmaison3.webp'},{t:'img',src:'faitmaison4.webp'},{t:'img',src:'faitmaison5.webp'},{t:'img',src:'faitmaison6.webp'},{t:'img',src:'faitmaison7.webp'},{t:'img',src:'faitmaison-lumni.webp'},{t:'img',src:'faitmaison-hammel.webp'},{t:'img',src:'faitmaison-ryo.webp'},{t:'img',src:'faitmaison-sameer.webp'},{t:'img',src:'faitmaison-yhuna.webp'},{t:'sep',label:'Le Combat des Invisibles'},{t:'img',src:'lcdi1.webp'},{t:'img',src:'lcdi2.webp'},{t:'sep',label:'La Ruche'},{t:'img',src:'laruche1.webp'},{t:'img',src:'laruche2.webp'},{t:'img',src:'larucheckoi1.webp'},{t:'img',src:'larucheckoi2.webp'},{t:'img',src:'larucheckoi3.webp'},{t:'img',src:'larucheckoi4.webp'},{t:'img',src:'larucheckoi5.webp'}]},
 {id:'pw-fabre',cat:'wp',title:'Musée Fabre',tagline:'Communication visuelle musée',client:'Musée Fabre',annee:'2025',disciplines:'Print · Médiation culturelle',desc:'Visuels de communication pour le Musée Fabre de Montpellier.',
  media:[{t:'img',src:'musee-fabre1.webp'},{t:'img',src:'musee-fabre2.webp'}]},
 {id:'pw-backstabbers',cat:'wt',title:'Backstabbers — Capsule I',tagline:'4 pièces sérigraphiées sur vintage',client:'Projet perso',annee:'2026',disciplines:'Upcycling · Sérigraphie · Upcycling',desc:'Capsule 4 pièces. Bases vintage Grade A sérigraphiées. 30€/pièce S—XL.',
@@ -1015,8 +1026,10 @@ var PROJECTS=[
  media:[{t:'img',src:'tengo-front.webp'},{t:'img',src:'tengo-label.webp'}]},
 {id:'pw-five',cat:'ws',title:'Five — Covers & DA',tagline:'Identité visuelle & covers streaming',client:'FIVE',annee:'2023—2025',disciplines:'DA · Covers · Spotify · Logo',desc:'Direction artistique complète — logo, covers musicales, visuels streaming Spotify.',
  media:[{t:'img',src:'five-logo.webp'},{t:'img',src:'coverfive1.webp'},{t:'img',src:'coverfive2.webp'},{t:'img',src:'coverfive3.webp'},{t:'img',src:'coverfive4.webp'},{t:'img',src:'coverfive5.webp'},{t:'img',src:'coverfive6.webp'},{t:'img',src:'coverfive7.webp'},{t:'img',src:'coverfive8.webp'},{t:'img',src:'five-bam1.webp'},{t:'img',src:'five-bam2.webp'},{t:'img',src:'five-spotify1.webp'},{t:'img',src:'five-spotify2.webp'},{t:'img',src:'five-carlos1.webp'},{t:'img',src:'five-carlos2.webp'},{t:'img',src:'five-carlos3.webp'}]},
-{id:'pw-carrousel',cat:'wm',title:'Carrousel Macabre',tagline:'Motion design — After Effects',client:'Projet perso',annee:'2025',disciplines:'AE · Motion · VHS · Composition',desc:'Composition AE + master final. Traveling, macro/micro éditorial.',
- media:[{t:'vid',src:'comp1.mp4'},{t:'vid',src:'carrousel.mp4'}]},
+{id:'pw-portraits',cat:'ws',title:'Portraits & Édito',tagline:'Direction photo · artistes & musiciens',client:'Fait Maison / Divers',annee:'2024—2025',disciplines:'DA · Photo direction · Édito',desc:'Direction artistique et retouche pour portraits d\'artistes — scène musicale montpelliéraine.',
+ media:[{t:'img',src:'sameer-ahmad.webp'},{t:'img',src:'yhuna-foster.webp'},{t:'img',src:'lois-hammel.webp'},{t:'img',src:'julia-lumni.webp'},{t:'img',src:'blma-match.webp'}]},
+{id:'pw-carrousel',cat:'wm',title:'Carrousel Macabre',tagline:'Motion design — After Effects',client:'Projet perso',annee:'2025',disciplines:'AE · Motion · VHS · Composition',desc:'Composition After Effects — traveling, macro/micro éditorial, traitement VHS. Stills de production + master final.',
+ media:[{t:'img',src:'carrousel-main.webp'},{t:'img',src:'carrousel-plan.webp'},{t:'img',src:'carrousel-calque.webp'},{t:'img',src:'carrousel-montage3.webp'},{t:'img',src:'carrousel-dl.webp'},{t:'img',src:'carrousel-dentiste.webp'},{t:'vid',src:'comp1.mp4'},{t:'vid',src:'carrousel.mp4'}]},
 {id:'pw-shipreel',cat:'wm',title:'Shipment — Reel',tagline:'Reel événementiel',client:'SHIPMENT',annee:'2025',disciplines:'Montage · Reel · Événementiel',desc:'Reel de communication pour le festival SHIPMENT.',
  media:[{t:'vid',src:'shipment.mp4'}]},
 {id:'pw-bb',cat:'wd',title:'Le Monde Tchoupiz v2',tagline:'Portfolio interactif — expérience desktop',client:'Projet perso',annee:'2026',disciplines:'HTML · CSS · JS · WordPress',desc:'Boot cinématique, fenêtres drag/resize, curseur custom, fallback mobile. Target Awwwards.',
