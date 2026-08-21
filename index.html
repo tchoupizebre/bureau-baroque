@@ -77,7 +77,8 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .ilbl{font-family:"jetsam-collection-basilea",sans-serif;font-size:13px;letter-spacing:.02em;text-align:center;color:var(--pink);transition:color .18s;line-height:1.3}
 
 .win{position:absolute;min-width:300px;min-height:180px;height:500px;background:#0f0f0f;border:2px solid;border-color:#444 #111 #111 #444;outline:1px solid #222;display:none;flex-direction:column;transform:scale(.92) translateY(6px);opacity:0;filter:blur(8px);transition:transform .25s cubic-bezier(.34,1.4,.64,1),opacity .2s ease,filter .25s ease;box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8);overflow:visible}
-.win-col-overlay{position:absolute;pointer-events:none;background:url('assets/ui/bb-cadre-colonnes.webp') no-repeat center/100% 100%;}
+/* Colonnes baroques via ::before CSS — plus de JS, plus de z-index battles */
+.win.active::before{content:'';position:absolute;left:-35px;top:-60px;right:-35px;bottom:-60px;background:url('assets/ui/bb-cadre-colonnes.webp') no-repeat center/100% 100%;pointer-events:none;z-index:9999;}
 .win.open{display:flex}
 .win.vis{transform:scale(1) translateY(0);opacity:1;filter:blur(0)}
 .win.maximized{top:0!important;left:0!important;width:100%!important;height:calc(100% - 30px)!important;border-radius:0;transition:none}
@@ -200,7 +201,7 @@ html,body{cursor:auto}
 .wcat-thumb{width:100%;flex:0 0 auto;max-height:55%;object-fit:contain;border-bottom:2px solid;border-color:#111 #383838 #383838 #111;background:#080808;display:block}
 .wcat-pane .wstat-block{border:none;background:transparent;border-bottom:1px solid #1c1c1c;padding:8px 12px;margin-bottom:0}
 .wcat-pane .wstat-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:28px;color:#fff;letter-spacing:.02em;line-height:1.1;margin-bottom:4px}
-.wcat-pane .wstat-line{font-size:10px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;font-family:"ltr-ncnd-variable",sans-serif}
+.wcat-pane .wstat-line{font-size:10px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;font-family:"ltr-ncnd-variable",sans-serif;text-shadow:0 1px 4px rgba(255,255,255,.5),0 0 12px rgba(255,255,255,.2)}
 .wcat-hint{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#E8007A;font-family:"ltr-ncnd-variable",sans-serif;text-align:center;padding:6px 8px;margin-top:auto;border-top:1px solid rgba(232,0,122,.35);position:relative;z-index:2}
 /* Fenêtre active — glow magenta */
 .win.active{box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8),0 0 28px rgba(232,0,122,.22);border-color:#E8007A #6a0035 #6a0035 #E8007A}
@@ -259,7 +260,7 @@ html,body{cursor:auto}
 .wiz-bubble::before{content:'';position:absolute;left:-9px;top:18px;border:5px solid transparent;border-right-color:rgba(232,0,122,.5)}
 .wiz-bubble::after{content:'';position:absolute;left:-7px;top:19px;border:4px solid transparent;border-right-color:#0a0a0a}
 .wiz-bubble .wiz-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:clamp(18px,2.4vw,28px);color:#fff;letter-spacing:.02em;line-height:1.1;margin-bottom:4px}
-.wiz-bubble .wiz-sub{font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;font-variation-settings:"wght" 600;color:var(--pink);letter-spacing:.14em;text-transform:uppercase}
+.wiz-bubble .wiz-sub{font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;font-variation-settings:"wght" 600;color:var(--pink);letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 4px rgba(255,255,255,.5),0 0 12px rgba(255,255,255,.2)}
 .wiz-meta{display:flex;flex-direction:column;gap:4px}
 .wiz-meta-row{display:flex;gap:0;border-bottom:1px solid #1a1a1a;padding:5px 0}
 .wiz-meta-key{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(232,0,122,.7);letter-spacing:.12em;text-transform:uppercase;width:64px;flex-shrink:0}
@@ -1284,8 +1285,7 @@ if(catWin){
   w.style.transform='translate('+dx2+'px,'+dy2+'px) scale('+sx2+','+sy2+')';
   w.style.opacity='0';w.style.filter='blur(6px)';
   open.add(projId);w.style.zIndex=++zTop;
-  if(!w._col){var _col=document.createElement('div');_col.className='win-col-overlay';_col.style.position='absolute';_col.style.left=(-COL_OX)+'px';_col.style.top=(-COL_OY)+'px';_col.style.pointerEvents='none';_col.style.zIndex='9999';w.appendChild(_col);w._col=_col;}
-  setActive(projId);
+    setActive(projId);
   try{history.replaceState(null,'','#'+projId);}catch(e){}
   sndOpen();
   requestAnimationFrame(function(){requestAnimationFrame(function(){
@@ -1309,7 +1309,6 @@ setTimeout(function(){cur.classList.remove('loading');},400);
 open.add(id);
 w.style.zIndex=++zTop;
 w.classList.add('open');
-if(!w._col){var _col=document.createElement('div');_col.className='win-col-overlay';_col.style.position='absolute';_col.style.left=(-COL_OX)+'px';_col.style.top=(-COL_OY)+'px';_col.style.pointerEvents='none';_col.style.zIndex='9999';w.appendChild(_col);w._col=_col;}
 if(id==='wa'){
   var logo=document.getElementById('wa-logo');
   var r=w.querySelector('.wsplit-right');
@@ -1354,7 +1353,6 @@ updateTbar()
 function closeW(id){
 var w=document.getElementById(id);
 if(!w)return;
-if(w._col){w._col.remove();w._col=null;}
 open.delete(id);
 try{history.replaceState(null,'','#');}catch(e){}
 sndClose();
@@ -1383,8 +1381,8 @@ if(target){
 }
 
 function setActive(id){
-document.querySelectorAll('.win.active').forEach(function(w){w.classList.remove('active');if(w._col)w._col.style.display='none';});
-var w=document.getElementById(id);if(w){w.classList.add('active');if(w._col&&!w.classList.contains('maximized')){w._col.style.display='';syncCol(w);}}
+document.querySelectorAll('.win.active').forEach(function(w){w.classList.remove('active');});
+var w=document.getElementById(id);if(w)w.classList.add('active');
 }
 
 function updateTbar(){
@@ -1403,20 +1401,7 @@ tb.appendChild(b)
 }
 
 var COL_OX=35,COL_OY=60;
-function syncCol(w){
-var col=w._col;if(!col)return;
-if(w.classList.contains('maximized')){col.style.display='none';return;}
-col.style.display='';
-var ox=COL_OX,oy=COL_OY;
-var cw=w.offsetWidth+ox*2;
-var ch=w.offsetHeight+oy*2;
-col.style.width=cw+'px';
-col.style.height=ch+'px';
-col.style.clipPath='polygon('
-  +'0px 0px,'+cw+'px 0px,'+cw+'px '+ch+'px,0px '+ch+'px,0px 0px,'
-  +ox+'px '+oy+'px,'+ox+'px '+(ch-oy)+'px,'+(cw-ox)+'px '+(ch-oy)+'px,'+(cw-ox)+'px '+oy+'px,'+ox+'px '+oy+'px'
-  +')';
-}
+function syncCol(w){/* colonnes gérées par CSS ::before sur .win.active */}
 
 function buildMobile(){
 var md=document.getElementById('mdesk');
