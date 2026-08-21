@@ -445,7 +445,7 @@ html,body{cursor:auto}
   <!-- Fenêtre DA -->
   <div class="win" id="ws" style="width:560px;height:460px;top:100px;left:140px">
     <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-4.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">DA & Identité</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-4.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Direction artistique</span></div>
       <button class="wbtn wmax" data-w="ws">□</button><button class="wbtn wclose" data-w="ws">✕</button>
     </div>
     <div class="wbody-split">
@@ -540,7 +540,7 @@ html,body{cursor:auto}
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Prestations</div>
-          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.6);line-height:1.9">DA &amp; Identité visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
+          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.6);line-height:1.9">Direction artistique visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Formation</div>
@@ -602,7 +602,7 @@ html,body{cursor:auto}
   <div id="ctx">
     <div class="ci" data-a="wp">✠︎ Print</div>
     <div class="ci" data-a="wt">⚜︎ Upcycling</div>
-    <div class="ci" data-a="ws">♛︎ DA & Identité</div>
+    <div class="ci" data-a="ws">♛︎ Direction artistique</div>
     <div class="ci" data-a="wm">❧︎ Motion</div>
     <div class="ci" data-a="wd">✾︎ Web</div>
     <div class="ci" data-a="wa">❦︎ About</div>
@@ -1445,7 +1445,7 @@ function initDesk(){
 buildCatWins();
 /* 7 — status bar catégories */
 var CAT_COUNTS={};PROJECTS.forEach(function(p){CAT_COUNTS[p.cat]=(CAT_COUNTS[p.cat]||0)+1;});
-var CAT_NAMES={wp:'Print',wt:'Upcycling',ws:'DA & Identité',wm:'Motion',wd:'Web',wa:'About'};
+var CAT_NAMES={wp:'Print',wt:'Upcycling',ws:'Direction artistique',wm:'Motion',wd:'Web',wa:'About'};
 document.querySelectorAll('.win').forEach(function(w){
   var sb=document.createElement('div');
   sb.className='wstatusbar';
