@@ -90,7 +90,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .wclose{background:var(--red)}
 .wmax{background:#555;position:relative}
 .wmax::before{content:'';position:absolute;inset:2px;border:1px solid rgba(255,255,255,.5);border-radius:1px}
-.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:"bd-terminal-vf",sans-serif;font-size:10px;text-transform:uppercase;color:var(--text);line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:var(--text);line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
 .wrz{position:absolute;bottom:0;right:0;width:22px;height:22px;cursor:se-resize;opacity:.4;transition:opacity .15s;display:flex;align-items:flex-end;justify-content:flex-end;padding:3px}
 .wrz::before{content:'···';color:var(--dim);font-size:10px;line-height:1;transform:rotate(45deg);display:block}
 .wrz:hover{opacity:.9}
@@ -108,14 +108,14 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .gi img{width:100%;height:100%;object-fit:contain;background:#0a0a0a;display:block}
 .tag{display:inline-block;font-family:"bd-terminal-vf",sans-serif;font-size:8px;letter-spacing:.1em;padding:2px 7px;border:1px solid var(--dim);color:var(--dim);margin:2px 2px 2px 0}
 
-#tbar{position:fixed;bottom:0;left:0;right:0;height:30px;background:rgba(6,6,6,.95);border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 14px;gap:14px;z-index:500;backdrop-filter:blur(12px)}
+#tbar{position:fixed;bottom:0;left:0;right:0;height:30px;background:rgba(6,6,6,.95);border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 14px;gap:10px;z-index:500;backdrop-filter:blur(12px)}
 #tbar-logo{font-family:"jetsam-collection-basilea",sans-serif;font-size:9px;color:var(--gold);letter-spacing:.06em;white-space:nowrap}
 #tbar-wins{flex:1;display:flex;gap:4px;overflow:hidden}
 .tbtn{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:var(--dim);letter-spacing:.1em;padding:2px 7px;border:1px solid #1e1e1e;background:transparent;cursor:none;transition:all .15s;text-transform:uppercase;white-space:nowrap}
 .tbtn.act{color:var(--green);border-color:rgba(232,0,122,.3)}
 #tbar-clock{font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:var(--dim);letter-spacing:.08em;white-space:nowrap}
-#tbar-discipline{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.5);letter-spacing:.1em;white-space:nowrap;text-transform:uppercase}
-#tbar-contact{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.4);letter-spacing:.08em;white-space:nowrap;text-decoration:none;border-bottom:1px solid rgba(232,0,122,.25);padding-bottom:1px;transition:color .15s,border-color .15s}
+#tbar-discipline{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.5);letter-spacing:.1em;white-space:nowrap;text-transform:uppercase;flex-shrink:0}
+#tbar-contact{font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.4);letter-spacing:.08em;white-space:nowrap;text-decoration:none;border-bottom:1px solid rgba(232,0,122,.25);padding-bottom:1px;transition:color .15s,border-color .15s;flex-shrink:0}
 #tbar-contact:hover{color:var(--pink);border-color:var(--pink)}
 
 #mdesk{display:none}
@@ -127,7 +127,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .mcard.on .mchev{transform:rotate(180deg)}
 .mbody{max-height:0;overflow:hidden;transition:max-height .35s ease}
 .mcard.on .mbody{max-height:700px}
-.mbody-in{padding:0 16px 18px;font-family:"bd-terminal-vf",sans-serif;font-size:10px;text-transform:uppercase;color:var(--text);line-height:1.7}
+.mbody-in{padding:0 16px 18px;font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:var(--text);line-height:1.75}
 #tbar-m{display:none}
 @media (max-width:768px){
 #icons,#tbar,#vignette-desk{display:none}
@@ -264,7 +264,7 @@ html,body{cursor:auto}
 .wiz-meta-row{display:flex;gap:0;border-bottom:1px solid #1a1a1a;padding:5px 0}
 .wiz-meta-key{font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(232,0,122,.7);letter-spacing:.12em;text-transform:uppercase;width:64px;flex-shrink:0}
 .wiz-meta-val{font-family:"jetsam-collection-basilea",sans-serif;font-size:14px;color:rgba(255,255,255,.85);letter-spacing:.01em;line-height:1.3}
-.wiz-desc{font-family:"bd-terminal-vf",sans-serif;font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.06em;line-height:1.75;text-transform:uppercase;margin-top:2px}
+.wiz-desc{font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.04em;line-height:1.8;margin-top:2px}
 /* Footer wizard nav */
 .win-footer-wiz{height:38px;background:#0f0f0f;border-top:2px solid;border-color:#111 #383838 #383838 #111;display:flex;align-items:center;padding:0 10px;gap:6px;flex-shrink:0}
 .wiz-nav-count{font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.12em;flex:1;text-align:center}
@@ -503,7 +503,7 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre About -->
-  <div class="win" id="wa" style="width:620px;height:500px;top:90px;left:260px">
+  <div class="win" id="wa" style="width:660px;height:640px;top:60px;left:240px">
     <div class="wtb">
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-2.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">About — Tchoupizébré</span></div>
       <button class="wbtn wmax" data-w="wa">□</button><button class="wbtn wclose" data-w="wa">✕</button>
@@ -522,29 +522,29 @@ html,body{cursor:auto}
           <div style="font-family:"jetsam-collection-basilea",sans-serif;font-size:17px;color:rgba(255,255,255,.9);line-height:1.25;letter-spacing:.04em">"J'utilise le graphisme<br>comme une arme militante."</div>
         </div>
         <div style="margin-bottom:14px">
-          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.55);line-height:2;letter-spacing:.06em">Le monde brûle, et je dois faire un portfolio pour l'école.<br>Je suis en freelance — mais je choisis mes projets.<br>Je m'investis uniquement dans ce qui a du fond.</div>
+          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:rgba(255,255,255,.6);line-height:1.85;letter-spacing:.03em">Le monde brûle, et je dois faire un portfolio pour l'école.<br>Je suis en freelance — mais je choisis mes projets.<br>Je m'investis uniquement dans ce qui a du fond.</div>
         </div>
         <div style="margin-bottom:14px;border-left:1px solid rgba(232,0,122,.25);padding-left:10px;display:flex;flex-direction:column;gap:10px">
           <div>
             <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pourquoi</div>
-            <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.55);line-height:1.9;letter-spacing:.05em">Créer sans engagement c'est du vide. Le design peut être une arme — rendre visible ce qu'on ignore ou qu'on veut ignorer, donner une forme à ce qui résiste. J'ai une fascination pour l'imperfection, le rejeté, le brut. Je choisis mes projets parce qu'ils me ressemblent et qu'il y a une démarche derrière.</div>
+            <div style="font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:rgba(255,255,255,.65);line-height:1.85;letter-spacing:.03em">Créer sans engagement c'est du vide. Le design peut être une arme — rendre visible ce qu'on ignore ou qu'on veut ignorer, donner une forme à ce qui résiste. J'ai une fascination pour l'imperfection, le rejeté, le brut. Je choisis mes projets parce qu'ils me ressemblent et qu'il y a une démarche derrière.</div>
           </div>
           <div>
             <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Comment</div>
-            <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.55);line-height:1.9;letter-spacing:.05em">DA tranchée, culture underground et militante, regard qui va chercher la beauté là où personne regarde. Je bosse avec les gens, pas pour eux. Tarification éthique — les projets sans âme qui paient bien financent ceux qui ont du sens.</div>
+            <div style="font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:rgba(255,255,255,.65);line-height:1.85;letter-spacing:.03em">DA tranchée, culture underground et militante, regard qui va chercher la beauté là où personne regarde. Je bosse avec les gens, pas pour eux. Tarification éthique — les projets sans âme qui paient bien financent ceux qui ont du sens.</div>
           </div>
           <div>
             <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pour qui</div>
-            <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.55);line-height:1.9;letter-spacing:.05em">Projets culturels, engagés, alternatifs. Ceux qui ont une âme. J'occupe un espace que personne d'autre n'occupe sur mon territoire — avec un pied dedans depuis le début.</div>
+            <div style="font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:rgba(255,255,255,.65);line-height:1.85;letter-spacing:.03em">Projets culturels, engagés, alternatifs. Ceux qui ont une âme. J'occupe un espace que personne d'autre n'occupe sur mon territoire — avec un pied dedans depuis le début.</div>
           </div>
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Prestations</div>
-          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.6);line-height:1.9">Direction artistique visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
+          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:rgba(255,255,255,.65);line-height:1.85">Direction artistique visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Formation</div>
-          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:9px;color:rgba(255,255,255,.6);line-height:2">ESDAC — Design de mode<br>LISAA — Master Graphisme du numérique<br>ERB — École des Beaux-Arts de Bordeaux</div>
+          <div style="font-family:"bd-terminal-vf",sans-serif;font-size:11px;color:rgba(255,255,255,.65);line-height:1.85">ESDAC — Design de mode<br>LISAA — Master Graphisme du numérique<br>ERB — École des Beaux-Arts de Bordeaux</div>
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:"bd-terminal-vf",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Outils</div>
@@ -814,7 +814,7 @@ var msgs=[
 ['Vérification des modules créatifs.....',240,'ok'],
 ['Print ................... CHARGÉ',160,'ok'],
 ['Upcycling ................. CHARGÉ',160,'ok'],
-['Space ................... CHARGÉ',180,'ok'],
+['Direction artistique .... CHARGÉ',180,'ok'],
 ['Motion .................. CHARGÉ',160,'ok'],
 ['Web ................. CHARGÉ',140,'ok'],
 ['About ................... CHARGÉ',140,'ok'],
