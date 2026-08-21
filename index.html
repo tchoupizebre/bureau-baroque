@@ -242,8 +242,9 @@ html,body{cursor:auto}
 .wlist-item.sel~div .wcat-thumb,.wcat-thumb.glitch{animation:vhs-glitch .35s steps(1) 1}
 /* Project window carousel */
 .wcar-wrap{flex:1;position:relative;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.wcar-media{max-width:100%;max-height:100%;object-fit:contain;display:block;width:100%;height:100%;cursor:zoom-in}
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;opacity:0;transition:opacity .25s;pointer-events:none}
+.wcar-media{max-width:100%;max-height:100%;object-fit:contain;display:block;width:100%;height:100%;cursor:zoom-in!important}
+#lightbox{cursor:zoom-out!important}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;pointer-events:none}
 #lightbox.on{opacity:1;pointer-events:all}
 #lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;display:block;box-shadow:0 0 80px rgba(232,0,122,.18);border:1px solid rgba(232,0,122,.2)}
 .wcar-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:13px;width:26px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s;font-family:"ltr-ncnd-variable",sans-serif}
