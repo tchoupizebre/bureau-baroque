@@ -1,4 +1,5 @@
-﻿<meta charset="UTF-8">
+﻿<html lang="fr">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LE MONDE TCHOUPIZ</title>
 <meta name="description" content="Portfolio interactif de Hugo Galtier d'Auriac — graphisme, DA, textile, motion. Montpellier.">
@@ -1264,7 +1265,6 @@ open.add(id);
 w.style.zIndex=++zTop;
 w.classList.add('open');
 if(!w._col){var _col=document.createElement('div');_col.className='win-col-overlay';document.getElementById('desk').appendChild(_col);w._col=_col;}
-syncCol(w);
 if(id==='wa'){
   var logo=document.getElementById('wa-logo');
   var r=w.querySelector('.wsplit-right');
@@ -1279,7 +1279,6 @@ if(id==='wa'){
   else if(logo)logo.addEventListener('load',sizeWa,{once:true});
 }
 setActive(id);
-sndOpen();
 try{history.replaceState(null,'','#'+id);}catch(e){}
 var icon=document.querySelector('.icon[data-win="'+id.replace(/^pw-/,'')+'"], .icon[data-win="'+id+'"]');
 if(icon){
@@ -1299,9 +1298,10 @@ if(icon){
     w.style.opacity='';
     w.style.filter='';
     w.classList.add('vis');
+    syncCol(w);
   })});
 }else{
-  requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('vis')})});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('vis');syncCol(w);})});
 }
 updateTbar()
 }
@@ -1366,14 +1366,14 @@ col.style.left=(w.offsetLeft-COL_OX)+'px';
 col.style.top=(w.offsetTop-COL_OY)+'px';
 col.style.width=(w.offsetWidth+COL_OX*2)+'px';
 col.style.height=(w.offsetHeight+COL_OY*2)+'px';
-col.style.zIndex=String(parseInt(w.style.zIndex||'0')+10);
+col.style.zIndex=String(parseInt(w.style.zIndex||'0')-1);
 col.style.clipPath='';
 }
 
 function buildMobile(){
 var md=document.getElementById('mdesk');
 if(md.childElementCount)return;
-document.querySelectorAll('.win').forEach(function(win){
+document.querySelectorAll('.win:not(.proj-win)').forEach(function(win){
 var titleEl=win.querySelector('.wtitle');
 var iconEl=win.querySelector('.wtb img');
 var bodyEl=win.querySelector('.wbody-split');
@@ -1399,7 +1399,7 @@ mtick();setInterval(mtick,1000)
 function initDesk(){
 buildCatWins();
 /* 7 — status bar catégories */
-var CAT_COUNTS={wp:6,wt:4,ws:5,wm:3,wd:2,wa:1};
+var CAT_COUNTS={};PROJECTS.forEach(function(p){CAT_COUNTS[p.cat]=(CAT_COUNTS[p.cat]||0)+1;});
 var CAT_NAMES={wp:'Print',wt:'Textile',ws:'DA & Identité',wm:'Motion',wd:'Digital',wa:'About'};
 document.querySelectorAll('.win').forEach(function(w){
   var sb=document.createElement('div');
