@@ -270,9 +270,12 @@ html,body{cursor:auto}
 .wiz-meta-key{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(232,0,122,.7);letter-spacing:.12em;text-transform:uppercase;width:64px;flex-shrink:0}
 .wiz-meta-val{font-family:"jetsam-collection-basilea",sans-serif;font-size:14px;color:rgba(255,255,255,.85);letter-spacing:.01em;line-height:1.3}
 .wiz-desc{font-family:"ltr-ncnd-variable",sans-serif;font-size:13px;font-variation-settings:"wght" 430;color:rgba(255,255,255,.8);letter-spacing:.02em;line-height:1.75;margin-top:2px}
-/* Footer wizard nav */
-.win-footer-wiz{height:38px;background:#0f0f0f;border-top:2px solid;border-color:#111 #383838 #383838 #111;display:flex;align-items:center;padding:0 10px;gap:6px;flex-shrink:0}
-.wiz-nav-count{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.12em;flex:1;text-align:center}
+/* Footer wizard nav — style Win98 toolbar */
+.win-footer-wiz{height:34px;background:#c0c0c0;border-top:2px solid;border-color:#808080 #fff #fff #808080;display:flex;align-items:center;padding:0 6px;gap:4px;flex-shrink:0}
+.win-footer-wiz .win-fbtn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:2px 10px;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:#000;cursor:pointer;letter-spacing:.06em;box-shadow:1px 1px 0 #000;white-space:nowrap;height:22px;display:flex;align-items:center}
+.win-footer-wiz .win-fbtn:hover{background:#d8d8d8}
+.win-footer-wiz .win-fbtn:active{border-color:#808080 #fff #fff #808080;box-shadow:none;transform:translate(1px,1px)}
+.wiz-nav-count{font-family:'Courier New',monospace;font-size:9px;color:#444;flex:1;text-align:center;background:#c0c0c0;border:2px solid;border-color:#808080 #fff #fff #808080;padding:2px 6px;height:18px;display:flex;align-items:center;justify-content:center;box-shadow:inset 1px 1px 2px rgba(0,0,0,.2)}
 @keyframes glitch-in{
 0%  {clip-path:inset(45% 0 48% 0);transform:translateX(-6px);opacity:.2}
 8%  {clip-path:inset(10% 0 75% 0);transform:translateX(5px);opacity:.5}
@@ -333,14 +336,18 @@ html,body{cursor:auto}
 .rage-btn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 22px;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;font-family:"ltr-ncnd-variable",sans-serif}
 .rage-btn:active{border-color:#808080 #fff #fff #808080}
 
-/* Custom video player controls */
-.vplayer-ctrl{height:28px;background:#0a0a0a;border-top:1px solid #1a1a1a;display:none;align-items:center;gap:5px;padding:0 7px;flex-shrink:0}
+/* Custom video player controls — style CD Player Win98 */
+.vplayer-ctrl{background:#c0c0c0;border-top:2px solid;border-color:#808080 #fff #fff #808080;display:none;flex-direction:column;padding:4px 6px 5px;gap:4px;flex-shrink:0}
 .vplayer-ctrl.on{display:flex}
-.vplayer-btn{background:none;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75);width:20px;height:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:9px;transition:background .1s,border-color .1s;font-family:monospace;flex-shrink:0}
-.vplayer-btn:hover{background:rgba(232,0,122,.35);border-color:var(--pink);color:#fff}
-.vplayer-prog{flex:1;height:3px;background:#2a2a2a;cursor:pointer;position:relative;border:1px solid #333}
-.vplayer-prog-fill{position:absolute;left:0;top:0;height:100%;background:#E8007A;width:0%;pointer-events:none}
-.vplayer-time{font-size:8px;color:rgba(255,255,255,.4);letter-spacing:.06em;white-space:nowrap;font-family:"ltr-ncnd-variable",sans-serif;min-width:58px;text-align:right}
+.vplayer-row{display:flex;align-items:center;gap:4px}
+.vplayer-btn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;color:#000;width:26px;height:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;font-family:monospace;flex-shrink:0;box-shadow:1px 1px 0 #000}
+.vplayer-btn:hover{background:#d8d8d8}
+.vplayer-btn:active{border-color:#808080 #fff #fff #808080;box-shadow:none;transform:translate(1px,1px)}
+.vplayer-prog{flex:1;height:10px;background:#808080;cursor:pointer;position:relative;border:2px solid;border-color:#808080 #fff #fff #808080;box-shadow:inset 1px 1px 2px rgba(0,0,0,.4)}
+.vplayer-prog-fill{position:absolute;left:0;top:0;height:100%;background:#000080;width:0%;pointer-events:none}
+.vplayer-time{font-size:9px;color:#000;letter-spacing:.04em;white-space:nowrap;font-family:'Courier New',monospace;background:#c0c0c0;min-width:68px;text-align:right;padding:1px 2px}
+.vplayer-lcd{background:#000;border:2px solid;border-color:#808080 #fff #fff #808080;padding:2px 6px;font-family:'Courier New',monospace;font-size:9px;color:#00cc00;letter-spacing:.06em;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vplayer-status{font-size:8px;color:#444;font-family:'Courier New',monospace;letter-spacing:.04em}
 
 /* Screensaver */
 #desk.ss{filter:brightness(.55) saturate(.7);transition:filter 1.5s ease}
@@ -1183,10 +1190,15 @@ if(proj.media.length===0){
 }else{
   leftHTML='<div class="wcar-wrap" id="wcar-'+projId+'">'+mediaHTML(proj.media[0])+'</div>'+
   '<div class="vplayer-ctrl" id="vpc-'+projId+'">'+
-    '<button class="vplayer-btn" id="vpp-'+projId+'">▶</button>'+
-    '<button class="vplayer-btn" id="vps-'+projId+'">⏹</button>'+
-    '<div class="vplayer-prog" id="vpb-'+projId+'"><div class="vplayer-prog-fill" id="vpf-'+projId+'"></div></div>'+
-    '<span class="vplayer-time" id="vpt-'+projId+'">0:00 / 0:00</span>'+
+    '<div class="vplayer-row">'+
+      '<div class="vplayer-lcd" id="vpl-'+projId+'">◼ STOP</div>'+
+      '<span class="vplayer-time" id="vpt-'+projId+'">0:00 / 0:00</span>'+
+    '</div>'+
+    '<div class="vplayer-row">'+
+      '<button class="vplayer-btn" id="vpp-'+projId+'" title="Lecture / Pause">▶</button>'+
+      '<button class="vplayer-btn" id="vps-'+projId+'" title="Stop">■</button>'+
+      '<div class="vplayer-prog" id="vpb-'+projId+'"><div class="vplayer-prog-fill" id="vpf-'+projId+'"></div></div>'+
+    '</div>'+
   '</div>';
 }
 
@@ -1280,6 +1292,7 @@ if(proj.media.length>0){
       var prog=document.getElementById('vpb-'+projId);
       var fill=document.getElementById('vpf-'+projId);
       var timeEl=document.getElementById('vpt-'+projId);
+      var lcdEl=document.getElementById('vpl-'+projId);
       if(ctrl){
         ctrl.classList.add('on');
         function fmtT(s){var m2=Math.floor(s/60),s2=Math.floor(s%60);return m2+':'+(s2<10?'0':'')+s2;}
@@ -1288,10 +1301,14 @@ if(proj.media.length>0){
           fill.style.width=(vel.currentTime/vel.duration*100)+'%';
           timeEl.textContent=fmtT(vel.currentTime)+' / '+fmtT(vel.duration);
         });
-        ppBtn.onclick=function(){vel.paused?vel.play():vel.pause();ppBtn.textContent=vel.paused?'▶':'⏸';};
-        vel.addEventListener('play',function(){ppBtn.textContent='⏸';});
-        vel.addEventListener('pause',function(){ppBtn.textContent='▶';});
-        psBtn.onclick=function(){vel.pause();vel.currentTime=0;ppBtn.textContent='▶';};
+        ppBtn.onclick=function(){
+          if(vel.paused){vel.play();}else{vel.pause();}
+          ppBtn.textContent=vel.paused?'▶':'⏸';
+        };
+        vel.addEventListener('play',function(){ppBtn.textContent='⏸';if(lcdEl)lcdEl.textContent='▶ LECTURE — '+proj.title.toUpperCase();});
+        vel.addEventListener('pause',function(){ppBtn.textContent='▶';if(lcdEl)lcdEl.textContent='❙❙ PAUSE';});
+        vel.addEventListener('ended',function(){ppBtn.textContent='▶';if(lcdEl)lcdEl.textContent='◼ STOP';});
+        psBtn.onclick=function(){vel.pause();vel.currentTime=0;ppBtn.textContent='▶';if(lcdEl)lcdEl.textContent='◼ STOP';};
         prog.addEventListener('click',function(e){
           var r=prog.getBoundingClientRect();
           vel.currentTime=(e.clientX-r.left)/r.width*vel.duration;
