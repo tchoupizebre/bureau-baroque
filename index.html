@@ -876,7 +876,7 @@ initGrain();
 initDesk();
 /* Auto-open flagship project after boot */
 setTimeout(function(){
-  if(!open.size){buildProjWin('pw-mlq');}
+  if(!open.size){openProject('pw-mlq');}
 },2200);
 initBdVary();
 initRageClick();
@@ -1438,8 +1438,8 @@ if(target){
   w.style.opacity='0';w.style.filter='blur(8px)';
   setTimeout(function(){
     w.classList.remove('vis','open');
-    if(w.classList.contains('proj-win')){w.remove();}
-    else{w.style.cssText='';}
+    if(w.classList.contains('proj-win')&&!open.has(id)){w.remove();}
+    else if(!w.classList.contains('proj-win')){w.style.cssText='';}
   },290);
 }else{
   w.classList.remove('vis');
@@ -1600,7 +1600,7 @@ if(e.key==='ArrowUp'||e.key==='ArrowDown'){
   closeW(act.id);
   setTimeout(function(){
     var firstProj=PROJECTS.find(function(p){return p.cat===nextCat});
-    if(firstProj)buildProjWin(firstProj.id);
+    if(firstProj)openProject(firstProj.id);
     else openW(nextCat);
   },120);
 }
