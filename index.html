@@ -1033,10 +1033,7 @@ var BASE='assets/motion/';
 
 var PROJECTS=[
 {id:'pw-affiches',cat:'wp',title:'Affiches libres',tagline:'Affiches événementielles & artwork',client:'Divers',annee:'2024—2026',disciplines:'Affiche · Typographie · Print',desc:'Affiches de décoration et artwork pour la scène culturelle montpelliéraine.',
- media:[{t:'img',src:'artwork.webp'},{t:'img',src:'feu-chatterton.webp'},{t:'img',src:'affiche-chatterton.png'},{t:'img',src:'affiche-divers1.jpg'}]},
-{id:'pw-moustiquaire-aff',cat:'wp',title:'La Moustiquaire — Affiches',tagline:'Affiches pour le premier event',client:'La Moustiquaire',annee:'2025',disciplines:'Affiche · Print',desc:'Réalisation des affiches pour le premier événement de La Moustiquaire.',
- media:[{t:'img',src:'mlq-aff1.png'},{t:'img',src:'mlq-aff2.png'},{t:'img',src:'mlq-aff3.png'}]},
-{id:'pw-paradigmes',cat:'wp',title:'Paradigmes',tagline:'Collection d\'affiches',client:'Paradigmes',annee:'2025',disciplines:'Affiche · Print',desc:'Projet réalisé pour les Beaux-Arts royaux de Bruxelles.',
+ media:[{t:'img',src:'artwork.webp'},{t:'img',src:'feu-chatterton.webp'},{t:'img',src:'affiche-chatterton.png'},{t:'img',src:'affiche-divers1.jpg'}]},{id:'pw-paradigmes',cat:'wp',title:'Paradigmes',tagline:'Collection d\'affiches',client:'Paradigmes',annee:'2025',disciplines:'Affiche · Print',desc:'Projet réalisé pour les Beaux-Arts royaux de Bruxelles.',
  media:[{t:'img',src:'paradigmes1.jpg'},{t:'img',src:'paradigmes2.jpg'},{t:'img',src:'paradigmes3.jpg'},{t:'img',src:'paradigmes4.jpg'}]},
 {id:'pw-flower-power',cat:'wp',title:'Flower Power',tagline:'Collection inspirée du laurier rose',client:'Tchoupizz',annee:'2024',disciplines:'Illustration · Print',desc:'Collection inspirée du laurier rose.',
  media:[{t:'img',src:'illus-fp1.png'},{t:'img',src:'illus-fp2.png'},{t:'img',src:'illus-fp3.png'},{t:'img',src:'illus-fp4.png'},{t:'img',src:'illus-fp5.png'},{t:'img',src:'illus-fp6.png'}]},
@@ -1441,7 +1438,8 @@ if(target){
   w.style.opacity='0';w.style.filter='blur(8px)';
   setTimeout(function(){
     w.classList.remove('vis','open');
-    w.style.cssText='';
+    if(w.classList.contains('proj-win')){w.remove();}
+    else{w.style.cssText='';}
   },290);
 }else{
   w.classList.remove('vis');
@@ -1587,18 +1585,6 @@ if(e.key==='Escape'){
   document.getElementById('lb').style.display='none';
   var vm=document.getElementById('vmodal');
   if(vm)vm.style.display='none';
-}
-if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
-  var act=document.querySelector('.win.active');
-  if(!act)return;
-  var proj=PROJECTS.find(function(p){return p.id===act.id});
-  if(!proj)return;
-  var siblings=PROJECTS.filter(function(p){return p.cat===proj.cat});
-  var idx=siblings.indexOf(proj);
-  var next=e.key==='ArrowRight'?siblings[idx+1]:siblings[idx-1];
-  if(!next)return;
-  closeW(act.id);
-  setTimeout(function(){buildProjWin(next.id);},120);
 }
 if(e.key==='ArrowUp'||e.key==='ArrowDown'){
   e.preventDefault();
