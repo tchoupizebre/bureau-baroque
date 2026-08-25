@@ -1,34 +1,68 @@
 #!/usr/bin/env node
-// Compresse les images >1MB dans assets/motion avant push
-// PNG/JPG → qualité réduite, max 2000px de large
-// MP4 >100MB → bloque avec un avertissement
+// Compresse automatiquement images et vidéos dans assets/motion avant push
+// PNG/JPG/WebP >1MB → qualité 80, max 2000px
+// MP4 >50MB → re-encode H.264 CRF 28 via ffmpeg-static
 
 const sharp = require('sharp');
+const ffmpeg = require('fluent-ffmpeg');
+const ffmpegPath = require('ffmpeg-static');
 const fs = require('fs');
 const path = require('path');
 
+ffmpeg.setFfmpegPath(ffmpegPath);
+
 const ASSETS_DIR = path.join(__dirname, 'assets', 'motion');
-const IMG_MAX_BYTES = 1 * 1024 * 1024; // 1MB
-const VID_MAX_BYTES = 95 * 1024 * 1024; // 95MB (limite GitHub = 100MB)
+const IMG_MAX_BYTES = 1 * 1024 * 1024;   // 1MB
+const VID_MAX_BYTES = 50 * 1024 * 1024;  // 50MB
 const MAX_DIM = 2000;
+
+function compressVideo(fp) {
+  return new Promise((resolve, reject) => {
+    const tmp = fp + '.tmp.mp4';
+    ffmpeg(fp)
+      .videoCodec('libx264')
+      .audioCodec('aac')
+      .outputOptions(['-crf 28', '-preset fast', '-movflags +faststart', '-vf scale=trunc(iw/2)*2:trunc(ih/2)*2'])
+      .save(tmp)
+      .on('end', () => {
+        fs.renameSync(tmp, fp);
+        resolve();
+      })
+      .on('error', (e) => {
+        if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
+        reject(e);
+      });
+  });
+}
 
 async function run() {
   const files = fs.readdirSync(ASSETS_DIR);
-  let blocked = [];
-  let compressed = [];
+  const compressed = [];
+  const errors = [];
 
   for (const file of files) {
     const fp = path.join(ASSETS_DIR, file);
     const stat = fs.statSync(fp);
     const ext = path.extname(file).toLowerCase();
 
+    // Vidéos
     if (['.mp4', '.webm', '.mov'].includes(ext)) {
-      if (stat.size > VID_MAX_BYTES) {
-        blocked.push({ file, size: (stat.size / 1024 / 1024).toFixed(1) + 'MB' });
+      if (stat.size <= VID_MAX_BYTES) continue;
+      const sizeBefore = (stat.size / 1024 / 1024).toFixed(1);
+      process.stdout.write('  Compression vidéo : ' + file + ' (' + sizeBefore + 'MB)... ');
+      try {
+        await compressVideo(fp);
+        const sizeAfter = (fs.statSync(fp).size / 1024 / 1024).toFixed(1);
+        process.stdout.write(sizeBefore + 'MB → ' + sizeAfter + 'MB ✓\n');
+        compressed.push({ file, sizeBefore: sizeBefore + 'MB', sizeAfter: sizeAfter + 'MB' });
+      } catch (e) {
+        process.stdout.write('ERREUR\n');
+        errors.push(file + ': ' + e.message);
       }
       continue;
     }
 
+    // Images
     if (!['.png', '.jpg', '.jpeg', '.webp'].includes(ext)) continue;
     if (stat.size <= IMG_MAX_BYTES) continue;
 
@@ -37,7 +71,6 @@ async function run() {
       const img = sharp(fp);
       const meta = await img.metadata();
       const needsResize = meta.width > MAX_DIM || meta.height > MAX_DIM;
-
       let pipeline = needsResize ? img.resize(MAX_DIM, MAX_DIM, { fit: 'inside', withoutEnlargement: true }) : img;
 
       if (ext === '.png') pipeline = pipeline.png({ compressionLevel: 9, quality: 80 });
@@ -46,25 +79,22 @@ async function run() {
 
       const buf = await pipeline.toBuffer();
       fs.writeFileSync(fp, buf);
-
       const sizeAfter = (buf.length / 1024 / 1024).toFixed(1);
       compressed.push({ file, sizeBefore: sizeBefore + 'MB', sizeAfter: sizeAfter + 'MB' });
     } catch (e) {
-      console.error('Erreur sur ' + file + ':', e.message);
+      errors.push(file + ': ' + e.message);
     }
   }
 
   if (compressed.length) {
-    console.log('\n✓ Images compressées :');
+    console.log('\n✓ Fichiers compressés :');
     compressed.forEach(c => console.log('  ' + c.file + ' : ' + c.sizeBefore + ' → ' + c.sizeAfter));
-    console.log('\n  Ajoute les fichiers modifiés au commit :');
-    console.log('  git add assets/motion/ && git commit -m "compress: images optimisées"\n');
+    console.log('\n  Ajoute au commit : git add assets/motion/ && git commit -m "compress: assets optimisés"\n');
   }
 
-  if (blocked.length) {
-    console.error('\n✗ Vidéos trop lourdes pour GitHub (>95MB) :');
-    blocked.forEach(b => console.error('  ' + b.file + ' : ' + b.size));
-    console.error('\n  → Compresse avec ffmpeg ou héberge sur YouTube/Vimeo\n');
+  if (errors.length) {
+    console.error('\n✗ Erreurs :');
+    errors.forEach(e => console.error('  ' + e));
     process.exit(1);
   }
 }

@@ -1351,6 +1351,7 @@ function openW(id){
 var w=document.getElementById(id);
 if(!w)return;
 if(open.has(id)){w.style.zIndex=++zTop;setActive(id);return}
+if(w.classList.contains('proj-win')&&!w.style.width){w.style.width='560px';w.style.height='460px';}
 sndOpen();
 cur.classList.add('loading');
 setTimeout(function(){cur.classList.remove('loading');},400);
