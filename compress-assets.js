@@ -25,8 +25,8 @@ function compressVideo(fp) {
       .outputOptions(['-crf 28', '-preset fast', '-movflags +faststart', '-vf scale=trunc(iw/2)*2:trunc(ih/2)*2'])
       .save(tmp)
       .on('end', () => {
-        fs.renameSync(tmp, fp);
-        resolve();
+        try { fs.renameSync(tmp, fp); } catch(e) {}
+        resolve(fp);
       })
       .on('error', (e) => {
         if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
@@ -52,7 +52,8 @@ async function run() {
       process.stdout.write('  Compression vidéo : ' + file + ' (' + sizeBefore + 'MB)... ');
       try {
         await compressVideo(fp);
-        const sizeAfter = (fs.statSync(fp).size / 1024 / 1024).toFixed(1);
+        const sizeAfterStat = fs.existsSync(fp) ? fs.statSync(fp).size : 0;
+        const sizeAfter = (sizeAfterStat / 1024 / 1024).toFixed(1);
         process.stdout.write(sizeBefore + 'MB → ' + sizeAfter + 'MB ✓\n');
         compressed.push({ file, sizeBefore: sizeBefore + 'MB', sizeAfter: sizeAfter + 'MB' });
       } catch (e) {
