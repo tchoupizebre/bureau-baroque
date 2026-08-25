@@ -69,10 +69,11 @@ async function run() {
 
     const sizeBefore = (stat.size / 1024 / 1024).toFixed(1);
     try {
-      const img = sharp(fp);
+      const img = sharp(fp, { failOn: 'none' });
       const meta = await img.metadata();
       const needsResize = meta.width > MAX_DIM || meta.height > MAX_DIM;
       let pipeline = needsResize ? img.resize(MAX_DIM, MAX_DIM, { fit: 'inside', withoutEnlargement: true }) : img;
+      pipeline = pipeline.toColorspace('srgb');
 
       if (ext === '.png') pipeline = pipeline.png({ compressionLevel: 9, quality: 80 });
       else if (['.jpg', '.jpeg'].includes(ext)) pipeline = pipeline.jpeg({ quality: 80 });
