@@ -218,8 +218,8 @@ html,body{cursor:auto}
 .wsplit-right::-webkit-scrollbar-button:vertical:start,.wbody::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 .wsplit-right::-webkit-scrollbar-button:vertical:end,.wbody::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 /* 7 — Barre de statut */
-.wstatusbar{height:20px;background:#0a0a0a;border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 10px 0 70px;gap:12px;flex-shrink:0;font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.12em;color:rgba(232,0,122,.5);text-transform:uppercase;white-space:nowrap;overflow:hidden}
-.wstatusbar span+span::before{content:'·';margin-right:12px;opacity:.4}
+.wstatusbar{height:20px;background:#c0c0c0;border-top:2px solid;border-color:#808080 #fff #fff #808080;display:flex;align-items:center;padding:0 10px 0 10px;gap:12px;flex-shrink:0;font-family:'Courier New',monospace;font-size:8px;letter-spacing:.06em;color:#000;text-transform:uppercase;white-space:nowrap;overflow:hidden}
+.wstatusbar span+span::before{content:'·';margin-right:12px;color:#808080;opacity:1}
 
 /* 10 — Texture papier dans les fenêtres */
 .win .wsplit-right,.win .wbody{background-image:url('assets/ui/bb-texture-papier.webp');background-repeat:repeat;background-blend-mode:overlay;background-color:#0c0c0c}
@@ -344,9 +344,9 @@ html,body{cursor:auto}
 .vplayer-btn:hover{background:#d8d8d8}
 .vplayer-btn:active{border-color:#808080 #fff #fff #808080;box-shadow:none;transform:translate(1px,1px)}
 .vplayer-prog{flex:1;height:10px;background:#808080;cursor:pointer;position:relative;border:2px solid;border-color:#808080 #fff #fff #808080;box-shadow:inset 1px 1px 2px rgba(0,0,0,.4)}
-.vplayer-prog-fill{position:absolute;left:0;top:0;height:100%;background:#000080;width:0%;pointer-events:none}
+.vplayer-prog-fill{position:absolute;left:0;top:0;height:100%;background:var(--pink);width:0%;pointer-events:none}
 .vplayer-time{font-size:9px;color:#000;letter-spacing:.04em;white-space:nowrap;font-family:'Courier New',monospace;background:#c0c0c0;min-width:68px;text-align:right;padding:1px 2px}
-.vplayer-lcd{background:#000;border:2px solid;border-color:#808080 #fff #fff #808080;padding:2px 6px;font-family:'Courier New',monospace;font-size:9px;color:#00cc00;letter-spacing:.06em;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vplayer-lcd{background:#000;border:2px solid;border-color:#808080 #fff #fff #808080;padding:2px 6px;font-family:'Courier New',monospace;font-size:9px;color:var(--pink);letter-spacing:.06em;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vplayer-status{font-size:8px;color:#444;font-family:'Courier New',monospace;letter-spacing:.04em}
 
 /* Screensaver */
