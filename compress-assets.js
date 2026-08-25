@@ -94,8 +94,24 @@ async function run() {
   }
 
   if (errors.length) {
-    console.error('\n✗ Erreurs :');
-    errors.forEach(e => console.error('  ' + e));
+    console.warn('\n⚠ Avertissements (non bloquants) :');
+    errors.forEach(e => console.warn('  ' + e));
+  }
+
+  // Bloquer uniquement si une vidéo dépasse encore 95MB après compression
+  const stillLarge = files.filter(file => {
+    const ext = path.extname(file).toLowerCase();
+    if (!['.mp4', '.webm', '.mov'].includes(ext)) return false;
+    const fp = path.join(ASSETS_DIR, file);
+    if (!fs.existsSync(fp)) return false;
+    return fs.statSync(fp).size > 95 * 1024 * 1024;
+  });
+  if (stillLarge.length) {
+    console.error('\n✗ Vidéos encore trop lourdes pour GitHub (>95MB) :');
+    stillLarge.forEach(f => {
+      const s = (fs.statSync(path.join(ASSETS_DIR, f)).size / 1024 / 1024).toFixed(1);
+      console.error('  ' + f + ' : ' + s + 'MB — héberge sur YouTube/Vimeo');
+    });
     process.exit(1);
   }
 }
