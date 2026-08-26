@@ -1282,9 +1282,6 @@ if(proj.media.length>0){
 }
 
 w.querySelector('.wclose').addEventListener('click',function(){closeW(projId)});
-var fBtn=document.createElement('button');fBtn.className='win-fbtn';fBtn.textContent='Fermer';fBtn.addEventListener('click',function(){closeW(projId);});document.getElementById('wfoot-'+projId).appendChild(fBtn);
-/* Ajouter séparateur + fermer dans footer wiz */
-var fSep=document.createElement('span');fSep.style.cssText='flex:0 0 1px;background:#2a2a2a;height:18px;display:block';document.getElementById('wfoot-'+projId).insertBefore(fSep,fBtn);
 w.querySelector('.wmax').addEventListener('click',function(){
   if(w.classList.contains('maximized')){w.classList.remove('maximized');w.style.width='';w.style.height='';}
   else{w.classList.add('maximized');w.style.zIndex=++zTop;}
