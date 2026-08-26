@@ -21,7 +21,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
 :root{--bg:#0a0a0a;--text:#ffffff;--dim:#555;--border:#ffffff;--green:#E8007A;--pink:#E8007A;--accent:#E8007A;--red:#CC1111;--purple:#1F28CC;--gold:#E8007A}
-html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;font-variation-settings:"wght" 450}
+html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:none;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;font-variation-settings:'wght' 450}
 *,*::before,*::after,a,button,input,select,textarea,label,[role="button"]{cursor:none!important}
 
 #cur{position:fixed;width:80px;height:80px;pointer-events:none;z-index:999999;transform:translate(-50%,-50%);transition:transform .08s}
@@ -39,7 +39,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 
 #boot{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:1000}
 #boot-inner{width:560px;max-width:88vw}
-#boot-logo{font-family:"jetsam-collection-basilea",sans-serif;font-size:clamp(48px,8vw,90px);color:var(--green);letter-spacing:.06em;text-align:center;margin-bottom:10px;position:relative;animation:glitch 4s infinite}
+#boot-logo{font-family:'jetsam-collection-basilea',sans-serif;font-size:clamp(48px,8vw,90px);color:var(--green);letter-spacing:.06em;text-align:center;margin-bottom:10px;position:relative;animation:glitch 4s infinite}
 @keyframes glitch{
 0%,88%,100%{text-shadow:none;transform:none}
 89%{text-shadow:-3px 0 var(--pink),3px 0 var(--purple);transform:translateX(2px)}
@@ -47,13 +47,13 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 91%{text-shadow:-2px 0 var(--green);transform:translateX(1px)}
 92%{text-shadow:none;transform:none}
 }
-#boot-sub{font-family:"jetsam-collection-basilea",sans-serif;font-size:20px;color:var(--dim);letter-spacing:.12em;text-align:center;margin-bottom:44px}
-#boot-log{min-height:160px;font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 420;font-size:13px;line-height:2.2;color:var(--dim);letter-spacing:.1em}
+#boot-sub{font-family:'jetsam-collection-basilea',sans-serif;font-size:20px;color:var(--dim);letter-spacing:.12em;text-align:center;margin-bottom:44px}
+#boot-log{min-height:160px;font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 420;font-size:13px;line-height:2.2;color:var(--dim);letter-spacing:.1em}
 #boot-log .ok{color:var(--green)}
 #boot-log .err{color:var(--red)}
 #boot-bar-wrap{margin-top:20px;height:2px;background:rgba(255,255,255,.08);position:relative}
 #boot-bar{height:2px;width:0%;background:var(--green);box-shadow:0 0 10px var(--green),0 0 20px rgba(232,0,122,.3);transition:width .2s linear}
-#boot-pct{font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 420;font-size:13px;color:var(--green);text-align:right;margin-top:6px;letter-spacing:.15em}
+#boot-pct{font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 420;font-size:13px;color:var(--green);text-align:right;margin-top:6px;letter-spacing:.15em}
 
 #desk{position:fixed;inset:0;display:none;user-select:none;overflow:visible}
 #grain{display:none}
@@ -67,14 +67,14 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .icon:hover::after{transform:scaleY(1)}
 .icon:hover .isym img{filter:invert(1) brightness(1)}
 .icon:hover .ilbl{color:var(--pink)}
-#icon-tip{position:fixed;left:0;background:#0c0c0c;border:1px solid var(--pink);padding:5px 10px;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;z-index:9999;box-shadow:0 0 12px rgba(232,0,122,.25)}
+#icon-tip{position:fixed;left:0;background:#0c0c0c;border:1px solid var(--pink);padding:5px 10px;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;z-index:9999;box-shadow:0 0 12px rgba(232,0,122,.25)}
 #icon-tip.show{opacity:1}
 @keyframes icon-boot{from{opacity:0;transform:translateY(18px) scale(.82)}to{opacity:1;transform:translateY(0) scale(1)}}
 .icon{opacity:0}
 .icon.booted{animation:icon-boot .38s cubic-bezier(.34,1.4,.64,1) forwards}
 .isym{line-height:1;transition:filter .18s}
 .isym img{width:72px;height:72px;object-fit:contain;display:block;filter:invert(14%) sepia(100%) saturate(6000%) hue-rotate(310deg) brightness(.85) contrast(1.1)}
-.ilbl{font-family:"jetsam-collection-basilea",sans-serif;font-size:13px;letter-spacing:.02em;text-align:center;color:var(--pink);transition:color .18s;line-height:1.3}
+.ilbl{font-family:'jetsam-collection-basilea',sans-serif;font-size:13px;letter-spacing:.02em;text-align:center;color:var(--pink);transition:color .18s;line-height:1.3}
 
 .win{position:absolute;min-width:300px;min-height:180px;height:500px;background:#0f0f0f;border:2px solid;border-color:#444 #111 #111 #444;outline:1px solid #222;display:none;flex-direction:column;transform:scale(.92) translateY(6px);opacity:0;filter:blur(8px);transition:transform .25s cubic-bezier(.34,1.4,.64,1),opacity .2s ease,filter .25s ease;box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8);overflow:visible}
 /* Colonnes baroques via ::before CSS — plus de JS, plus de z-index battles */
@@ -85,13 +85,13 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .wtb{height:30px;display:flex;align-items:center;padding:0 10px;gap:8px;cursor:grab;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.05)}
 .wtb:active{cursor:grabbing}
 .win.maximized .wtb{cursor:default}
-.wtitle{font-family:"jetsam-collection-basilea",sans-serif;font-size:9px;letter-spacing:.06em;color:rgba(255,255,255,.6);flex:1}
+.wtitle{font-family:'jetsam-collection-basilea',sans-serif;font-size:9px;letter-spacing:.06em;color:rgba(255,255,255,.6);flex:1}
 .wbtn{width:16px;height:16px;border-radius:50%;cursor:none;border:none;flex-shrink:0;opacity:.8;transition:opacity .15s,transform .15s}
 .wbtn:hover{opacity:1;transform:scale(1.2)}
 .wclose{background:var(--red)}
 .wmax{background:#555;position:relative}
 .wmax::before{content:'';position:absolute;inset:2px;border:1px solid rgba(255,255,255,.5);border-radius:1px}
-.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:"ltr-ncnd-variable",sans-serif;font-size:12px;font-variation-settings:"wght" 450;color:var(--text);line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:'ltr-ncnd-variable',sans-serif;font-size:12px;font-variation-settings:'wght' 450;color:var(--text);line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
 .wrz{position:absolute;bottom:0;right:0;width:22px;height:22px;cursor:se-resize;opacity:.4;transition:opacity .15s;display:flex;align-items:flex-end;justify-content:flex-end;padding:3px}
 .wrz::before{content:'···';color:var(--dim);font-size:10px;line-height:1;transform:rotate(45deg);display:block}
 .wrz:hover{opacity:.9}
@@ -100,35 +100,37 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .vcard:hover .vcard-play{color:var(--pink)}
 .vcard-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#111}
 .vcard-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;color:rgba(255,255,255,.6);background:rgba(0,0,0,.35);transition:color .15s}
-.vcard-lbl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding:5px 6px;line-height:1.4;font-family:"ltr-ncnd-variable",sans-serif}
-.wh{font-family:"jetsam-collection-basilea",sans-serif;font-size:11px;letter-spacing:.04em;margin-bottom:14px}
+.vcard-lbl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding:5px 6px;line-height:1.4;font-family:'ltr-ncnd-variable',sans-serif}
+.wh{font-family:'jetsam-collection-basilea',sans-serif;font-size:11px;letter-spacing:.04em;margin-bottom:14px}
 .wp{font-size:15px;margin-bottom:10px}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin-top:14px}
 .gi{aspect-ratio:1;background:#141414;border:1px solid #1e1e1e;cursor:none;overflow:hidden;transition:border-color .15s,transform .15s}
 .gi:hover{border-color:rgba(255,255,255,.2);transform:scale(1.02)}
 .gi img{width:100%;height:100%;object-fit:contain;background:#0a0a0a;display:block}
-.tag{display:inline-block;font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.1em;padding:2px 7px;border:1px solid var(--dim);color:var(--dim);margin:2px 2px 2px 0}
+.tag{display:inline-block;font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.1em;padding:2px 7px;border:1px solid var(--dim);color:var(--dim);margin:2px 2px 2px 0}
 
-#tbar{position:fixed;bottom:0;left:0;right:0;height:30px;background:rgba(6,6,6,.95);border-top:1px solid #1a1a1a;display:flex;align-items:center;padding:0 14px;gap:10px;z-index:500;backdrop-filter:blur(12px)}
-#tbar-logo{font-family:"jetsam-collection-basilea",sans-serif;font-size:9px;color:var(--gold);letter-spacing:.06em;white-space:nowrap}
-#tbar-wins{flex:1;display:flex;gap:4px;overflow:hidden}
-.tbtn{font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:var(--dim);letter-spacing:.1em;padding:2px 7px;border:1px solid #1e1e1e;background:transparent;cursor:none;transition:all .15s;text-transform:uppercase;white-space:nowrap}
-.tbtn.act{color:var(--green);border-color:rgba(232,0,122,.3)}
-#tbar-clock{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:var(--dim);letter-spacing:.08em;white-space:nowrap}
-#tbar-discipline{font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.5);letter-spacing:.1em;white-space:nowrap;text-transform:uppercase;flex-shrink:0}
-#tbar-contact{font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.4);letter-spacing:.08em;white-space:nowrap;text-decoration:none;border-bottom:1px solid rgba(232,0,122,.25);padding-bottom:1px;transition:color .15s,border-color .15s;flex-shrink:0}
-#tbar-contact:hover{color:var(--pink);border-color:var(--pink)}
+#tbar{position:fixed;bottom:0;left:0;right:0;height:28px;background:#c0c0c0;border-top:2px solid;border-color:#fff #808080 #808080 #fff;display:flex;align-items:center;padding:0 4px;gap:4px;z-index:500}
+#tbar-logo{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:#000;letter-spacing:.04em;white-space:nowrap;height:22px;padding:0 8px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;display:flex;align-items:center;gap:4px;box-shadow:1px 1px 0 #000;flex-shrink:0}
+#tbar-sep{width:1px;height:20px;background:#808080;margin:0 2px;flex-shrink:0}
+#tbar-sep::after{content:'';display:block;width:1px;height:100%;background:#fff;margin-left:1px}
+#tbar-wins{flex:1;display:flex;gap:2px;overflow:hidden}
+.tbtn{font-family:'Courier New',monospace;font-size:10px;color:#000;letter-spacing:.04em;padding:0 8px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;cursor:none;transition:none;white-space:nowrap;height:22px;display:inline-flex;align-items:center;box-shadow:1px 1px 0 #000;max-width:140px;overflow:hidden;text-overflow:ellipsis}
+.tbtn.act{border-color:#808080 #fff #fff #808080;background:#b0b0b0;box-shadow:inset 1px 1px 0 #808080}
+#tbar-clock{font-family:'Courier New',monospace;font-size:10px;color:#000;letter-spacing:.04em;white-space:nowrap;height:22px;padding:0 6px;border:2px solid;border-color:#808080 #fff #fff #808080;background:#c0c0c0;display:flex;align-items:center;flex-shrink:0}
+#tbar-discipline{display:none}
+#tbar-contact{font-family:'Courier New',monospace;font-size:9px;color:#000;letter-spacing:.04em;white-space:nowrap;text-decoration:none;padding:0 6px;height:22px;display:flex;align-items:center;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;flex-shrink:0}
+#tbar-contact:hover{background:#d8d8d8}
 
 #mdesk{display:none}
 .mcard{border:1px solid #1e1e1e;margin-bottom:10px;background:#0c0c0c;overflow:hidden}
 .mhead{display:flex;align-items:center;gap:12px;padding:16px 14px}
 .mhead .isym{font-size:24px}
-.mtitle{font-family:"jetsam-collection-basilea",sans-serif;font-size:11px;letter-spacing:.04em;flex:1;color:rgba(255,255,255,.7)}
+.mtitle{font-family:'jetsam-collection-basilea',sans-serif;font-size:11px;letter-spacing:.04em;flex:1;color:rgba(255,255,255,.7)}
 .mchev{font-size:10px;color:var(--dim);transition:transform .25s}
 .mcard.on .mchev{transform:rotate(180deg)}
 .mbody{max-height:0;overflow:hidden;transition:max-height .35s ease}
 .mcard.on .mbody{max-height:700px}
-.mbody-in{padding:0 16px 18px;font-family:"ltr-ncnd-variable",sans-serif;font-size:12px;font-variation-settings:"wght" 380;color:var(--text);line-height:1.75}
+.mbody-in{padding:0 16px 18px;font-family:'ltr-ncnd-variable',sans-serif;font-size:12px;font-variation-settings:'wght' 380;color:var(--text);line-height:1.75}
 #tbar-m{display:none}
 @media (max-width:768px){
 #icons,#tbar,#vignette-desk{display:none}
@@ -139,25 +141,73 @@ html,body{cursor:auto}
 .icon,.wclose,.ci,.wrz,.mhead{cursor:pointer}
 #tbar-m{display:flex;position:fixed;bottom:0;left:0;right:0;height:36px;background:rgba(6,6,6,.95);border-top:1px solid #1a1a1a;align-items:center;justify-content:space-between;padding:0 16px;z-index:500}
 }
-#mb-logo{font-family:"jetsam-collection-basilea",sans-serif;font-size:8px;color:var(--gold);letter-spacing:.2em}
-#mb-clock{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:var(--dim)}
+#mb-logo{font-family:'jetsam-collection-basilea',sans-serif;font-size:8px;color:var(--gold);letter-spacing:.2em}
+#mb-clock{font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--dim)}
 
 #ctx{position:fixed;background:#0e0e0e;border:1px solid #222;padding:3px 0;z-index:5000;display:none;min-width:150px;box-shadow:0 8px 32px rgba(0,0,0,.8)}
-.ci{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(255,255,255,.6);padding:6px 14px;cursor:none;letter-spacing:.08em;transition:background .1s,color .1s}
+.ci{font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:rgba(255,255,255,.6);padding:6px 14px;cursor:none;letter-spacing:.08em;transition:background .1s,color .1s}
 .ci:hover{background:rgba(255,255,255,.05);color:var(--green)}
 .csep{height:1px;background:#1a1a1a;margin:3px 0}
 
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:2000;display:none;align-items:center;justify-content:center}
 #lb img{max-width:90vw;max-height:88vh;object-fit:contain;display:block}
-#lb-x{position:absolute;top:20px;right:28px;font-family:"ltr-ncnd-variable",sans-serif;font-size:18px;color:rgba(255,255,255,.4);cursor:none;transition:color .15s}
+#lb-x{position:absolute;top:20px;right:28px;font-family:'ltr-ncnd-variable',sans-serif;font-size:18px;color:rgba(255,255,255,.4);cursor:none;transition:color .15s}
 #lb-x:hover{color:var(--text)}
-/* Win98 magenta titlebar — toutes les fenêtres */
-.win .wtb{background:linear-gradient(90deg,#9a0050 0%,#E8007A 100%)!important;border-bottom:2px solid #6a0035!important;height:30px;padding:0 48px;gap:6px;flex-direction:row-reverse}
-.win .wtitle{color:#fff!important;font-weight:400;font-family:"jetsam-collection-basilea",sans-serif!important;font-size:20px!important;letter-spacing:.02em;text-shadow:1px 1px 0 rgba(0,0,0,.4);text-align:right;margin-right:5px}
-.win .wbtn{border-radius:0!important;background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;width:20px!important;height:18px!important;color:#000!important;font-size:11px!important;line-height:1;display:flex!important;align-items:center!important;justify-content:center!important;opacity:1!important;padding:0;cursor:pointer;font-weight:700}
+/* Win98 titlebar — active (magenta) */
+.win .wtb{background:linear-gradient(90deg,#9a0050 0%,#E8007A 100%)!important;border-bottom:2px solid #6a0035!important;height:18px!important;padding:0 2px!important;gap:2px;flex-direction:row;align-items:center}
+.win .wtitle{color:#fff!important;font-weight:700;font-family:'Courier New',monospace!important;font-size:11px!important;letter-spacing:.02em;text-shadow:none;text-align:left;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding-left:3px}
+.win .wtb-icon{width:14px;height:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.win .wtb-icon img{width:14px;height:14px;filter:brightness(10);display:block}
+.win .wbtn{border-radius:0!important;background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;width:16px!important;height:14px!important;color:#000!important;font-size:8px!important;line-height:1;display:flex!important;align-items:center!important;justify-content:center!important;opacity:1!important;padding:0;cursor:pointer;font-weight:700;flex-shrink:0}
 .win .wbtn:hover{background:#d8d8d8!important;transform:none!important}
-.win .wbtn:active{border-color:#808080 #fff #fff #808080!important;background:#b0b0b0!important}
+.win .wbtn:active{border-color:#808080 #fff #fff #808080!important;background:#b0b0b0!important;box-shadow:inset 1px 1px 0 #808080}
 .win .wmax::before{display:none!important}
+/* Win98 titlebar — inactive (gris) */
+.win:not(.active) .wtb{background:linear-gradient(90deg,#444 0%,#888 100%)!important;border-bottom:2px solid #333!important}
+.win:not(.active) .wtb .wbtn{opacity:.6!important}
+.win:not(.active) .wtitle{color:#bbb!important}
+/* Menubar Win98 */
+.win .wmenu{height:18px;background:#c0c0c0;border-bottom:1px solid #808080;display:flex;align-items:center;padding:0 2px;font-size:11px;font-family:'Courier New',monospace;flex-shrink:0;user-select:none}
+.win .wmenu-item{padding:2px 7px;color:#000;cursor:default;white-space:nowrap}
+.win .wmenu-item:hover{background:var(--pink);color:#fff}
+/* Explorer category window body */
+.wcat-explorer{flex:1;background:#0c0c0c;overflow-y:auto;overflow-x:hidden;padding:8px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:6px;scrollbar-width:thin;scrollbar-color:#c0c0c0 #1a1a1a}
+.wcat-explorer::-webkit-scrollbar{width:16px;background:#1a1a1a}
+.wcat-explorer::-webkit-scrollbar-thumb{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;min-height:24px}
+.wcat-explorer::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff}
+.wcat-explorer::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.wcat-explorer::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.wcat-icon{width:72px;text-align:center;font-size:9px;font-family:'Courier New',monospace;color:#ccc;cursor:default;padding:4px;user-select:none}
+.wcat-icon:hover{background:rgba(232,0,122,.18)}
+.wcat-icon.sel{background:var(--pink);color:#fff}
+.wcat-icon img{width:32px;height:32px;object-fit:contain;display:block;margin:0 auto 3px;filter:invert(14%) sepia(100%) saturate(6000%) hue-rotate(310deg) brightness(.85) contrast(1.1)}
+.wcat-icon.sel img{filter:brightness(10)}
+.wcat-icon span{display:block;line-height:1.2;word-break:break-word;font-size:9px}
+/* Win98 statusbar explorer */
+.wexplorer-status{height:18px;background:#c0c0c0;border-top:2px solid;border-color:#808080 #fff #fff #808080;display:flex;align-items:center;padding:0 4px;gap:4px;flex-shrink:0}
+.wexplorer-status-panel{height:14px;border:2px solid;border-color:#808080 #fff #fff #808080;padding:0 4px;font-size:9px;font-family:'Courier New',monospace;color:#000;display:flex;align-items:center;white-space:nowrap}
+/* Win98 dialog box */
+#win98-dialog{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+#win98-dialog.on{display:flex}
+#win98-dlg-box{background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;width:320px;box-shadow:4px 4px 0 #000}
+#win98-dlg-tb{height:18px;background:linear-gradient(90deg,#9a0050,#E8007A);display:flex;align-items:center;padding:0 2px;gap:2px}
+#win98-dlg-ttl{flex:1;font-size:11px;font-weight:700;color:#fff;padding-left:3px;font-family:'Courier New',monospace;white-space:nowrap;overflow:hidden}
+#win98-dlg-body{padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+#win98-dlg-ico{font-size:28px;flex-shrink:0;width:32px;text-align:center}
+#win98-dlg-msg{font-size:11px;font-family:'Courier New',monospace;color:#000;line-height:1.6}
+#win98-dlg-foot{padding:8px 12px;display:flex;justify-content:flex-end;gap:6px;border-top:1px solid #808080}
+.win98-dlg-btn{height:22px;padding:0 18px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;font-size:11px;font-family:'Courier New',monospace;color:#000;cursor:pointer;box-shadow:1px 1px 0 #000}
+.win98-dlg-btn:active{border-color:#808080 #fff #fff #808080;box-shadow:none;transform:translate(1px,1px)}
+/* Step dots indicator */
+.wiz-steps{display:flex;align-items:center;justify-content:center;gap:4px;padding:3px 0;flex-shrink:0;background:rgba(0,0,0,.5)}
+.wiz-step-dot{width:6px;height:6px;border-radius:50%;background:#333;transition:background .2s}
+.wiz-step-dot.cur{background:var(--pink)}
+.wiz-step-dot.done{background:#555}
+/* Welcome screen (step 0) */
+.wiz-welcome{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0a0a0a,#1a001a);padding:24px;text-align:center;gap:12px}
+.wiz-welcome-title{font-family:'jetsam-collection-basilea',sans-serif;font-size:clamp(20px,2.5vw,32px);color:#fff;letter-spacing:.04em;line-height:1.1}
+.wiz-welcome-sub{font-size:10px;color:var(--pink);letter-spacing:.15em;text-transform:uppercase;font-family:'Courier New',monospace}
+.wiz-welcome-hint{font-size:9px;color:#555;font-family:'Courier New',monospace;letter-spacing:.08em;margin-top:8px}
 #vmodal-tb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%)!important}
 #vmodal-close{background:#c0c0c0!important;border:2px solid!important;border-color:#fff #808080 #808080 #fff!important;color:#000!important;font-weight:700}
 /* ── Layout Win98 Wizard ───────────────────────────────────────────────── */
@@ -169,23 +219,23 @@ html,body{cursor:auto}
 .wsplit-right::-webkit-scrollbar{width:4px;background:rgba(0,0,0,.2)}
 .wsplit-right::-webkit-scrollbar-thumb{background:rgba(232,0,122,.5)}
 /* Titre wizard en Basilea (grand) */
-.wiz-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:clamp(22px,3.2vw,38px);color:#fff;letter-spacing:.03em;line-height:1.05;margin-bottom:6px}
-.wiz-sub{font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;font-variation-settings:"wght" 700;color:var(--pink);letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+.wiz-title{font-family:'jetsam-collection-basilea',sans-serif;font-size:clamp(22px,3.2vw,38px);color:#fff;letter-spacing:.03em;line-height:1.05;margin-bottom:6px}
+.wiz-sub{font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;font-variation-settings:'wght' 700;color:var(--pink);letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
 /* Séparateur Win98 horizontal */
 .win98-hr{height:0;border:0;border-top:1px solid #1c1c1c;border-bottom:1px solid #383838;margin:8px 0}
 /* Champ stat : sunken field Win98 */
 .wstat-block{border:2px solid;border-color:#111 #383838 #383838 #111;padding:5px 8px;margin-bottom:5px;background:#080808;position:relative}
 .wstat-block::before,.wstat-block::after{display:none}
-.wstat-title{font-size:16px;letter-spacing:.05em;color:var(--pink);margin-bottom:4px;font-family:"jetsam-collection-basilea",sans-serif;text-transform:none}
-.wstat-line{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.7;font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 600}
+.wstat-title{font-size:16px;letter-spacing:.05em;color:var(--pink);margin-bottom:4px;font-family:'jetsam-collection-basilea',sans-serif;text-transform:none}
+.wstat-line{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.7;font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 600}
 /* Footer boutons Win98 */
 .win-footer{height:36px;background:#0f0f0f;border-top:2px solid;border-color:#111 #383838 #383838 #111;display:flex;align-items:center;justify-content:flex-end;padding:0 84px;gap:5px;flex-shrink:0}
-.win-fbtn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 0;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;width:76px;text-align:center;text-transform:uppercase;flex-shrink:0}
+.win-fbtn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 0;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;width:76px;text-align:center;text-transform:uppercase;flex-shrink:0}
 .win-fbtn:hover{background:#d8d8d8}
 .win-fbtn:active{border-color:#808080 #fff #fff #808080;background:#b0b0b0}
 .win-fbtn.def{outline:1px dotted #000;outline-offset:-3px}
 /* Listbox Win98 */
-.wlistbox{background:#E8007A;border:2px solid;border-color:#111 #c0006a #c0006a #111;overflow-y:auto;height:100%;box-sizing:border-box;font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 700;color:#000;scrollbar-color:#c0c0c0 #a0005a}
+.wlistbox{background:#E8007A;border:2px solid;border-color:#111 #c0006a #c0006a #111;overflow-y:auto;height:100%;box-sizing:border-box;font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 700;color:#000;scrollbar-color:#c0c0c0 #a0005a}
 /* Scrollbar Win98 authentique sur listbox */
 .wlistbox::-webkit-scrollbar{width:16px;background:#c0c0c0}
 .wlistbox::-webkit-scrollbar-track{background:#c0c0c0;border-left:1px solid #808080}
@@ -200,9 +250,9 @@ html,body{cursor:auto}
 .wcat-pane{padding:0;display:flex;flex-direction:column;gap:0;height:100%;box-sizing:border-box;position:relative;z-index:1}
 .wcat-thumb{width:100%;flex:0 0 auto;max-height:55%;object-fit:contain;border-bottom:2px solid;border-color:#111 #383838 #383838 #111;background:#080808;display:block}
 .wcat-pane .wstat-block{border:none;background:transparent;border-bottom:1px solid #1c1c1c;padding:8px 12px;margin-bottom:0}
-.wcat-pane .wstat-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:28px;color:#fff;letter-spacing:.02em;line-height:1.1;margin-bottom:4px}
-.wcat-pane .wstat-line{font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.18em;text-transform:uppercase;font-family:"ltr-ncnd-variable",sans-serif;}
-.wcat-hint{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#E8007A;font-family:"ltr-ncnd-variable",sans-serif;text-align:center;padding:6px 8px;margin-top:auto;border-top:1px solid rgba(232,0,122,.35);position:relative;z-index:2}
+.wcat-pane .wstat-title{font-family:'jetsam-collection-basilea',sans-serif;font-size:28px;color:#fff;letter-spacing:.02em;line-height:1.1;margin-bottom:4px}
+.wcat-pane .wstat-line{font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.18em;text-transform:uppercase;font-family:'ltr-ncnd-variable',sans-serif;}
+.wcat-hint{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#E8007A;font-family:'ltr-ncnd-variable',sans-serif;text-align:center;padding:6px 8px;margin-top:auto;border-top:1px solid rgba(232,0,122,.35);position:relative;z-index:2}
 /* Fenêtre active — glow magenta */
 .win.active{box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8),0 0 28px rgba(232,0,122,.22);border-color:#E8007A #6a0035 #6a0035 #E8007A}
 .win.active .wtb{box-shadow:0 0 14px rgba(232,0,122,.35)}
@@ -247,32 +297,32 @@ html,body{cursor:auto}
 #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;pointer-events:none}
 #lightbox.on{opacity:1;pointer-events:all}
 #lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;display:block;box-shadow:0 0 80px rgba(232,0,122,.18);border:1px solid rgba(232,0,122,.2)}
-.wcar-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:13px;width:26px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s;font-family:"ltr-ncnd-variable",sans-serif}
+.wcar-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:13px;width:26px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s;font-family:'ltr-ncnd-variable',sans-serif}
 .wcar-btn:hover{background:rgba(232,0,122,.55);border-color:var(--pink)}
 .wcar-prev{left:0;border-radius:0 2px 2px 0}
 .wcar-next{right:0;border-radius:2px 0 0 2px}
-.wcar-count{flex-shrink:0;background:#080808;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);text-align:center;padding:5px 0;font-family:"ltr-ncnd-variable",sans-serif;border-top:1px solid #1a1a1a}
+.wcar-count{flex-shrink:0;background:#080808;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);text-align:center;padding:5px 0;font-family:'ltr-ncnd-variable',sans-serif;border-top:1px solid #1a1a1a}
 .wcar-loader{position:absolute;inset:0;background:#000;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;pointer-events:none}
 .wcar-loader-bar{width:55%;height:1px;background:#1a1a1a;position:relative;overflow:hidden}
 .wcar-loader-scan{position:absolute;top:0;left:-100%;height:100%;width:60%;background:linear-gradient(90deg,transparent,#E8007A,transparent);animation:scanload .7s ease-in-out infinite}
 @keyframes scanload{0%{left:-60%}100%{left:100%}}
-.wcar-loader-txt{font-size:7px;letter-spacing:.25em;color:rgba(232,0,122,.35);font-family:"ltr-ncnd-variable",sans-serif}
+.wcar-loader-txt{font-size:7px;letter-spacing:.25em;color:rgba(232,0,122,.35);font-family:'ltr-ncnd-variable',sans-serif}
 .proj-win .wsplit-left{display:flex;flex-direction:column}
 /* Wizard panel (Office Assistant style) */
 .wiz-panel{flex:1;display:flex;flex-direction:column;padding:12px 20px 10px 12px;gap:10px;overflow-y:auto;background:#0c0c0c;scrollbar-width:thin;scrollbar-color:rgba(232,0,122,.4) transparent}
 .wiz-bubble{background:#0a0a0a;border:1px solid rgba(232,0,122,.5);padding:12px 14px;position:relative;box-shadow:0 0 12px rgba(232,0,122,.08)}
 .wiz-bubble::before{content:'';position:absolute;left:-9px;top:18px;border:5px solid transparent;border-right-color:rgba(232,0,122,.5)}
 .wiz-bubble::after{content:'';position:absolute;left:-7px;top:19px;border:4px solid transparent;border-right-color:#0a0a0a}
-.wiz-bubble .wiz-title{font-family:"jetsam-collection-basilea",sans-serif;font-size:clamp(18px,2.4vw,28px);color:#fff;letter-spacing:.02em;line-height:1.1;margin-bottom:4px}
-.wiz-bubble .wiz-sub{font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;font-variation-settings:"wght" 600;color:rgba(255,255,255,.7);letter-spacing:.14em;text-transform:uppercase;}
+.wiz-bubble .wiz-title{font-family:'jetsam-collection-basilea',sans-serif;font-size:clamp(18px,2.4vw,28px);color:#fff;letter-spacing:.02em;line-height:1.1;margin-bottom:4px}
+.wiz-bubble .wiz-sub{font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;font-variation-settings:'wght' 600;color:rgba(255,255,255,.7);letter-spacing:.14em;text-transform:uppercase;}
 .wiz-meta{display:flex;flex-direction:column;gap:4px}
 .wiz-meta-row{display:flex;gap:0;border-bottom:1px solid #1a1a1a;padding:5px 0}
-.wiz-meta-key{font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(232,0,122,.7);letter-spacing:.12em;text-transform:uppercase;width:64px;flex-shrink:0}
-.wiz-meta-val{font-family:"jetsam-collection-basilea",sans-serif;font-size:14px;color:rgba(255,255,255,.85);letter-spacing:.01em;line-height:1.3}
-.wiz-desc{font-family:"ltr-ncnd-variable",sans-serif;font-size:13px;font-variation-settings:"wght" 430;color:rgba(255,255,255,.8);letter-spacing:.02em;line-height:1.75;margin-top:2px}
+.wiz-meta-key{font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:rgba(232,0,122,.7);letter-spacing:.12em;text-transform:uppercase;width:64px;flex-shrink:0}
+.wiz-meta-val{font-family:'jetsam-collection-basilea',sans-serif;font-size:14px;color:rgba(255,255,255,.85);letter-spacing:.01em;line-height:1.3}
+.wiz-desc{font-family:'ltr-ncnd-variable',sans-serif;font-size:13px;font-variation-settings:'wght' 430;color:rgba(255,255,255,.8);letter-spacing:.02em;line-height:1.75;margin-top:2px}
 /* Footer wizard nav — style Win98 toolbar */
 .win-footer-wiz{height:34px;background:var(--pink);border-top:2px solid;border-color:#6a0035 #ff80b0 #ff80b0 #6a0035;display:flex;align-items:center;padding:0 8px 0 56px;gap:4px;flex-shrink:0}
-.win-footer-wiz .win-fbtn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:2px 10px;font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:#000;cursor:pointer;letter-spacing:.06em;box-shadow:1px 1px 0 #000;white-space:nowrap;height:22px;display:flex;align-items:center}
+.win-footer-wiz .win-fbtn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:2px 10px;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;cursor:pointer;letter-spacing:.06em;box-shadow:1px 1px 0 #000;white-space:nowrap;height:22px;display:flex;align-items:center}
 .win-footer-wiz .win-fbtn:hover{background:#d8d8d8}
 .win-footer-wiz .win-fbtn:active{border-color:#808080 #fff #fff #808080;box-shadow:none;transform:translate(1px,1px)}
 .wiz-nav-count{font-family:'Courier New',monospace;font-size:9px;color:#fff;flex:1;text-align:center;background:var(--pink);border:2px solid;border-color:#6a0035 #ff80b0 #ff80b0 #6a0035;padding:2px 6px;height:18px;display:flex;align-items:center;justify-content:center;box-shadow:inset 1px 1px 2px rgba(0,0,0,.3)}
@@ -293,7 +343,7 @@ html,body{cursor:auto}
 .wcat-pane{position:relative}
 .wcat-dl-overlay{position:absolute;top:0;left:0;right:0;bottom:0;display:none;align-items:center;justify-content:center;z-index:10;background:rgba(0,0,0,.6)}
 .wcat-dl-overlay.on{display:flex}
-.wcat-dl-box{background:#0c0c0c;border:1px solid #E8007A;width:82%;max-width:220px;font-family:"ltr-ncnd-variable",sans-serif;box-shadow:0 0 18px rgba(232,0,122,.25)}
+.wcat-dl-box{background:#0c0c0c;border:1px solid #E8007A;width:82%;max-width:220px;font-family:'ltr-ncnd-variable',sans-serif;box-shadow:0 0 18px rgba(232,0,122,.25)}
 .wcat-dl-tb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%);padding:3px 6px;display:flex;align-items:center;justify-content:space-between}
 .wcat-dl-tb-ttl{font-size:8px;letter-spacing:.12em;color:#fff;font-weight:700}
 .wcat-dl-tb-btns{display:flex;gap:2px}
@@ -312,7 +362,7 @@ html,body{cursor:auto}
 
 /* Win98 alert dialog */
 #win98-alert{position:fixed;inset:0;z-index:9998;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
-#win98-alert-box{background:#0c0c0c;border:1px solid #333;width:320px;font-family:"ltr-ncnd-variable",sans-serif;box-shadow:4px 4px 0 rgba(0,0,0,.8)}
+#win98-alert-box{background:#0c0c0c;border:1px solid #333;width:320px;font-family:'ltr-ncnd-variable',sans-serif;box-shadow:4px 4px 0 rgba(0,0,0,.8)}
 #win98-alert-tb{background:linear-gradient(90deg,#E8007A 0%,#9a0050 100%);padding:4px 8px;display:flex;align-items:center;gap:8px}
 #win98-alert-ico{font-size:11px;color:#fff;opacity:.8}
 #win98-alert-ttl{font-size:11px;color:#fff;font-weight:700;letter-spacing:.12em;flex:1}
@@ -320,20 +370,20 @@ html,body{cursor:auto}
 #win98-alert-sym{font-size:28px;color:var(--pink);line-height:1;flex-shrink:0}
 #win98-alert-msg{font-size:10px;color:rgba(255,255,255,.75);line-height:1.8;letter-spacing:.04em}
 #win98-alert-footer{padding:10px 20px 16px;display:flex;justify-content:flex-end}
-#win98-alert-ok{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 22px;font-family:"ltr-ncnd-variable",sans-serif;font-size:10px;color:#000;cursor:pointer;letter-spacing:.08em}
+#win98-alert-ok{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 22px;font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;color:#000;cursor:pointer;letter-spacing:.08em}
 #win98-alert-ok:active{border-color:#808080 #fff #fff #808080}
 
 /* Rage-click cascade windows */
 .rage-win{position:fixed;z-index:99990;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;width:280px;pointer-events:all;user-select:none}
 .rage-tb{background:linear-gradient(90deg,#E8007A,#9a0050);padding:3px 6px;display:flex;align-items:center;gap:6px;cursor:move}
-.rage-tb-ttl{font-size:10px;color:#fff;font-weight:700;letter-spacing:.1em;flex:1;font-family:"ltr-ncnd-variable",sans-serif}
+.rage-tb-ttl{font-size:10px;color:#fff;font-weight:700;letter-spacing:.1em;flex:1;font-family:'ltr-ncnd-variable',sans-serif}
 .rage-tb-x{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;width:16px;height:14px;font-size:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#000;font-weight:700;font-family:monospace;flex-shrink:0}
 .rage-tb-x:active{border-color:#808080 #fff #fff #808080}
 .rage-body{padding:18px 14px 12px;display:flex;gap:12px;align-items:flex-start}
 .rage-sym{font-size:30px;line-height:1;flex-shrink:0}
-.rage-msg{font-size:9px;color:#000;line-height:1.7;letter-spacing:.04em;font-family:"ltr-ncnd-variable",sans-serif}
+.rage-msg{font-size:9px;color:#000;line-height:1.7;letter-spacing:.04em;font-family:'ltr-ncnd-variable',sans-serif}
 .rage-foot{padding:6px 14px 12px;display:flex;justify-content:center}
-.rage-btn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 22px;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;font-family:"ltr-ncnd-variable",sans-serif}
+.rage-btn{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;padding:3px 22px;font-size:9px;color:#000;cursor:pointer;letter-spacing:.08em;font-family:'ltr-ncnd-variable',sans-serif}
 .rage-btn:active{border-color:#808080 #fff #fff #808080}
 
 /* Custom video player controls — style CD Player Win98 */
@@ -352,7 +402,7 @@ html,body{cursor:auto}
 
 /* Screensaver */
 #desk.ss{filter:brightness(.55) saturate(.7);transition:filter 1.5s ease}
-#desk.ss-txt::after{content:'— BUREAU EN VEILLE —';position:fixed;bottom:54px;left:50%;transform:translateX(-50%);font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.35em;color:rgba(232,0,122,.4);pointer-events:none;z-index:9990;animation:ssblink 2s steps(1) infinite}
+#desk.ss-txt::after{content:'— BUREAU EN VEILLE —';position:fixed;bottom:54px;left:50%;transform:translateX(-50%);font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.35em;color:rgba(232,0,122,.4);pointer-events:none;z-index:9990;animation:ssblink 2s steps(1) infinite}
 @keyframes ssblink{0%,49%{opacity:1}50%,100%{opacity:0}}
 
 /* Scroll infini horizontal */
@@ -415,103 +465,48 @@ html,body{cursor:auto}
     <div class="icon" data-win="wa" data-tip="Hugo Galtier d'Auriac — DA & Graphiste"><div class="isym" style="color:var(--gold)"><img src='assets/ui/bb-icone-2.webp' style=''></div><div class="ilbl">About</div></div>
   </div>
 
-  <!-- Fenêtre Print -->
-  <div class="win" id="wp" style="width:560px;height:460px;top:60px;left:60px">
-    <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-1.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Print</span></div>
-      <button class="wbtn wmax" data-w="wp">□</button><button class="wbtn wclose" data-w="wp">✕</button>
-    </div>
-    <div class="wbody-split">
-      <div class="wsplit-left" style="flex:0 0 200px"><div class="wlistbox" id="wlb-wp"></div></div>
-      <div class="wsplit-right" style="padding:0"><div class="wcat-pane" id="wcpane-wp">
-        <img class="wcat-thumb" id="wcthumb-wp" src="" alt="" style="display:none">
-        <div id="wcinfo-wp" style="display:none">
-          <div class="wstat-block"><div class="wstat-title" id="wctitle-wp"></div><div class="wstat-line" id="wctagline-wp"></div></div>
-        </div>
-        <div id="wcempty-wp" style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-size:8px;letter-spacing:.15em;font-family:"ltr-ncnd-variable",sans-serif">SÉLECTIONNER UN PROJET</div>
-        <div class="wcat-hint">DBL-CLIC → OUVRIR LE PROJET</div>
-      </div></div>
-    </div>
+  <!-- Fenêtre Print — Explorer Win98 -->
+  <div class="win" id="wp" style="width:460px;height:320px;top:60px;left:60px">
+    <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-1.webp"></div><span class="wtitle">Print &amp; Affiches</span><button class="wbtn wmax" data-w="wp">□</button><button class="wbtn wclose" data-w="wp">✕</button></div>
+    <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
+    <div class="wcat-explorer" id="wexp-wp"></div>
+    <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wp" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Print &amp; Affiches</div></div>
     <div class="wrz"></div>
   </div>
 
-  <!-- Fenêtre Upcycling -->
-  <div class="win" id="wt" style="width:560px;height:460px;top:80px;left:100px">
-    <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-chaos.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Upcycling</span></div>
-      <button class="wbtn wmax" data-w="wt">□</button><button class="wbtn wclose" data-w="wt">✕</button>
-    </div>
-    <div class="wbody-split">
-      <div class="wsplit-left" style="flex:0 0 200px"><div class="wlistbox" id="wlb-wt"></div></div>
-      <div class="wsplit-right" style="padding:0"><div class="wcat-pane" id="wcpane-wt">
-        <img class="wcat-thumb" id="wcthumb-wt" src="" alt="" style="display:none">
-        <div id="wcinfo-wt" style="display:none">
-          <div class="wstat-block"><div class="wstat-title" id="wctitle-wt"></div><div class="wstat-line" id="wctagline-wt"></div></div>
-        </div>
-        <div id="wcempty-wt" style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-size:8px;letter-spacing:.15em;font-family:"ltr-ncnd-variable",sans-serif">SÉLECTIONNER UN PROJET</div>
-        <div class="wcat-hint">DBL-CLIC → OUVRIR LE PROJET</div>
-      </div></div>
-    </div>
+  <!-- Fenêtre Upcycling — Explorer Win98 -->
+  <div class="win" id="wt" style="width:460px;height:320px;top:80px;left:100px">
+    <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-chaos.webp"></div><span class="wtitle">Upcycling &amp; Textile</span><button class="wbtn wmax" data-w="wt">□</button><button class="wbtn wclose" data-w="wt">✕</button></div>
+    <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
+    <div class="wcat-explorer" id="wexp-wt"></div>
+    <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wt" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Upcycling</div></div>
     <div class="wrz"></div>
   </div>
 
-  <!-- Fenêtre DA -->
-  <div class="win" id="ws" style="width:560px;height:460px;top:100px;left:140px">
-    <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-4.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Direction artistique</span></div>
-      <button class="wbtn wmax" data-w="ws">□</button><button class="wbtn wclose" data-w="ws">✕</button>
-    </div>
-    <div class="wbody-split">
-      <div class="wsplit-left" style="flex:0 0 200px"><div class="wlistbox" id="wlb-ws"></div></div>
-      <div class="wsplit-right" style="padding:0"><div class="wcat-pane" id="wcpane-ws">
-        <img class="wcat-thumb" id="wcthumb-ws" src="" alt="" style="display:none">
-        <div id="wcinfo-ws" style="display:none">
-          <div class="wstat-block"><div class="wstat-title" id="wctitle-ws"></div><div class="wstat-line" id="wctagline-ws"></div></div>
-        </div>
-        <div id="wcempty-ws" style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-size:8px;letter-spacing:.15em;font-family:"ltr-ncnd-variable",sans-serif">SÉLECTIONNER UN PROJET</div>
-        <div class="wcat-hint">DBL-CLIC → OUVRIR LE PROJET</div>
-      </div></div>
-    </div>
+  <!-- Fenêtre DA — Explorer Win98 -->
+  <div class="win" id="ws" style="width:460px;height:320px;top:100px;left:140px">
+    <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-4.webp"></div><span class="wtitle">Direction Artistique</span><button class="wbtn wmax" data-w="ws">□</button><button class="wbtn wclose" data-w="ws">✕</button></div>
+    <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
+    <div class="wcat-explorer" id="wexp-ws"></div>
+    <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-ws" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">DA · Son</div></div>
     <div class="wrz"></div>
   </div>
 
-  <!-- Fenêtre Motion -->
-  <div class="win" id="wm" style="width:560px;height:460px;top:110px;left:180px">
-    <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-3.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Motion</span></div>
-      <button class="wbtn wmax" data-w="wm">□</button><button class="wbtn wclose" data-w="wm">✕</button>
-    </div>
-    <div class="wbody-split">
-      <div class="wsplit-left" style="flex:0 0 200px"><div class="wlistbox" id="wlb-wm"></div></div>
-      <div class="wsplit-right" style="padding:0"><div class="wcat-pane" id="wcpane-wm">
-        <img class="wcat-thumb" id="wcthumb-wm" src="" alt="" style="display:none">
-        <div id="wcinfo-wm" style="display:none">
-          <div class="wstat-block"><div class="wstat-title" id="wctitle-wm"></div><div class="wstat-line" id="wctagline-wm"></div></div>
-        </div>
-        <div id="wcempty-wm" style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-size:8px;letter-spacing:.15em;font-family:"ltr-ncnd-variable",sans-serif">SÉLECTIONNER UN PROJET</div>
-        <div class="wcat-hint">DBL-CLIC → OUVRIR LE PROJET</div>
-      </div></div>
-    </div>
+  <!-- Fenêtre Motion — Explorer Win98 -->
+  <div class="win" id="wm" style="width:460px;height:320px;top:110px;left:180px">
+    <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-3.webp"></div><span class="wtitle">Motion Design</span><button class="wbtn wmax" data-w="wm">□</button><button class="wbtn wclose" data-w="wm">✕</button></div>
+    <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
+    <div class="wcat-explorer" id="wexp-wm"></div>
+    <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wm" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Motion</div></div>
     <div class="wrz"></div>
   </div>
 
-  <!-- Fenêtre Web -->
-  <div class="win" id="wd" style="width:560px;height:460px;top:120px;left:220px">
-    <div class="wtb">
-      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-6.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">Web</span></div>
-      <button class="wbtn wmax" data-w="wd">□</button><button class="wbtn wclose" data-w="wd">✕</button>
-    </div>
-    <div class="wbody-split">
-      <div class="wsplit-left" style="flex:0 0 200px"><div class="wlistbox" id="wlb-wd"></div></div>
-      <div class="wsplit-right" style="padding:0"><div class="wcat-pane" id="wcpane-wd">
-        <img class="wcat-thumb" id="wcthumb-wd" src="" alt="" style="display:none">
-        <div id="wcinfo-wd" style="display:none">
-          <div class="wstat-block"><div class="wstat-title" id="wctitle-wd"></div><div class="wstat-line" id="wctagline-wd"></div></div>
-        </div>
-        <div id="wcempty-wd" style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-size:8px;letter-spacing:.15em;font-family:"ltr-ncnd-variable",sans-serif">SÉLECTIONNER UN PROJET</div>
-        <div class="wcat-hint">DBL-CLIC → OUVRIR LE PROJET</div>
-      </div></div>
-    </div>
+  <!-- Fenêtre Web — Explorer Win98 -->
+  <div class="win" id="wd" style="width:460px;height:320px;top:120px;left:220px">
+    <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-6.webp"></div><span class="wtitle">Web &amp; Digital</span><button class="wbtn wmax" data-w="wd">□</button><button class="wbtn wclose" data-w="wd">✕</button></div>
+    <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
+    <div class="wcat-explorer" id="wexp-wd"></div>
+    <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wd" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Web</div></div>
     <div class="wrz"></div>
   </div>
 
@@ -527,57 +522,57 @@ html,body{cursor:auto}
       </div>
       <div class="wsplit-right" style="overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:0">
         <div style="margin-bottom:12px">
-          <div style="font-family:"jetsam-collection-basilea",sans-serif;font-size:22px;color:#fff;letter-spacing:.08em;line-height:1">Hugo Galtier d'Auriac</div>
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 600;font-size:11px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;margin-top:3px">Graphiste · DA · Identité visuelle</div>
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.12em;margin-top:2px">Montpellier — Freelance</div>
+          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:22px;color:#fff;letter-spacing:.08em;line-height:1">Hugo Galtier d'Auriac</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 600;font-size:11px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;margin-top:3px">Graphiste · DA · Identité visuelle</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.12em;margin-top:2px">Montpellier — Freelance</div>
         </div>
         <div style="border-left:2px solid var(--pink);padding-left:10px;margin-bottom:14px">
-          <div style="font-family:"jetsam-collection-basilea",sans-serif;font-size:17px;color:rgba(255,255,255,.9);line-height:1.25;letter-spacing:.04em">"J'utilise le graphisme<br>comme une arme militante."</div>
+          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:17px;color:rgba(255,255,255,.9);line-height:1.25;letter-spacing:.04em">"J'utilise le graphisme<br>comme une arme militante."</div>
         </div>
         <div style="margin-bottom:14px">
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;color:rgba(255,255,255,.6);line-height:1.85;letter-spacing:.03em">Le monde brûle, et je dois faire un portfolio pour l'école.<br>Je suis en freelance — mais je choisis mes projets.<br>Je m'investis uniquement dans ce qui a du fond.</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;color:rgba(255,255,255,.6);line-height:1.85;letter-spacing:.03em">Le monde brûle, et je dois faire un portfolio pour l'école.<br>Je suis en freelance — mais je choisis mes projets.<br>Je m'investis uniquement dans ce qui a du fond.</div>
         </div>
         <div style="margin-bottom:14px;border-left:1px solid rgba(232,0,122,.25);padding-left:10px;display:flex;flex-direction:column;gap:10px">
           <div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pourquoi</div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Créer sans engagement c'est du vide. Le design peut être une arme — rendre visible ce qu'on ignore ou qu'on veut ignorer, donner une forme à ce qui résiste. J'ai une fascination pour l'imperfection, le rejeté, le brut. Je choisis mes projets parce qu'ils me ressemblent et qu'il y a une démarche derrière.</div>
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pourquoi</div>
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Créer sans engagement c'est du vide. Le design peut être une arme — rendre visible ce qu'on ignore ou qu'on veut ignorer, donner une forme à ce qui résiste. J'ai une fascination pour l'imperfection, le rejeté, le brut. Je choisis mes projets parce qu'ils me ressemblent et qu'il y a une démarche derrière.</div>
           </div>
           <div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Comment</div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">DA tranchée, culture underground et militante, regard qui va chercher la beauté là où personne regarde. Je bosse avec les gens, pas pour eux. Tarification éthique — les projets sans âme qui paient bien financent ceux qui ont du sens.</div>
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Comment</div>
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">DA tranchée, culture underground et militante, regard qui va chercher la beauté là où personne regarde. Je bosse avec les gens, pas pour eux. Tarification éthique — les projets sans âme qui paient bien financent ceux qui ont du sens.</div>
           </div>
           <div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pour qui</div>
-            <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Projets culturels, engagés, alternatifs. Ceux qui ont une âme. J'occupe un espace que personne d'autre n'occupe sur mon territoire — avec un pied dedans depuis le début.</div>
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(232,0,122,.6);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Pour qui</div>
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75;letter-spacing:.01em">Projets culturels, engagés, alternatifs. Ceux qui ont une âme. J'occupe un espace que personne d'autre n'occupe sur mon territoire — avec un pied dedans depuis le début.</div>
           </div>
         </div>
         <div style="margin-bottom:14px">
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Prestations</div>
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">Direction artistique visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Prestations</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">Direction artistique visuelle · Graphisme &amp; Print<br>Mode &amp; Upcycling · Scénographie · Photo/Vidéo<br>Web · Communication · Conseil</div>
         </div>
         <div style="margin-bottom:14px">
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Formation</div>
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">ESDAC — Design de mode<br>LISAA — Master Graphisme du numérique<br>ERB — École des Beaux-Arts de Bordeaux</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Formation</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 430;font-size:13px;color:rgba(255,255,255,.7);line-height:1.75">ESDAC — Design de mode<br>LISAA — Master Graphisme du numérique<br>ERB — École des Beaux-Arts de Bordeaux</div>
         </div>
         <div style="margin-bottom:14px">
-          <div style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Outils</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Outils</div>
           <div style="display:flex;flex-wrap:wrap;gap:4px">
-            <span style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Photoshop</span>
-            <span style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Illustrator</span>
-            <span style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">InDesign</span>
-            <span style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">After Effects</span>
-            <span style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Premiere Pro</span>
-            <span style="font-family:"ltr-ncnd-variable",sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Figma</span>
+            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Photoshop</span>
+            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Illustrator</span>
+            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">InDesign</span>
+            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">After Effects</span>
+            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Premiere Pro</span>
+            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Figma</span>
           </div>
         </div>
         <div style="margin-bottom:14px;display:flex;align-items:center;gap:8px">
           <span style="width:7px;height:7px;border-radius:50%;background:#4cff72;display:inline-block;box-shadow:0 0 6px #4cff72;flex-shrink:0"></span>
-          <span style="font-family:"ltr-ncnd-variable",sans-serif;font-variation-settings:"wght" 500;font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase">Disponible pour missions</span>
+          <span style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 500;font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase">Disponible pour missions</span>
         </div>
         <div style="border-top:1px solid #1e1e1e;padding-top:12px;display:flex;flex-direction:column;gap:6px">
-          <a href="https://instagram.com/tchoupi_zebre" target="_blank" style="font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;transition:opacity .15s;cursor:pointer" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">↗ Instagram — @Tchoupi_zebre</a>
-          <a href="https://www.linkedin.com/in/hugogaltierdauriac" target="_blank" style="font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;transition:opacity .15s;cursor:pointer" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">↗ LinkedIn — Hugo Galtier d'Auriac</a>
-          <a href="mailto:tchoupi.zebre@gmail.com?subject=Bonjour%20Tchoupiz%C3%A9br%C3%A9" style="font-family:"ltr-ncnd-variable",sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;transition:opacity .15s;cursor:pointer" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">✉ tchoupi.zebre@gmail.com</a>
+          <a href="https://instagram.com/tchoupi_zebre" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;transition:opacity .15s;cursor:pointer" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">↗ Instagram — @Tchoupi_zebre</a>
+          <a href="https://www.linkedin.com/in/hugogaltierdauriac" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;transition:opacity .15s;cursor:pointer" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">↗ LinkedIn — Hugo Galtier d'Auriac</a>
+          <a href="mailto:tchoupi.zebre@gmail.com?subject=Bonjour%20Tchoupiz%C3%A9br%C3%A9" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;transition:opacity .15s;cursor:pointer" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">✉ tchoupi.zebre@gmail.com</a>
         </div>
       </div>
     </div>
@@ -586,7 +581,7 @@ html,body{cursor:auto}
 
   <!-- Video modal — Win98 magenta -->
   <div id="vmodal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.85);align-items:center;justify-content:center">
-    <div style="background:#0a0a0a;border:2px solid #444;min-width:480px;max-width:90vw;font-family:"ltr-ncnd-variable",sans-serif">
+    <div style="background:#0a0a0a;border:2px solid #444;min-width:480px;max-width:90vw;font-family:'ltr-ncnd-variable',sans-serif">
       <div id="vmodal-tb" style="padding:4px 8px;display:flex;align-items:center;justify-content:space-between;cursor:grab">
         <div style="display:flex;align-items:center;gap:6px"><img src="assets/ui/bb-icone-3.webp" style="width:14px;height:14px;filter:invert(1)"><span id="vmodal-title" style="color:#fff;font-size:11px;letter-spacing:.1em;font-weight:700"></span></div>
         <div style="display:flex;gap:2px"><button id="vmodal-close" style="width:18px;height:16px;font-size:10px;cursor:pointer;font-family:monospace;font-weight:700">✕</button></div>
@@ -605,10 +600,11 @@ html,body{cursor:auto}
   <canvas id="hscroll"></canvas>
 
   <div id="tbar">
-    <div id="tbar-logo">✠︎ TCHOUPIZZ</div>
+    <div id="tbar-logo"><img src="assets/ui/bb-favicon.webp" style="width:14px;height:14px;display:block;flex-shrink:0">✠ TCHOUPIZZ</div>
+    <div id="tbar-sep"></div>
     <div id="tbar-wins"></div>
-    <div id="tbar-discipline">Graphisme · DA · Upcycling · Motion</div>
-    <a id="tbar-contact" href="mailto:tchoupi.zebre@gmail.com">tchoupi.zebre@gmail.com</a>
+    <div id="tbar-discipline"></div>
+    <a id="tbar-contact" href="mailto:tchoupi.zebre@gmail.com">✉ contact</a>
     <div id="tbar-clock"></div>
   </div>
 
@@ -646,7 +642,7 @@ html,body{cursor:auto}
     <div style="position:relative;width:min(720px,92vw);background:#000;border:2px solid #E8007A;box-shadow:0 0 40px rgba(232,0,122,.4)">
       <div style="background:linear-gradient(90deg,#E8007A,#9a0050);height:26px;display:flex;align-items:center;padding:0 8px;gap:8px">
         <img src="assets/ui/bb-icone-chaos.webp" style="width:14px;height:14px;filter:brightness(0)">
-        <span style="font-family:"ltr-ncnd-variable",sans-serif;font-size:11px;color:#fff;font-weight:700;letter-spacing:.12em;flex:1">SECRET FOUND — VHS #001</span>
+        <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;color:#fff;font-weight:700;letter-spacing:.12em;flex:1">SECRET FOUND — VHS #001</span>
         <button id="vhs-close" style="background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;width:18px;height:16px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
       </div>
       <video id="vhs-video" src="assets/motion/vhs-puel.mp4" controls style="width:100%;display:block;filter:sepia(.3) contrast(1.1)"></video>
@@ -887,7 +883,7 @@ setTimeout(function(){
   var hint=document.createElement('div');
   hint.id='hint-boot';
   hint.innerHTML='DBL-CLIC <span style="opacity:.5">→</span> ouvrir &nbsp;·&nbsp; <span style="opacity:.5">←→</span> naviguer &nbsp;·&nbsp; <span style="opacity:.5">↑↓</span> changer de catégorie';
-  hint.style.cssText='position:fixed;bottom:44px;left:50%;transform:translateX(-50%);background:rgba(10,10,10,.88);border:1px solid rgba(232,0,122,.4);padding:6px 16px;font-family:"ltr-ncnd-variable",sans-serif;font-size:10px;font-variation-settings:"wght" 500;letter-spacing:.12em;color:rgba(255,255,255,.6);text-transform:uppercase;white-space:nowrap;z-index:800;pointer-events:none;transition:opacity .6s';
+  hint.style.cssText='position:fixed;bottom:44px;left:50%;transform:translateX(-50%);background:rgba(10,10,10,.88);border:1px solid rgba(232,0,122,.4);padding:6px 16px;font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;font-variation-settings:'wght' 500;letter-spacing:.12em;color:rgba(255,255,255,.6);text-transform:uppercase;white-space:nowrap;z-index:800;pointer-events:none;transition:opacity .6s';
   document.body.appendChild(hint);
   var fadeHint=function(){hint.style.opacity='0';setTimeout(function(){hint.remove();},700);};
   setTimeout(fadeHint,5000);
@@ -1078,86 +1074,24 @@ var PROJECTS=[
 function buildCatWins(){
 var cats=['wp','wt','ws','wm','wd'];
 cats.forEach(function(cat){
-  var lb=document.getElementById('wlb-'+cat);
-  if(!lb)return;
+  var grid=document.getElementById('wexp-'+cat);
+  var statusEl=document.getElementById('wexp-status-'+cat);
+  if(!grid)return;
   var catProjs=PROJECTS.filter(function(p){return p.cat===cat});
-  /* preview cliquable — bindé une seule fois par catégorie */
-  (function(){
-    var pane=document.getElementById('wcpane-'+cat);
-    if(pane){pane.addEventListener('click',function(){
-      var sel=lb.querySelector('.wlist-item.sel');
-      if(sel&&sel.dataset.proj)openProject(sel.dataset.proj);
-    });}
-  })();
+  if(statusEl)statusEl.textContent=catProjs.length+' objet'+(catProjs.length!==1?'s':'');
   catProjs.forEach(function(proj){
-    var item=document.createElement('div');
-    item.className='wlist-item';
-    item.textContent=proj.title;
-    item.dataset.proj=proj.id;
-    item.addEventListener('mouseenter',function(){
-      lb.querySelectorAll('.wlist-item').forEach(function(el){el.classList.remove('sel')});
-      item.classList.add('sel');
-      var thumb=document.getElementById('wcthumb-'+cat);
-      var info=document.getElementById('wcinfo-'+cat);
-      var titleEl=document.getElementById('wctitle-'+cat);
-      var taglineEl=document.getElementById('wctagline-'+cat);
-      var empty=document.getElementById('wcempty-'+cat);
-      var pane=document.getElementById('wcpane-'+cat);
-      var firstImg=proj.media.find(function(m){return m.t==='img'});
-      if(firstImg){
-        /* Win98 download overlay */
-        var overlay=pane.querySelector('.wcat-dl-overlay');
-        if(!overlay){
-          overlay=document.createElement('div');
-          overlay.className='wcat-dl-overlay';
-          var catIconSrc=CAT_ICON[cat]?BASE+CAT_ICON[cat]:'';
-          var dlIcon=catIconSrc?'<img src="'+catIconSrc+'" style="width:12px;height:12px;filter:brightness(0) invert(1);margin-right:5px;vertical-align:middle">':'';
-          overlay.innerHTML=
-            '<div class="wcat-dl-box">'+
-              '<div class="wcat-dl-tb"><span class="wcat-dl-tb-ttl">'+dlIcon+'CHARGEMENT</span><div class="wcat-dl-tb-btns"><span class="wcat-dl-tb-btn">_</span><span class="wcat-dl-tb-btn">□</span><span class="wcat-dl-tb-btn">✕</span></div></div>'+
-              '<div class="wcat-dl-body">'+
-                '<div class="wcat-dl-txt">Downloading...</div>'+
-                '<div class="wcat-dl-track"><div class="wcat-dl-fill"></div></div>'+
-                '<div class="wcat-dl-pct">0%</div>'+
-              '</div>'+
-            '</div>';
-          pane.appendChild(overlay);
-        }
-        var fill=overlay.querySelector('.wcat-dl-fill');
-        var pctEl=overlay.querySelector('.wcat-dl-pct');
-        thumb.style.display='none';
-        overlay.classList.add('on');
-        fill.style.transition='none';fill.style.width='0%';pctEl.textContent='0%';
-        void fill.offsetWidth;
-        fill.style.transition='width 1.05s linear';fill.style.width='100%';
-        /* animate % counter */
-        clearInterval(overlay._iv);
-        var t0=Date.now();
-        overlay._iv=setInterval(function(){
-          var p=Math.min(Math.round((Date.now()-t0)/10.5),100);
-          pctEl.textContent=p+'%';
-          if(p>=100){clearInterval(overlay._iv);}
-        },30);
-        clearTimeout(overlay._t);
-        overlay._t=setTimeout(function(){
-          overlay.classList.remove('on');
-          thumb.classList.remove('glitch');
-          void thumb.offsetWidth;
-          thumb.src=BASE+firstImg.src;
-          thumb.style.display='block';
-          thumb.classList.add('glitch');
-        },1100);
-      }else{
-        thumb.style.display='none';
-      }
-      titleEl.textContent=proj.title;
-      taglineEl.textContent=proj.tagline;
-      info.style.display='block';
-      if(empty)empty.style.display='none';
+    var ic=document.createElement('div');
+    ic.className='wcat-icon';
+    var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img'});
+    var thumbSrc=firstImg?BASE+firstImg.src:CAT_ICON[cat]||'';
+    ic.innerHTML='<img src="'+thumbSrc+'" style="width:32px;height:32px;object-fit:cover;display:block;margin:0 auto 3px;image-rendering:pixelated"><span>'+proj.title+'</span>';
+    ic.addEventListener('click',function(){
+      grid.querySelectorAll('.wcat-icon').forEach(function(el){el.classList.remove('sel')});
+      ic.classList.add('sel');
+      if(statusEl)statusEl.textContent=proj.title;
     });
-    item.addEventListener('mouseenter',function(){sndClick&&sndClick()});
-    item.addEventListener('click',function(){openProject(proj.id)});
-    lb.appendChild(item);
+    ic.addEventListener('dblclick',function(){openProject(proj.id);});
+    grid.appendChild(ic);
   });
 });
 }
@@ -1191,7 +1125,7 @@ if(proj.media.length===0){
 
 var linkHTML=proj.link?'<a href="'+proj.link.url+'" target="_blank" style="display:inline-block;margin-top:6px;color:var(--pink);text-decoration:none;border:1px solid rgba(232,0,122,.45);padding:5px 10px;font-size:9px;letter-spacing:.12em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">'+proj.link.label+'</a>':'';
 
-var iconTag=CAT_ICON[proj.cat]?'<img src="'+BASE+CAT_ICON[proj.cat]+'" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0">':'';
+var iconTag=CAT_ICON[proj.cat]?'<img src="'+CAT_ICON[proj.cat]+'" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0">':'';
 var CAT_LABEL={wp:'Print',wt:'Upcycling',ws:'DA',wm:'Motion',wd:'Web'};
 var breadcrumb=(CAT_LABEL[proj.cat]?CAT_LABEL[proj.cat]+' › ':'')+proj.title;
 w.innerHTML=
@@ -1498,29 +1432,7 @@ mtick();setInterval(mtick,1000)
 
 function initDesk(){
 buildCatWins();
-/* 7 — status bar catégories */
-var CAT_COUNTS={};PROJECTS.forEach(function(p){CAT_COUNTS[p.cat]=(CAT_COUNTS[p.cat]||0)+1;});
-var CAT_NAMES={wp:'Print',wt:'Upcycling',ws:'Direction artistique',wm:'Motion',wd:'Web',wa:'About'};
-document.querySelectorAll('.win').forEach(function(w){
-  var sb=document.createElement('div');
-  sb.className='wstatusbar';
-  var n=CAT_COUNTS[w.id]||'';
-  sb.innerHTML='<span>'+CAT_NAMES[w.id]+'</span>'+(n?'<span>'+n+' projet'+(n>1?'s':'')+'</span>':'')+'<span>Tchoupizébré · 2026</span>';
-  w.insertBefore(sb,w.querySelector('.wrz'));
-});
-/* Footer Win98 sur fenêtres catégorie */
-['wp','wt','ws','wm','wd','wa'].forEach(function(id){
-  var w=document.getElementById(id);if(!w)return;
-  var f=document.createElement('div');
-  f.className='win-footer';
-  var btn=document.createElement('button');
-  btn.className='win-fbtn def';
-  btn.textContent='Fermer';
-  btn.addEventListener('click',function(){closeW(id);});
-  f.appendChild(btn);
-  var sb=w.querySelector('.wstatusbar');
-  w.insertBefore(f,sb||w.querySelector('.wrz'));
-});
+/* Fermer les fenêtres catégorie via wclose — déjà géré par le listener global wclose */
 buildMobile();
 var clk=document.getElementById('tbar-clock');
 function tick(){
@@ -1580,8 +1492,12 @@ if(w){w.style.zIndex=++zTop;setActive(w.id);}
 /* 6 — Échap ferme la fenêtre active / ← → navigation entre projets */
 document.addEventListener('keydown',function(e){
 if(e.key==='Escape'){
-  var act=document.querySelector('.win.active');
-  if(act&&act.id){playBip();closeW(act.id);}
+  var topZ=-1,topId=null;
+  open.forEach(function(id){
+    var w=document.getElementById(id);
+    if(w&&parseInt(w.style.zIndex||0)>topZ){topZ=parseInt(w.style.zIndex);topId=id;}
+  });
+  if(topId){playBip();closeW(topId);}
   document.getElementById('lb').style.display='none';
   var vm=document.getElementById('vmodal');
   if(vm)vm.style.display='none';
@@ -1603,6 +1519,18 @@ if(e.key==='ArrowUp'||e.key==='ArrowDown'){
     if(firstProj)openProject(firstProj.id);
     else openW(nextCat);
   },120);
+}
+if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+  var topZ=-1,topId=null;
+  open.forEach(function(id){
+    var w=document.getElementById(id);
+    if(w&&w.classList.contains('proj-win')&&parseInt(w.style.zIndex||0)>topZ){
+      topZ=parseInt(w.style.zIndex);topId=id;
+    }
+  });
+  if(!topId)return;
+  var btn=document.getElementById(e.key==='ArrowLeft'?'wcp-'+topId:'wcn-'+topId);
+  if(btn){btn.click();e.preventDefault();}
 }
 });
 
@@ -1835,31 +1763,7 @@ document.getElementById('vhs-modal').addEventListener('click',function(e){if(e.t
 })();
 
 // Keyboard nav
-document.addEventListener('keydown',function(e){
-  // Échap → ferme la fenêtre au premier plan
-  if(e.key==='Escape'){
-    var topZ=-1,topId=null;
-    open.forEach(function(id){
-      var w=document.getElementById(id);
-      if(w&&parseInt(w.style.zIndex||0)>topZ){topZ=parseInt(w.style.zIndex);topId=id;}
-    });
-    if(topId)closeW(topId);
-    return;
-  }
-  // Flèches → carousel de la fenêtre projet au premier plan
-  if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
-    var topZ=-1,topId=null;
-    open.forEach(function(id){
-      var w=document.getElementById(id);
-      if(w&&w.classList.contains('proj-win')&&parseInt(w.style.zIndex||0)>topZ){
-        topZ=parseInt(w.style.zIndex);topId=id;
-      }
-    });
-    if(!topId)return;
-    var btn=document.getElementById(e.key==='ArrowLeft'?'wcp-'+topId:'wcn-'+topId);
-    if(btn){btn.click();e.preventDefault();}
-  }
-});
+/* keydown fusionné ci-dessus */
 
 // Drag vmodal titlebar
 (function(){
