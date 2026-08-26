@@ -177,7 +177,8 @@ html,body{cursor:auto}
 .wcat-explorer::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff}
 .wcat-explorer::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 .wcat-explorer::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
-.wcat-icon{width:80px;text-align:center;font-size:9px;font-family:'Courier New',monospace;color:#ccc;cursor:default;padding:4px;user-select:none}
+.wcat-icon{width:88px;text-align:center;font-size:9px;font-family:'Courier New',monospace;color:#ccc;cursor:default;padding:4px;user-select:none}
+.wcat-icon.sel{background:var(--pink);color:#fff}
 .wcat-icon:hover{background:rgba(232,0,122,.18)}
 .wcat-icon.sel{background:var(--pink);color:#fff}
 .wcat-icon img{width:32px;height:32px;object-fit:contain;display:block;margin:0 auto 3px;filter:invert(14%) sepia(100%) saturate(6000%) hue-rotate(310deg) brightness(.85) contrast(1.1)}
@@ -1091,8 +1092,10 @@ cats.forEach(function(cat){
   catProjs.forEach(function(proj){
     var ic=document.createElement('div');
     ic.className='wcat-icon';
-    var iconSrc=CAT_ICON[cat]||'';
-    ic.innerHTML='<img src="'+iconSrc+'" style="width:48px;height:48px;object-fit:contain;display:block;margin:0 auto 4px;filter:brightness(0) invert(1)"><span>'+proj.title+'</span>';
+    var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
+    var thumbSrc=firstImg?BASE+firstImg.src:CAT_ICON[cat]||'';
+    var thumbFilter=firstImg?'':'filter:brightness(0) invert(1)';
+    ic.innerHTML='<img src="'+thumbSrc+'" style="width:72px;height:72px;object-fit:cover;display:block;margin:0 auto 4px;border:1px solid #2a2a2a;'+thumbFilter+'"><span>'+proj.title+'</span>';
     ic.addEventListener('click',function(){
       grid.querySelectorAll('.wcat-icon').forEach(function(el){el.classList.remove('sel')});
       ic.classList.add('sel');
