@@ -77,14 +77,9 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .ilbl{font-family:'jetsam-collection-basilea',sans-serif;font-size:13px;letter-spacing:.02em;text-align:center;color:var(--pink);transition:color .18s;line-height:1.3}
 
 .win{position:absolute;min-width:300px;min-height:180px;height:500px;background:#0f0f0f;border:2px solid;border-color:#444 #111 #111 #444;outline:1px solid #222;display:none;flex-direction:column;transform:scale(.92) translateY(6px);opacity:0;filter:blur(8px);transition:transform .25s cubic-bezier(.34,1.4,.64,1),opacity .2s ease,filter .25s ease;box-shadow:4px 4px 0 rgba(0,0,0,.9),0 24px 80px rgba(0,0,0,.8);overflow:hidden}
-/* Colonnes baroques — clip-path:none + pseudo hors flow via outline trick */
-.win.active:not(.proj-win){overflow:visible;}
-.win.active:not(.proj-win)::before{content:'';position:absolute;left:-45px;top:-160px;right:-45px;bottom:-80px;background:url('assets/ui/bb-cadre-colonnes.webp') no-repeat center/100% 100%;pointer-events:none;z-index:-1;}
-/* Contenir le contenu de la fenêtre sans couper le ::before */
-.win.active:not(.proj-win) .wtb,
-.win.active:not(.proj-win) .wmenu,
-.win.active:not(.proj-win) .wcat-explorer,
-.win.active:not(.proj-win) .wexplorer-status{overflow:hidden;position:relative;z-index:1;}
+/* Colonnes baroques — élément séparé dans #desk, piloté par JS */
+#baroque-frame{position:absolute;pointer-events:none;z-index:0;background:url('assets/ui/bb-cadre-colonnes.webp') no-repeat center/100% 100%;display:none;}
+#baroque-frame.on{display:block;}
 .win.open{display:flex}
 .win.vis{transform:scale(1) translateY(0);opacity:1;filter:blur(0)}
 .win.maximized{top:0!important;left:0!important;width:100%!important;height:calc(100% - 30px)!important;border-radius:0;transition:none}
@@ -478,6 +473,7 @@ html,body{cursor:auto}
   <canvas id="grain"></canvas>
   <div id="scan-persist"></div>
   <div id="vignette-desk"></div>
+  <div id="baroque-frame"></div>
 
   <div id="icons">
     <div class="icon" data-win="wp" data-tip="Identité · Édition · Affiche"><div class="isym" style="color:var(--border)"><img src='assets/ui/bb-icone-1.webp' style=''></div><div class="ilbl">Print</div></div>
@@ -1441,6 +1437,8 @@ open.delete(id);
 try{history.replaceState(null,'','#');}catch(e){}
 sndClose();
 updateTbar();
+var fr=document.getElementById('baroque-frame');
+if(fr&&w.classList.contains('active'))fr.classList.remove('on');
 /* Reverse FLIP — vers la fenêtre catégorie ou l'icône */
 var proj=PROJECTS.find(function(p){return p.id===id});
 var target=proj?document.getElementById(proj.cat):document.querySelector('.icon[data-win="'+id+'"]');
@@ -1471,10 +1469,23 @@ if(target){
 }
 }
 
+var BQ={l:45,t:160,r:45,b:80};
+function updateBaroqueFrame(id){
+  var fr=document.getElementById('baroque-frame');
+  if(!fr)return;
+  var w=id?document.getElementById(id):null;
+  if(!w||w.classList.contains('proj-win')||w.classList.contains('maximized')){fr.classList.remove('on');return;}
+  fr.style.left=(w.offsetLeft-BQ.l)+'px';
+  fr.style.top=(w.offsetTop-BQ.t)+'px';
+  fr.style.width=(w.offsetWidth+BQ.l+BQ.r)+'px';
+  fr.style.height=(w.offsetHeight+BQ.t+BQ.b)+'px';
+  fr.classList.add('on');
+}
 function setActive(id){
 document.querySelectorAll('.win.active').forEach(function(w){w.classList.remove('active');});
 var w=document.getElementById(id);if(w)w.classList.add('active');
 document.querySelectorAll('.tbtn').forEach(function(b){b.classList.toggle('act',b.id==='tbtn-'+id);});
+updateBaroqueFrame(id);
 }
 
 function updateTbar(){
@@ -1954,7 +1965,7 @@ document.addEventListener('mousemove',function(e){
 if(!on)return;
 w.style.left=Math.max(0,Math.min(e.clientX-ox,innerWidth-w.offsetWidth))+'px';
 w.style.top=Math.max(0,Math.min(e.clientY-oy,innerHeight-30-w.offsetHeight))+'px';
-syncCol(w);
+syncCol(w);updateBaroqueFrame(w.id);
 },sig);
 document.addEventListener('mouseup',function(){
 if(!on)return;
