@@ -193,6 +193,7 @@ html,body{cursor:auto}
 .wcat-explorer::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff}
 .wcat-explorer::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 .wcat-explorer::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+@keyframes icon-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .wcat-icon{width:88px;height:108px;text-align:center;font-size:9px;font-family:'Courier New',monospace;color:#ccc;cursor:default;padding:4px;user-select:none;display:flex;flex-direction:column;align-items:center;overflow:hidden}
 .wcat-icon.sel{background:var(--pink);color:#fff}
 .wcat-icon:hover{background:rgba(232,0,122,.18)}
@@ -1115,9 +1116,12 @@ cats.forEach(function(cat){
   if(!grid)return;
   var catProjs=PROJECTS.filter(function(p){return p.cat===cat});
   if(statusEl)statusEl.textContent=catProjs.length+' objet'+(catProjs.length!==1?'s':'');
-  catProjs.forEach(function(proj){
+  catProjs.forEach(function(proj,idx){
     var ic=document.createElement('div');
     ic.className='wcat-icon';
+    ic.title=proj.title;
+    ic.style.animationDelay=(idx*35)+'ms';
+    ic.style.animation='icon-in .25s ease both';
     var CAT_CLR={wp:'#E8007A',wt:'#CC1111',ws:'#1F28CC',wm:'#7B00E8',wd:'#00A89D'};
     var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
     var thumbHTML;
