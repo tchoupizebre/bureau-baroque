@@ -1087,7 +1087,7 @@ cats.forEach(function(cat){
     ic.className='wcat-icon';
     var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
     var thumbSrc=firstImg?BASE+firstImg.src:CAT_ICON[cat]||'';
-    var thumbFilter=firstImg?'':'filter:brightness(0) invert(1)';
+    var thumbFilter=firstImg?'filter:grayscale(1)':'filter:brightness(0) invert(1)';
     ic.innerHTML='<img src="'+thumbSrc+'" style="width:72px;height:72px;object-fit:cover;display:block;margin:0 auto 4px;border:1px solid #2a2a2a;'+thumbFilter+'"><span>'+proj.title+'</span>';
     ic.addEventListener('click',function(){
       grid.querySelectorAll('.wcat-icon').forEach(function(el){el.classList.remove('sel')});
