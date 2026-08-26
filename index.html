@@ -1124,9 +1124,21 @@ function mediaHTML(m){
   return '<img style="max-width:100%;max-height:100%;display:block;width:100%;height:100%;object-fit:contain" src="'+BASE+m.src+'" alt="">';
 }
 
+var CAT_LABEL={wp:'Print',wt:'Upcycling',ws:'DA',wm:'Motion',wd:'Web'};
+var nMedia=proj.media.length;
+var hasMedia=nMedia>0;
+
 var leftHTML;
-if(proj.media.length===0){
-  leftHTML='<div style="flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:9px;letter-spacing:.1em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">Média à venir</div>';
+if(!hasMedia){
+  var CAT_CLR2={wp:'#E8007A',wt:'#CC1111',ws:'#1F28CC',wm:'#7B00E8',wd:'#00A89D'};
+  var plClr=CAT_CLR2[proj.cat]||'#444';
+  leftHTML=
+    '<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#060606">'+
+      '<div style="width:80px;height:80px;border:1px dashed rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center">'+
+        '<div style="width:52px;height:52px;background:'+plClr+';opacity:.25"></div>'+
+      '</div>'+
+      '<div style="font-family:\'bd-terminal-vf\',monospace;font-size:8px;letter-spacing:.14em;color:rgba(255,255,255,.18);text-transform:uppercase">IMAGE PROJET</div>'+
+    '</div>';
 }else{
   leftHTML='<div class="wcar-wrap" id="wcar-'+projId+'">'+mediaHTML(proj.media[0])+'</div>';
 }
@@ -1134,9 +1146,7 @@ if(proj.media.length===0){
 var linkHTML=proj.link?'<a href="'+proj.link.url+'" target="_blank" style="display:inline-block;margin-top:6px;color:var(--pink);text-decoration:none;border:1px solid rgba(232,0,122,.45);padding:5px 10px;font-size:9px;letter-spacing:.12em;font-family:\'bd-terminal-vf\',sans-serif;text-transform:uppercase">'+proj.link.label+'</a>':'';
 
 var iconTag=CAT_ICON[proj.cat]?'<img src="'+CAT_ICON[proj.cat]+'" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0">':'';
-var CAT_LABEL={wp:'Print',wt:'Upcycling',ws:'DA',wm:'Motion',wd:'Web'};
 var breadcrumb=(CAT_LABEL[proj.cat]?CAT_LABEL[proj.cat]+' › ':'')+proj.title;
-var nMedia=proj.media.length;
 var dotsHTML='<div class="wiz-dots" id="wdots-'+projId+'">';
 for(var di=0;di<nMedia;di++)dotsHTML+='<div class="wiz-step-dot'+(di===0?' cur':'')+'" data-i="'+di+'"></div>';
 dotsHTML+='</div>';
@@ -1145,7 +1155,6 @@ w.innerHTML=
 '<div class="wtb">'+
   '<div class="wtb-icon">'+iconTag+'</div>'+
   '<span class="wtitle">'+breadcrumb+'</span>'+
-  '<button class="wbtn whelp" data-w="'+projId+'" title="Aide">?</button>'+
   '<button class="wbtn wmax" data-w="'+projId+'">□</button>'+
   '<button class="wbtn wclose" data-w="'+projId+'">✕</button>'+
 '</div>'+
@@ -1155,8 +1164,8 @@ w.innerHTML=
   '<span class="wmenu-item">Projet</span>'+
   '<span class="wmenu-item">Aide</span>'+
 '</div>'+
-'<div class="wbody-split" style="padding:0;gap:0">'+
-  '<div class="wsplit-left" style="flex:0 0 58%;display:flex;flex-direction:column;background:#000;overflow:hidden;border:none;padding:0">'+
+'<div class="wbody-split" style="padding:0;gap:0;flex:1;overflow:hidden">'+
+  '<div style="flex:0 0 55%;display:flex;flex-direction:column;background:#000;overflow:hidden">'+
     leftHTML+
     (nMedia>1?dotsHTML:'')+
   '</div>'+
@@ -1174,25 +1183,27 @@ w.innerHTML=
   '</div>'+
 '</div>'+
 '<div class="win-ctrl-frame">'+
-  '<div class="vplayer-ctrl" id="vpc-'+projId+'">'+
-    '<div class="vplayer-row">'+
-      '<div class="vplayer-lcd" id="vpl-'+projId+'">◼ STOP</div>'+
-      '<span class="vplayer-time" id="vpt-'+projId+'">0:00 / 0:00</span>'+
-    '</div>'+
-    '<div class="vplayer-row">'+
-      '<button class="vplayer-btn" id="vpp-'+projId+'" title="Lecture / Pause">▶</button>'+
-      '<button class="vplayer-btn" id="vps-'+projId+'" title="Stop">■</button>'+
-      '<div class="vplayer-prog" id="vpb-'+projId+'"><div class="vplayer-prog-fill" id="vpf-'+projId+'"></div></div>'+
-    '</div>'+
-  '</div>'+
+  (hasMedia?
+    '<div class="vplayer-ctrl" id="vpc-'+projId+'">'+
+      '<div class="vplayer-row">'+
+        '<div class="vplayer-lcd" id="vpl-'+projId+'">◼ STOP</div>'+
+        '<span class="vplayer-time" id="vpt-'+projId+'">0:00 / 0:00</span>'+
+      '</div>'+
+      '<div class="vplayer-row">'+
+        '<button class="vplayer-btn" id="vpp-'+projId+'" title="Lecture / Pause">▶</button>'+
+        '<button class="vplayer-btn" id="vps-'+projId+'" title="Stop">■</button>'+
+        '<div class="vplayer-prog" id="vpb-'+projId+'"><div class="vplayer-prog-fill" id="vpf-'+projId+'"></div></div>'+
+      '</div>'+
+    '</div>'
+  :'')+
   '<div class="win-footer-wiz" id="wfoot-'+projId+'">'+
-    '<button class="win-fbtn" id="wcp-'+projId+'">◀ Préc</button>'+
-    '<span class="wiz-nav-count" id="wcc-'+projId+'">'+(nMedia>1?'1 / '+nMedia:'')+'</span>'+
-    '<button class="win-fbtn" id="wcn-'+projId+'">Suiv ▶</button>'+
+    (hasMedia?'<button class="win-fbtn" id="wcp-'+projId+'">◀ Préc</button>':'')+
+    (nMedia>1?'<span class="wiz-nav-count" id="wcc-'+projId+'">1 / '+nMedia+'</span>':'')+
+    (hasMedia?'<button class="win-fbtn" id="wcn-'+projId+'">Suiv ▶</button>':'')+
     '<span style="flex:1"></span>'+
     '<button class="win-fbtn def" id="wcl-'+projId+'">Fermer</button>'+
   '</div>'+
-  '<div class="wstatusbar"><span>'+proj.annee+'</span><span>'+proj.client+'</span><span>'+nMedia+' média'+(nMedia>1?'s':'')+'</span></div>'+
+  '<div class="wstatusbar"><span>'+proj.annee+'</span><span>'+proj.client+'</span>'+(hasMedia?'<span>'+nMedia+' média'+(nMedia>1?'s':'')+'</span>':'<span>À venir</span>')+'</div>'+
 '</div>'+
 '<div class="wrz"></div>';
 
