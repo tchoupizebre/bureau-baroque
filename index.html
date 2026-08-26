@@ -602,7 +602,7 @@ html,body{cursor:auto}
   <canvas id="hscroll"></canvas>
 
   <div id="tbar">
-    <div id="tbar-logo"><img src="assets/ui/bb-favicon.webp" style="width:14px;height:14px;display:block;flex-shrink:0">✠ TCHOUPIZZ</div>
+    <div id="tbar-logo"><img src="assets/ui/bb-favicon.webp" style="width:14px;height:14px;display:block;flex-shrink:0"> TCHOUPIZZ</div>
     <div id="tbar-sep"></div>
     <div id="tbar-wins"></div>
     <div id="tbar-discipline"></div>
@@ -1420,7 +1420,15 @@ var titleEl=w.querySelector('.wtitle');
 var b=document.createElement('button');
 b.className='tbtn'+(id===activeId?' act':'');
 b.id='tbtn-'+id;
-b.textContent=titleEl?titleEl.textContent.trim().slice(0,22):id;
+/* preview du premier média pour les fenêtres projet */
+var proj=PROJECTS.find(function(p){return p.id===id;});
+var imgTag='';
+if(proj){
+  var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
+  if(firstImg)imgTag='<img src="'+BASE+firstImg.src+'" style="width:18px;height:18px;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,.15)">';
+}
+b.innerHTML=imgTag+'<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px">'+(titleEl?titleEl.textContent.trim().slice(0,22):id)+'</span>';
+b.style.display='flex';b.style.alignItems='center';b.style.gap='4px';
 b.addEventListener('click',function(){w.style.zIndex=++zTop;setActive(id);});
 tb.appendChild(b)
 })
