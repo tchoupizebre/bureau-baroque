@@ -184,6 +184,13 @@ html,body{cursor:auto}
 .wcat-icon.sel img{filter:brightness(10)}
 .wcat-icon span{display:block;line-height:1.2;word-break:break-word;font-size:9px}
 /* Win98 statusbar explorer */
+.wexp-split{flex:1;display:flex;overflow:hidden}
+.wexp-split .wcat-explorer{flex:0 0 55%;border-right:2px solid #444}
+.wexp-preview{flex:1;background:#0c0c0c;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;gap:8px;padding:8px}
+.wexp-preview img{max-width:100%;max-height:75%;object-fit:contain;display:block}
+.wexp-preview-title{font-family:'Courier New',monospace;font-size:10px;color:#fff;text-align:center;letter-spacing:.06em;font-weight:700}
+.wexp-preview-tagline{font-family:'Courier New',monospace;font-size:8px;color:var(--pink);text-align:center;letter-spacing:.1em;text-transform:uppercase}
+.wexp-preview-empty{font-family:'Courier New',monospace;font-size:8px;color:rgba(255,255,255,.2);letter-spacing:.15em;text-transform:uppercase;text-align:center}
 .wexplorer-status{height:18px;background:#c0c0c0;border-top:2px solid;border-color:#808080 #fff #fff #808080;display:flex;align-items:center;padding:0 4px;gap:4px;flex-shrink:0}
 .wexplorer-status-panel{height:14px;border:2px solid;border-color:#808080 #fff #fff #808080;padding:0 4px;font-size:9px;font-family:'Courier New',monospace;color:#000;display:flex;align-items:center;white-space:nowrap}
 /* Win98 dialog box */
@@ -468,46 +475,46 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre Print — Explorer Win98 -->
-  <div class="win" id="wp" style="width:460px;height:320px;top:60px;left:60px">
+  <div class="win" id="wp" style="width:560px;height:360px;top:60px;left:60px">
     <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-1.webp"></div><span class="wtitle">Print &amp; Affiches</span><button class="wbtn wmax" data-w="wp">□</button><button class="wbtn wclose" data-w="wp">✕</button></div>
     <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
-    <div class="wcat-explorer" id="wexp-wp"></div>
+    <div class="wexp-split"><div class="wcat-explorer" id="wexp-wp"></div><div class="wexp-preview" id="wprev-wp"><div class="wexp-preview-empty">Sélectionner un projet</div></div></div>
     <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wp" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Print &amp; Affiches</div></div>
     <div class="wrz"></div>
   </div>
 
   <!-- Fenêtre Upcycling — Explorer Win98 -->
-  <div class="win" id="wt" style="width:460px;height:320px;top:80px;left:100px">
+  <div class="win" id="wt" style="width:560px;height:360px;top:80px;left:100px">
     <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-chaos.webp"></div><span class="wtitle">Upcycling &amp; Textile</span><button class="wbtn wmax" data-w="wt">□</button><button class="wbtn wclose" data-w="wt">✕</button></div>
     <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
-    <div class="wcat-explorer" id="wexp-wt"></div>
+    <div class="wexp-split"><div class="wcat-explorer" id="wexp-wt"></div><div class="wexp-preview" id="wprev-wt"><div class="wexp-preview-empty">Sélectionner un projet</div></div></div>
     <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wt" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Upcycling</div></div>
     <div class="wrz"></div>
   </div>
 
   <!-- Fenêtre DA — Explorer Win98 -->
-  <div class="win" id="ws" style="width:460px;height:320px;top:100px;left:140px">
+  <div class="win" id="ws" style="width:560px;height:360px;top:100px;left:140px">
     <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-4.webp"></div><span class="wtitle">Direction Artistique</span><button class="wbtn wmax" data-w="ws">□</button><button class="wbtn wclose" data-w="ws">✕</button></div>
     <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
-    <div class="wcat-explorer" id="wexp-ws"></div>
+    <div class="wexp-split"><div class="wcat-explorer" id="wexp-ws"></div><div class="wexp-preview" id="wprev-ws"><div class="wexp-preview-empty">Sélectionner un projet</div></div></div>
     <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-ws" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">DA · Son</div></div>
     <div class="wrz"></div>
   </div>
 
   <!-- Fenêtre Motion — Explorer Win98 -->
-  <div class="win" id="wm" style="width:460px;height:320px;top:110px;left:180px">
+  <div class="win" id="wm" style="width:560px;height:360px;top:110px;left:180px">
     <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-3.webp"></div><span class="wtitle">Motion Design</span><button class="wbtn wmax" data-w="wm">□</button><button class="wbtn wclose" data-w="wm">✕</button></div>
     <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
-    <div class="wcat-explorer" id="wexp-wm"></div>
+    <div class="wexp-split"><div class="wcat-explorer" id="wexp-wm"></div><div class="wexp-preview" id="wprev-wm"><div class="wexp-preview-empty">Sélectionner un projet</div></div></div>
     <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wm" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Motion</div></div>
     <div class="wrz"></div>
   </div>
 
   <!-- Fenêtre Web — Explorer Win98 -->
-  <div class="win" id="wd" style="width:460px;height:320px;top:120px;left:220px">
+  <div class="win" id="wd" style="width:560px;height:360px;top:120px;left:220px">
     <div class="wtb"><div class="wtb-icon"><img src="assets/ui/bb-icone-6.webp"></div><span class="wtitle">Web &amp; Digital</span><button class="wbtn wmax" data-w="wd">□</button><button class="wbtn wclose" data-w="wd">✕</button></div>
     <div class="wmenu"><span class="wmenu-item">Fichier</span><span class="wmenu-item">Affichage</span><span class="wmenu-item">Aide</span></div>
-    <div class="wcat-explorer" id="wexp-wd"></div>
+    <div class="wexp-split"><div class="wcat-explorer" id="wexp-wd"></div><div class="wexp-preview" id="wprev-wd"><div class="wexp-preview-empty">Sélectionner un projet</div></div></div>
     <div class="wexplorer-status"><div class="wexplorer-status-panel" id="wexp-status-wd" style="flex:1">0 objet(s)</div><div class="wexplorer-status-panel">Web</div></div>
     <div class="wrz"></div>
   </div>
@@ -1090,6 +1097,14 @@ cats.forEach(function(cat){
       grid.querySelectorAll('.wcat-icon').forEach(function(el){el.classList.remove('sel')});
       ic.classList.add('sel');
       if(statusEl)statusEl.textContent=proj.title;
+      /* preview pane */
+      var pane=document.getElementById('wprev-'+cat);
+      if(pane){
+        var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
+        pane.innerHTML=firstImg
+          ?'<img src="'+BASE+firstImg.src+'" alt=""><div class="wexp-preview-title">'+proj.title+'</div><div class="wexp-preview-tagline">'+proj.disciplines+'</div>'
+          :'<div class="wexp-preview-title">'+proj.title+'</div><div class="wexp-preview-empty">Pas de média</div>';
+      }
     });
     ic.addEventListener('dblclick',function(){openProject(proj.id);});
     grid.appendChild(ic);
