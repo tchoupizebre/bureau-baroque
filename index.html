@@ -454,7 +454,6 @@ html,body{cursor:auto}
 </div>
 
 <div id="desk">
-  <img id='desk-bg' src='assets/ui/bb-background.webp' style='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:screen;opacity:0.75;z-index:0;pointer-events:none'>
   <canvas id="grain"></canvas>
   <div id="scan-persist"></div>
   <div id="vignette-desk"></div>
@@ -801,6 +800,8 @@ g.gain.exponentialRampToValueAtTime(.001,t+.04);
 o.start(t);o.stop(t+.05)
 }catch(e){}}
 
+function playBip(){try{var ac=new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator();var g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=880;o.type='square';g.gain.setValueAtTime(0.06,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.08);o.start();o.stop(ac.currentTime+0.08);}catch(e){}}
+
 function bootChime(){
 try{
 var ac=getAC();
@@ -873,10 +874,6 @@ boot.style.display='none';
 desk.style.display='block';
 initGrain();
 initDesk();
-/* Auto-open flagship project after boot */
-setTimeout(function(){
-  if(!open.size){openProject('pw-mlq');}
-},2200);
 initBdVary();
 initRageClick();
 initScramble();
@@ -1073,6 +1070,7 @@ var PROJECTS=[
 {id:'pw-bb',cat:'wd',title:'Le Monde Tchoupiz v2',tagline:'Portfolio interactif — expérience desktop',client:'Projet perso',annee:'2026',disciplines:'HTML · CSS · JS · WordPress',desc:'Boot cinématique, fenêtres drag/resize, curseur custom, fallback mobile. Target Awwwards.',
  media:[]}
 ];
+PROJECTS.forEach(function(p){p.media=[];});
 
 function buildCatWins(){
 var cats=['wp','wt','ws','wm','wd'];
@@ -1085,10 +1083,16 @@ cats.forEach(function(cat){
   catProjs.forEach(function(proj){
     var ic=document.createElement('div');
     ic.className='wcat-icon';
+    var CAT_CLR={wp:'#E8007A',wt:'#CC1111',ws:'#1F28CC',wm:'#7B00E8',wd:'#00A89D'};
     var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
-    var thumbSrc=firstImg?BASE+firstImg.src:CAT_ICON[cat]||'';
-    var thumbFilter=firstImg?'filter:grayscale(1)':'filter:brightness(0) invert(1)';
-    ic.innerHTML='<img src="'+thumbSrc+'" style="width:72px;height:72px;object-fit:cover;display:block;margin:0 auto 4px;border:1px solid #2a2a2a;'+thumbFilter+'"><span>'+proj.title+'</span>';
+    var thumbHTML;
+    if(firstImg){
+      thumbHTML='<img src="'+BASE+firstImg.src+'" style="width:72px;height:72px;object-fit:cover;display:block;margin:0 auto 4px;border:1px solid #2a2a2a;filter:grayscale(1)">';
+    }else{
+      var clr=CAT_CLR[cat]||'#444';
+      thumbHTML='<div style="width:72px;height:72px;background:'+clr+';display:flex;align-items:center;justify-content:center;margin:0 auto 4px;border:1px solid #2a2a2a;opacity:0.35"><span style="font-size:8px;color:#fff;font-family:IBM Plex Mono,monospace;letter-spacing:.04em;text-transform:uppercase">no media</span></div>';
+    }
+    ic.innerHTML=thumbHTML+'<span>'+proj.title+'</span>';
     ic.addEventListener('click',function(){
       grid.querySelectorAll('.wcat-icon').forEach(function(el){el.classList.remove('sel')});
       ic.classList.add('sel');
@@ -1289,7 +1293,7 @@ w.querySelector('.wmax').addEventListener('click',function(){
   else{w.classList.add('maximized');w.style.zIndex=++zTop;}
   syncCol(w);
 });
-var wclBtn=document.getElementById('wcl-'+projId);
+var wclBtn=w.querySelector('#wcl-'+projId);
 if(wclBtn)wclBtn.addEventListener('click',function(){playBip();closeW(projId);});
 
 drag(w);resize(w);w.addEventListener('mousedown',function(e){if(!e.target.closest('button')){w.style.zIndex=++zTop;setActive(w.id);}});
@@ -1499,9 +1503,7 @@ ic.addEventListener('dblclick',function(){openW(ic.dataset.win)});
 
 document.querySelectorAll('.win').forEach(function(w){drag(w);resize(w);w.addEventListener('mousedown',function(e){if(!e.target.closest('button')){w.style.zIndex=++zTop;setActive(w.id);}});});
 
-/* 6+7 — sons UI */
-function playBip(){try{var ac=new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator();var g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=880;o.type='square';g.gain.setValueAtTime(0.06,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.08);o.start();o.stop(ac.currentTime+0.08);}catch(e){}}
-function playOpen(){try{var ac=new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator();var g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.setValueAtTime(220,ac.currentTime);o.frequency.linearRampToValueAtTime(440,ac.currentTime+0.12);o.type='triangle';g.gain.setValueAtTime(0.08,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.18);o.start();o.stop(ac.currentTime+0.18);}catch(e){}}
+/* 6+7 — sons UI (playBip défini plus haut avant openProject) */
 
 document.querySelectorAll('.wclose').forEach(function(b){
 b.addEventListener('click',function(){playBip();closeW(b.dataset.w)})
