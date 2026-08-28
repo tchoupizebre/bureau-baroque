@@ -92,7 +92,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;cursor:non
 .wclose{background:var(--red)}
 .wmax{background:#555;position:relative}
 .wmax::before{content:'';position:absolute;inset:2px;border:1px solid rgba(255,255,255,.5);border-radius:1px}
-.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:'ltr-ncnd-variable',sans-serif;font-size:12px;font-variation-settings:'wght' 450;color:var(--text);line-height:1.75;scrollbar-width:auto;scrollbar-color:rgba(255,255,255,.2) transparent}
+.wbody{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 20px;font-family:'ltr-ncnd-variable',sans-serif;font-size:12px;font-variation-settings:'wght' 450;color:var(--text);line-height:1.75;scrollbar-width:auto}
 .wrz{position:absolute;bottom:0;right:0;width:22px;height:22px;cursor:se-resize;opacity:.4;transition:opacity .15s;display:flex;align-items:flex-end;justify-content:flex-end;padding:3px}
 .wrz::before{content:'···';color:var(--dim);font-size:10px;line-height:1;transform:rotate(45deg);display:block}
 .wrz:hover{opacity:.9}
@@ -235,7 +235,7 @@ html,body{cursor:auto}
 /* Panneau gauche : sunken inset */
 .wsplit-left{flex:0 0 55%;overflow:hidden;border:2px solid;border-color:#111 #383838 #383838 #111;background:#060606;box-sizing:border-box}
 /* Panneau droit : zone wizard */
-.wsplit-right{flex:1;overflow-y:auto;overflow-x:hidden;padding:14px 14px 10px;box-sizing:border-box;border:2px solid;border-color:#111 #383838 #383838 #111;background:#0c0c0c;color:rgba(255,255,255,.8);display:flex;flex-direction:column;scrollbar-width:auto;scrollbar-color:#c0c0c0 #1a1a1a}
+.wsplit-right{flex:1;overflow-y:auto;overflow-x:hidden;padding:14px 14px 10px;box-sizing:border-box;border:2px solid;border-color:#111 #383838 #383838 #111;background:#0c0c0c;color:rgba(255,255,255,.8);display:flex;flex-direction:column;scrollbar-width:auto}
 .wsplit-right::-webkit-scrollbar{width:16px;background:#1a1a1a}
 .wsplit-right::-webkit-scrollbar-track{background:#1a1a1a;border-radius:0}
 .wsplit-right::-webkit-scrollbar-thumb{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;min-height:24px;border-radius:0}
@@ -284,7 +284,6 @@ html,body{cursor:auto}
 .win{transform:scale(.88) translateY(10px) rotate(-1.5deg);filter:blur(10px)}
 .win.vis{transform:scale(1) translateY(0) rotate(0deg);filter:blur(0)}
 /* Scrollbar Win98 panneau droit + wbody */
-.wsplit-right,.wbody{scrollbar-color:#c0c0c0 #1a1a1a}
 .wsplit-right::-webkit-scrollbar,.wbody::-webkit-scrollbar{width:16px;background:#1a1a1a}
 .wsplit-right::-webkit-scrollbar-track,.wbody::-webkit-scrollbar-track{background:#1a1a1a;border-left:1px solid #333}
 .wsplit-right::-webkit-scrollbar-thumb,.wbody::-webkit-scrollbar-thumb{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;min-height:24px;border-radius:0}
