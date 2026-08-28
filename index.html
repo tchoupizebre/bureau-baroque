@@ -1464,7 +1464,7 @@ function updateBaroqueFrame(id){
   var fr=document.getElementById('baroque-frame');
   if(!fr)return;
   var w=id?document.getElementById(id):null;
-  if(!w||w.classList.contains('proj-win')||w.classList.contains('maximized')){fr.classList.remove('on');return;}
+  if(!w||w.classList.contains('proj-win')||w.id==='wa'||w.classList.contains('maximized')){fr.classList.remove('on');return;}
   fr.style.left=(w.offsetLeft-BQ.l)+'px';
   fr.style.top=(w.offsetTop-BQ.t)+'px';
   fr.style.width=(w.offsetWidth+BQ.l+BQ.r)+'px';
