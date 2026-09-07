@@ -541,24 +541,24 @@ html,body{cursor:auto}
       <button class="wbtn wmax" data-w="wa">□</button><button class="wbtn wclose" data-w="wa">✕</button>
     </div>
     <div class="wbody-split" style="align-items:stretch">
-      <div class="wsplit-left" style="flex:0 0 200px;background:#060606;overflow:hidden;display:flex;align-items:center;justify-content:center">
-        <img id="wa-logo" src="assets/ui/bb-logo.webp" style="width:176px;height:auto;display:block;mix-blend-mode:screen">
+      <div class="wsplit-left" id="wa-panel" style="flex:0 0 200px;background:#f0f0f0;overflow:hidden;position:relative">
+        <img id="wa-logo" src="assets/ui/bb-logo.webp" style="width:120px;height:auto;display:block;position:absolute;mix-blend-mode:multiply">
       </div>
       <div class="wsplit-right" style="overflow-y:auto;padding:0;display:flex;flex-direction:column;gap:0">
         <!-- Titre + sous-titre -->
         <div class="wstat-block" style="border-bottom:1px solid #1c1c1c;border-top:none;border-left:none;border-right:none;padding:12px 14px 10px">
-          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:22px;color:#fff;letter-spacing:.04em;line-height:1">Hugo Galtier d'Auriac</div>
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 700;font-size:9px;color:var(--pink);letter-spacing:.2em;text-transform:uppercase;margin-top:4px">Graphiste · DA · Identité visuelle</div>
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em;margin-top:2px">Montpellier — Freelance</div>
+          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:26px;color:#fff;letter-spacing:.04em;line-height:1">Hugo Galtier d'Auriac</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 700;font-size:11px;color:var(--pink);letter-spacing:.2em;text-transform:uppercase;margin-top:5px">Graphiste · DA · Identité visuelle</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.1em;margin-top:3px">Montpellier — Freelance</div>
         </div>
         <!-- Citation -->
         <div style="border-left:3px solid var(--pink);padding:8px 14px;margin:10px 14px;background:rgba(232,0,122,.04)">
-          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:14px;color:rgba(255,255,255,.9);line-height:1.3;letter-spacing:.03em">"J'utilise le graphisme comme une arme militante."</div>
+          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:17px;color:rgba(255,255,255,.9);line-height:1.3;letter-spacing:.03em">"J'utilise le graphisme comme une arme militante."</div>
         </div>
         <!-- Bio -->
         <div class="wiz-meta">
           <div class="wiz-meta-row" style="padding:6px 14px">
-            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;color:rgba(255,255,255,.55);line-height:1.7;letter-spacing:.02em">Le monde brûle, et je dois faire un portfolio pour l'école. Je suis en freelance — mais je choisis mes projets. Je m'investis uniquement dans ce qui a du fond.</div>
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;letter-spacing:.02em">Le monde brûle, et je dois faire un portfolio pour l'école. Je suis en freelance — mais je choisis mes projets. Je m'investis uniquement dans ce qui a du fond.</div>
           </div>
         </div>
         <!-- Infos projet-style -->
@@ -1396,16 +1396,28 @@ w.style.zIndex=++zTop;
 w.classList.add('open');
 if(id==='wa'){
   var logo=document.getElementById('wa-logo');
-  var r=w.querySelector('.wsplit-right');
-  function sizeWa(){
-    var logoH=logo.naturalWidth?Math.round(logo.naturalHeight*200/logo.naturalWidth):0;
-    var textH=r?r.scrollHeight:0;
-    var h=Math.max(logoH,textH,200);
-    w.style.height=(h+26)+'px';
-    if(logo.parentNode)logo.parentNode.style.height=h+'px';
+  var panel=document.getElementById('wa-panel');
+  if(logo&&panel){
+    var dvdX=0,dvdY=0,dvdVx=1.1,dvdVy=0.75,dvdRaf=null;
+    function dvdStop(){if(dvdRaf){cancelAnimationFrame(dvdRaf);dvdRaf=null;}}
+    function dvdTick(){
+      var pw=panel.offsetWidth-logo.offsetWidth;
+      var ph=panel.offsetHeight-logo.offsetHeight;
+      if(pw<=0||ph<=0){dvdRaf=requestAnimationFrame(dvdTick);return;}
+      dvdX+=dvdVx; dvdY+=dvdVy;
+      if(dvdX<=0){dvdX=0;dvdVx=Math.abs(dvdVx);}
+      if(dvdX>=pw){dvdX=pw;dvdVx=-Math.abs(dvdVx);}
+      if(dvdY<=0){dvdY=0;dvdVy=Math.abs(dvdVy);}
+      if(dvdY>=ph){dvdY=ph;dvdVy=-Math.abs(dvdVy);}
+      logo.style.left=dvdX+'px';logo.style.top=dvdY+'px';
+      dvdRaf=requestAnimationFrame(dvdTick);
+    }
+    dvdStop();
+    dvdX=Math.random()*50; dvdY=Math.random()*50;
+    if(logo.complete&&logo.naturalWidth){dvdRaf=requestAnimationFrame(dvdTick);}
+    else logo.addEventListener('load',function(){dvdRaf=requestAnimationFrame(dvdTick);},{once:true});
+    logo._dvdStop=dvdStop;
   }
-  if(logo&&logo.complete&&logo.naturalWidth)sizeWa();
-  else if(logo)logo.addEventListener('load',sizeWa,{once:true});
 }
 setActive(id);
 try{history.replaceState(null,'','#'+id);}catch(e){}
@@ -1438,6 +1450,7 @@ updateTbar()
 function closeW(id){
 var w=document.getElementById(id);
 if(!w)return;
+if(id==='wa'){var lg=document.getElementById('wa-logo');if(lg&&lg._dvdStop)lg._dvdStop();}
 open.delete(id);
 try{history.replaceState(null,'','#');}catch(e){}
 sndClose();
