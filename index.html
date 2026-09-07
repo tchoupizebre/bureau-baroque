@@ -544,45 +544,56 @@ html,body{cursor:auto}
       <div class="wsplit-left" style="flex:0 0 200px;background:#060606;overflow:hidden;display:flex;align-items:center;justify-content:center">
         <img id="wa-logo" src="assets/ui/bb-logo.webp" style="width:176px;height:auto;display:block;mix-blend-mode:screen">
       </div>
-      <div class="wsplit-right" style="overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:0">
-        <div style="margin-bottom:10px">
-          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:20px;color:#fff;letter-spacing:.08em;line-height:1">Hugo Galtier d'Auriac</div>
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 600;font-size:10px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;margin-top:3px">Graphiste · DA · Identité visuelle</div>
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.12em;margin-top:2px">Montpellier — Freelance</div>
+      <div class="wsplit-right" style="overflow-y:auto;padding:0;display:flex;flex-direction:column;gap:0">
+        <!-- Titre + sous-titre -->
+        <div class="wstat-block" style="border-bottom:1px solid #1c1c1c;border-top:none;border-left:none;border-right:none;padding:12px 14px 10px">
+          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:22px;color:#fff;letter-spacing:.04em;line-height:1">Hugo Galtier d'Auriac</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 700;font-size:9px;color:var(--pink);letter-spacing:.2em;text-transform:uppercase;margin-top:4px">Graphiste · DA · Identité visuelle</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em;margin-top:2px">Montpellier — Freelance</div>
         </div>
-        <div style="border-left:2px solid var(--pink);padding-left:10px;margin-bottom:12px">
-          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:15px;color:rgba(255,255,255,.9);line-height:1.25;letter-spacing:.04em">"J'utilise le graphisme<br>comme une arme militante."</div>
+        <!-- Citation -->
+        <div style="border-left:3px solid var(--pink);padding:8px 14px;margin:10px 14px;background:rgba(232,0,122,.04)">
+          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:14px;color:rgba(255,255,255,.9);line-height:1.3;letter-spacing:.03em">"J'utilise le graphisme comme une arme militante."</div>
         </div>
-        <div style="margin-bottom:12px">
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;color:rgba(255,255,255,.6);line-height:1.75;letter-spacing:.03em">Le monde brûle, et je dois faire un portfolio pour l'école. Je suis en freelance — mais je choisis mes projets. Je m'investis uniquement dans ce qui a du fond.</div>
-        </div>
-        <div style="margin-bottom:12px">
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:5px">Prestations</div>
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;color:rgba(255,255,255,.6);line-height:1.65">DA visuelle · Graphisme &amp; Print · Mode &amp; Upcycling<br>Scénographie · Photo/Vidéo · Web · Conseil</div>
-        </div>
-        <div style="margin-bottom:12px">
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:5px">Formation</div>
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;color:rgba(255,255,255,.6);line-height:1.65">ESDAC · LISAA · ERB — Beaux-Arts de Bordeaux</div>
-        </div>
-        <div style="margin-bottom:12px">
-          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px">Outils</div>
-          <div style="display:flex;flex-wrap:wrap;gap:4px">
-            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Photoshop</span>
-            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Illustrator</span>
-            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">InDesign</span>
-            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">After Effects</span>
-            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Premiere Pro</span>
-            <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:8px;letter-spacing:.08em;padding:2px 7px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.8)">Figma</span>
+        <!-- Bio -->
+        <div class="wiz-meta">
+          <div class="wiz-meta-row" style="padding:6px 14px">
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:11px;color:rgba(255,255,255,.55);line-height:1.7;letter-spacing:.02em">Le monde brûle, et je dois faire un portfolio pour l'école. Je suis en freelance — mais je choisis mes projets. Je m'investis uniquement dans ce qui a du fond.</div>
           </div>
         </div>
-        <div style="margin-bottom:10px;display:flex;align-items:center;gap:8px">
-          <span style="width:7px;height:7px;border-radius:50%;background:#4cff72;display:inline-block;box-shadow:0 0 6px #4cff72;flex-shrink:0"></span>
-          <span style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 500;font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase">Disponible pour missions</span>
+        <!-- Infos projet-style -->
+        <div class="wiz-meta" style="margin-top:4px">
+          <div class="wiz-meta-row" style="padding:5px 14px">
+            <span class="wiz-meta-key">Prestations</span>
+            <span class="wiz-meta-val" style="font-size:12px">DA visuelle · Graphisme · Print · Mode &amp; Upcycling · Scéno · Web</span>
+          </div>
+          <div class="wiz-meta-row" style="padding:5px 14px">
+            <span class="wiz-meta-key">Formation</span>
+            <span class="wiz-meta-val" style="font-size:12px">ESDAC · LISAA · ERB — Beaux-Arts royaux de Bruxelles</span>
+          </div>
+          <div class="wiz-meta-row" style="padding:5px 14px">
+            <span class="wiz-meta-key">Outils</span>
+            <span class="wiz-meta-val" style="font-size:11px;display:flex;flex-wrap:wrap;gap:3px;padding-top:2px">
+              <span style="padding:1px 6px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.85);font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;letter-spacing:.06em">Photoshop</span>
+              <span style="padding:1px 6px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.85);font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;letter-spacing:.06em">Illustrator</span>
+              <span style="padding:1px 6px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.85);font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;letter-spacing:.06em">InDesign</span>
+              <span style="padding:1px 6px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.85);font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;letter-spacing:.06em">After Effects</span>
+              <span style="padding:1px 6px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.85);font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;letter-spacing:.06em">Premiere Pro</span>
+              <span style="padding:1px 6px;border:1px solid rgba(232,0,122,.4);color:rgba(232,0,122,.85);font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;letter-spacing:.06em">Figma</span>
+            </span>
+          </div>
+          <div class="wiz-meta-row" style="padding:6px 14px;border-bottom:none">
+            <span class="wiz-meta-key">Dispo</span>
+            <span class="wiz-meta-val" style="display:flex;align-items:center;gap:6px;font-size:12px">
+              <span style="width:7px;height:7px;border-radius:50%;background:#4cff72;display:inline-block;box-shadow:0 0 6px #4cff72;flex-shrink:0"></span>Disponible pour missions
+            </span>
+          </div>
         </div>
-        <div style="border-top:1px solid #1e1e1e;padding-top:10px;display:flex;flex-direction:column;gap:5px">
-          <a href="https://instagram.com/tchoupi_zebre" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;opacity:.9" onmouseover="this.style.opacity='.5'" onmouseout="this.style.opacity='.9'">↗ Instagram — @Tchoupi_zebre</a>
-          <a href="https://www.linkedin.com/in/hugogaltierdauriac" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;opacity:.9" onmouseover="this.style.opacity='.5'" onmouseout="this.style.opacity='.9'">↗ LinkedIn — Hugo Galtier d'Auriac</a>
-          <a href="mailto:tchoupi.zebre@gmail.com?subject=Bonjour%20Tchoupiz%C3%A9br%C3%A9" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;opacity:.9" onmouseover="this.style.opacity='.5'" onmouseout="this.style.opacity='.9'">✉ tchoupi.zebre@gmail.com</a>
+        <!-- Liens -->
+        <div style="border-top:1px solid #1c1c1c;padding:10px 14px;display:flex;flex-direction:column;gap:5px;margin-top:auto">
+          <a href="https://instagram.com/tchoupi_zebre" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;opacity:.85" onmouseover="this.style.opacity='.45'" onmouseout="this.style.opacity='.85'">↗ Instagram — @Tchoupi_zebre</a>
+          <a href="https://www.linkedin.com/in/hugogaltierdauriac" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;opacity:.85" onmouseover="this.style.opacity='.45'" onmouseout="this.style.opacity='.85'">↗ LinkedIn — Hugo Galtier d'Auriac</a>
+          <a href="mailto:tchoupi.zebre@gmail.com?subject=Bonjour%20Tchoupiz%C3%A9br%C3%A9" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.1em;opacity:.85" onmouseover="this.style.opacity='.45'" onmouseout="this.style.opacity='.85'">✉ tchoupi.zebre@gmail.com</a>
         </div>
       </div>
     </div>
