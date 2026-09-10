@@ -1715,15 +1715,16 @@ if(w){w.style.zIndex=++zTop;setActive(w.id);}
 /* 6 — Échap ferme la fenêtre active / ← → navigation entre projets */
 document.addEventListener('keydown',function(e){
 if(e.key==='Escape'){
+  var vm=document.getElementById('vmodal');
+  var vv=document.getElementById('vmodal-video');
+  if(vm&&vm.style.display!=='none'){vm.style.display='none';if(vv){vv.pause();vv.src='';}return;}
+  document.getElementById('lb').style.display='none';
   var topZ=-1,topId=null;
   open.forEach(function(id){
     var w=document.getElementById(id);
     if(w&&parseInt(w.style.zIndex||0)>topZ){topZ=parseInt(w.style.zIndex);topId=id;}
   });
   if(topId){playBip();closeW(topId);}
-  document.getElementById('lb').style.display='none';
-  var vm=document.getElementById('vmodal');
-  if(vm)vm.style.display='none';
 }
 if(e.key==='ArrowUp'||e.key==='ArrowDown'){
   e.preventDefault();
@@ -1744,6 +1745,7 @@ if(e.key==='ArrowUp'||e.key==='ArrowDown'){
   },120);
 }
 if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+  var vm3=document.getElementById('vmodal');if(vm3&&vm3.style.display!=='none')return;
   var topZ=-1,topId=null;
   open.forEach(function(id){
     var w=document.getElementById(id);
