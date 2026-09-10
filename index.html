@@ -1455,7 +1455,9 @@ if(id==='wa'){
   var gal=document.getElementById('wa-gallery');
   if(gal&&!gal.children.length){
     PROJECTS.forEach(function(proj){
-      var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
+      var firstImg=null;
+      if(proj.media){for(var _i=0;_i<proj.media.length;_i++){if(proj.media[_i].t==='img'){firstImg=proj.media[_i];break;}}}
+      console.log('[gal]',proj.id,proj.media?proj.media.length:0,'firstImg:',firstImg?firstImg.src:'NULL');
       var cell=document.createElement('div');
       cell.style.cssText='cursor:pointer;border:2px solid;border-color:#fff #808080 #808080 #fff;overflow:hidden;background:#0a0a0a;box-shadow:1px 1px 0 #000';
       cell.title=proj.title;
