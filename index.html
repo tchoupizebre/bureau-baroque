@@ -1755,7 +1755,7 @@ if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
   var btn=document.getElementById(e.key==='ArrowLeft'?'wcp-'+topId:'wcn-'+topId);
   if(btn){btn.click();e.preventDefault();}
 }
-});
+},true);
 
 /* 9 — Favicon animé sur onglet inactif */
 (function(){
