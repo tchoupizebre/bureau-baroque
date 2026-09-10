@@ -291,6 +291,14 @@ html,body{cursor:auto}
 .wsplit-right::-webkit-scrollbar-button,.wbody::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;border-radius:0}
 .wsplit-right::-webkit-scrollbar-button:vertical:start,.wbody::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 .wsplit-right::-webkit-scrollbar-button:vertical:end,.wbody::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+/* scrollbars About gallery/options */
+#wa-gallery,#wa-options{scrollbar-width:auto}
+#wa-gallery::-webkit-scrollbar,#wa-options::-webkit-scrollbar{width:16px;background:#1a1a1a}
+#wa-gallery::-webkit-scrollbar-track,#wa-options::-webkit-scrollbar-track{background:#1a1a1a;border-radius:0}
+#wa-gallery::-webkit-scrollbar-thumb,#wa-options::-webkit-scrollbar-thumb{background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;min-height:24px;border-radius:0}
+#wa-gallery::-webkit-scrollbar-button,#wa-options::-webkit-scrollbar-button{display:block;height:16px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;border-radius:0}
+#wa-gallery::-webkit-scrollbar-button:vertical:start,#wa-options::-webkit-scrollbar-button:vertical:start{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 0L10 6H0z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+#wa-gallery::-webkit-scrollbar-button:vertical:end,#wa-options::-webkit-scrollbar-button:vertical:end{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0H10z' fill='%23000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 /* 7 — Barre de statut */
 .wstatusbar{height:20px;background:var(--pink);border-top:2px solid;border-color:#6a0035 #ff80b0 #ff80b0 #6a0035;display:flex;align-items:center;padding:0 8px;gap:12px;flex-shrink:0;font-family:'Courier New',monospace;font-size:8px;letter-spacing:.06em;color:#fff;text-transform:uppercase;white-space:nowrap;overflow:hidden}
 .wstatusbar span+span::before{content:'·';margin-right:12px;color:rgba(255,255,255,.5);opacity:1}
@@ -535,61 +543,81 @@ html,body{cursor:auto}
   </div>
 
   <!-- Fenêtre About -->
-  <div class="win" id="wa" style="width:620px;height:440px;top:80px;left:260px">
+  <div class="win" id="wa" style="width:700px;height:460px;top:80px;left:220px">
     <div class="wtb">
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0"><img src="assets/ui/bb-icone-2.webp" style="width:14px;height:14px;filter:brightness(10);flex-shrink:0"><span class="wtitle">About — Tchoupizébré</span></div>
       <button class="wbtn wmax" data-w="wa">□</button><button class="wbtn wclose" data-w="wa">✕</button>
     </div>
     <div class="wbody-split" style="align-items:stretch">
-      <div class="wsplit-left" id="wa-panel" style="flex:0 0 200px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;overflow:hidden;position:relative">
-        <img id="wa-logo" src="assets/ui/bb-logo.webp" style="width:120px;height:auto;display:block;position:absolute;mix-blend-mode:multiply">
+      <!-- Gauche : logo DVD + bulle -->
+      <div class="wsplit-left" id="wa-panel" style="flex:0 0 190px;background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;overflow:hidden;position:relative">
+        <!-- Bulle de dialogue -->
+        <div id="wa-bubble" style="position:absolute;left:8px;right:8px;top:8px;background:#fff;border:2px solid #000;padding:7px 9px;font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;color:#000;line-height:1.45;cursor:pointer;z-index:5;box-shadow:1px 1px 0 #808080">
+          <span id="wa-bubble-txt"></span>
+          <div style="position:absolute;bottom:-10px;left:24px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:10px solid #000"></div>
+          <div style="position:absolute;bottom:-7px;left:26px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #fff"></div>
+        </div>
+        <img id="wa-logo" src="assets/ui/bb-logo.webp" style="width:130px;height:auto;display:block;position:absolute;mix-blend-mode:multiply;cursor:pointer">
       </div>
-      <div class="wsplit-right" style="overflow-y:auto;padding:0;display:flex;flex-direction:column;gap:0;background:#c0c0c0;border:none;color:#000">
-        <!-- Titre -->
-        <div style="padding:10px 14px 8px;border-bottom:1px solid #808080">
-          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:24px;color:#000;letter-spacing:.03em;line-height:1">Hugo Galtier d'Auriac</div>
-          <div style="font-family:'Courier New',monospace;font-size:10px;color:var(--pink);letter-spacing:.12em;text-transform:uppercase;margin-top:4px">Graphiste · DA · Identité visuelle</div>
-          <div style="font-family:'Courier New',monospace;font-size:9px;color:#555;margin-top:2px">Montpellier — Freelance</div>
+      <!-- Droite : identité + onglets -->
+      <div style="display:flex;flex-direction:column;flex:1;overflow:hidden;background:#c0c0c0">
+        <!-- En-tête identité -->
+        <div style="padding:10px 14px 8px;border-bottom:2px solid #808080;flex-shrink:0">
+          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:22px;color:#000;line-height:1">Hugo Galtier d'Auriac</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 700;font-size:10px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;margin-top:3px">Graphiste · DA · Identité visuelle</div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#555;margin-top:2px">Montpellier — Freelance</div>
         </div>
-        <!-- Citation -->
-        <div style="border-left:3px solid var(--pink);padding:6px 12px;margin:8px 14px;background:rgba(232,0,122,.07)">
-          <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:15px;color:#111;line-height:1.3">"J'utilise le graphisme comme une arme militante."</div>
+        <!-- Barre d'onglets -->
+        <div style="display:flex;border-bottom:2px solid #808080;padding:4px 8px 0;gap:3px;flex-shrink:0;background:#c0c0c0">
+          <button id="wa-tab-gal" onclick="waTab('gallery')" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;padding:3px 11px;border:2px solid;border-color:#fff #808080 #808080 #fff;border-bottom:2px solid #c0c0c0;background:#c0c0c0;cursor:pointer;position:relative;top:2px;z-index:1;color:#000">Gallery</button>
+          <button id="wa-tab-pro" onclick="waTab('profil')" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;padding:3px 11px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#b0b0b0;cursor:pointer;color:#000">Profil</button>
+          <button id="wa-tab-opt" onclick="waTab('options')" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;padding:3px 11px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#b0b0b0;cursor:pointer;color:#000">Options</button>
         </div>
-        <!-- Bio -->
-        <div style="padding:4px 14px 8px;border-bottom:1px solid #808080">
-          <div style="font-family:'Courier New',monospace;font-size:11px;color:#222;line-height:1.65">Le monde brûle, et je dois faire un portfolio pour l'école. Je suis en freelance — mais je choisis mes projets. Je m'investis uniquement dans ce qui a du fond.</div>
-        </div>
-        <!-- Champs Win98 -->
-        <div style="padding:8px 14px;display:flex;flex-direction:column;gap:5px;border-bottom:1px solid #808080">
-          <div style="display:flex;align-items:baseline;gap:8px">
-            <span style="font-family:'Courier New',monospace;font-size:9px;color:#444;width:72px;flex-shrink:0;text-transform:uppercase">Prestations</span>
-            <span style="font-family:'Courier New',monospace;font-size:10px;color:#000">DA · Graphisme · Print · Mode &amp; Upcycling · Scéno · Web</span>
+        <!-- Contenu Gallery -->
+        <div id="wa-gallery" style="flex:1;overflow-y:auto;padding:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:6px;align-content:start"></div>
+        <!-- Contenu Profil -->
+        <div id="wa-profil" style="flex:1;overflow-y:auto;padding:0;display:none;flex-direction:column">
+          <div style="border-left:3px solid var(--pink);padding:8px 12px;margin:10px 14px 6px;background:rgba(232,0,122,.07)">
+            <div style="font-family:'jetsam-collection-basilea',sans-serif;font-size:14px;color:#111;line-height:1.35">"J'utilise le graphisme comme une arme militante."</div>
           </div>
-          <div style="display:flex;align-items:baseline;gap:8px">
-            <span style="font-family:'Courier New',monospace;font-size:9px;color:#444;width:72px;flex-shrink:0;text-transform:uppercase">Formation</span>
-            <span style="font-family:'Courier New',monospace;font-size:10px;color:#000">ESDAC · LISAA · ERB — Beaux-Arts royaux de Bruxelles</span>
+          <div style="padding:4px 14px 10px;border-bottom:1px solid #808080">
+            <div style="font-family:'ltr-ncnd-variable',sans-serif;font-size:12px;color:#222;line-height:1.65">Le monde brûle, et je dois faire un portfolio pour l'école. Je suis en freelance — mais je choisis mes projets. Je m'investis uniquement dans ce qui a du fond.</div>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:8px">
-            <span style="font-family:'Courier New',monospace;font-size:9px;color:#444;width:72px;flex-shrink:0;text-transform:uppercase;padding-top:3px">Outils</span>
-            <div style="display:flex;flex-wrap:wrap;gap:3px">
-              <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'Courier New',monospace;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Photoshop</span>
-              <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'Courier New',monospace;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Illustrator</span>
-              <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'Courier New',monospace;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">InDesign</span>
-              <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'Courier New',monospace;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">After Effects</span>
-              <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'Courier New',monospace;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Premiere Pro</span>
-              <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'Courier New',monospace;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Figma</span>
+          <div style="padding:8px 14px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:baseline;gap:8px">
+              <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#444;width:72px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em">Prestations</span>
+              <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:12px;color:#000">DA · Graphisme · Print · Mode &amp; Upcycling · Scéno · Web</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:8px">
+              <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#444;width:72px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em">Formation</span>
+              <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:12px;color:#000">ESDAC · LISAA · ERB — Beaux-Arts royaux de Bruxelles</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px">
+              <span style="font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#444;width:72px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em;padding-top:3px">Outils</span>
+              <div style="display:flex;flex-wrap:wrap;gap:3px">
+                <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Photoshop</span>
+                <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Illustrator</span>
+                <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">InDesign</span>
+                <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">After Effects</span>
+                <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Premiere Pro</span>
+                <span style="padding:2px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;font-family:'ltr-ncnd-variable',sans-serif;font-size:9px;color:#000;box-shadow:1px 1px 0 #000">Figma</span>
+              </div>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:6px">
-            <span style="width:7px;height:7px;border-radius:50%;background:#4cff72;display:inline-block;box-shadow:0 0 6px #4cff72;flex-shrink:0"></span>
-            <span style="font-family:'Courier New',monospace;font-size:9px;color:#000;text-transform:uppercase;letter-spacing:.06em">Disponible pour missions</span>
-          </div>
         </div>
-        <!-- Liens -->
-        <div style="padding:8px 14px;display:flex;flex-direction:column;gap:5px;margin-top:auto">
-          <a href="https://instagram.com/tchoupi_zebre" target="_blank" style="font-family:'Courier New',monospace;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.06em" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ Instagram — @Tchoupi_zebre</a>
-          <a href="https://www.linkedin.com/in/hugogaltierdauriac" target="_blank" style="font-family:'Courier New',monospace;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.06em" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ LinkedIn — Hugo Galtier d'Auriac</a>
-          <a href="mailto:tchoupi.zebre@gmail.com?subject=Bonjour%20Tchoupiz%C3%A9br%C3%A9" style="font-family:'Courier New',monospace;font-size:9px;color:var(--pink);text-decoration:none;letter-spacing:.06em" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">✉ tchoupi.zebre@gmail.com</a>
+        <!-- Contenu Options -->
+        <div id="wa-options" style="flex:1;overflow-y:auto;padding:10px 14px;display:none;flex-direction:column;gap:0">
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 700;font-size:9px;color:#444;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid #808080;padding-bottom:4px;margin-bottom:8px">Raccourcis clavier</div>
+          <div id="wa-shortcuts"></div>
+          <div style="font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 700;font-size:9px;color:#444;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid #808080;padding-bottom:4px;margin:10px 0 8px">Éléments cachés</div>
+          <div id="wa-secrets"></div>
+        </div>
+        <!-- Footer persistant (tous onglets) -->
+        <div style="border-top:2px solid #808080;padding:7px 14px;display:flex;align-items:center;gap:14px;flex-shrink:0;flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:5px;font-family:'ltr-ncnd-variable',sans-serif;font-variation-settings:'wght' 500;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:#4cff72;display:inline-block;box-shadow:0 0 5px #4cff72;flex-shrink:0"></span>Disponible</span>
+          <a href="https://instagram.com/tchoupi_zebre" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;color:var(--pink);text-decoration:none;white-space:nowrap" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ Instagram</a>
+          <a href="https://www.linkedin.com/in/hugogaltierdauriac" target="_blank" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;color:var(--pink);text-decoration:none;white-space:nowrap" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ LinkedIn</a>
+          <a href="mailto:tchoupi.zebre@gmail.com?subject=Bonjour%20Tchoupiz%C3%A9br%C3%A9" style="font-family:'ltr-ncnd-variable',sans-serif;font-size:10px;color:var(--pink);text-decoration:none;white-space:nowrap" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">✉ Mail</a>
         </div>
       </div>
     </div>
@@ -1414,6 +1442,60 @@ if(id==='wa'){
     else logo.addEventListener('load',function(){dvdRaf=requestAnimationFrame(dvdTick);},{once:true});
     logo._dvdStop=dvdStop;
   }
+  /* Speech bubble */
+  var WA_QUOTES=['Le monde brûle.','Disponible pour missions.','J\'utilise le graphisme\ncomme une arme militante.','Baroque ou rien.','On ne demande pas\nla permission.','Choisis ton camp.','L\'identité,\nça se construit.','Je choisis mes projets.'];
+  if(!window._waQIdx)window._waQIdx=Math.floor(Math.random()*WA_QUOTES.length);
+  var bubtxt=document.getElementById('wa-bubble-txt');
+  var bub=document.getElementById('wa-bubble');
+  function waBubNext(){window._waQIdx=(window._waQIdx+1)%WA_QUOTES.length;if(bubtxt)bubtxt.textContent=WA_QUOTES[window._waQIdx];}
+  if(bubtxt)bubtxt.textContent=WA_QUOTES[window._waQIdx];
+  if(bub&&!bub._wired){bub.addEventListener('click',waBubNext);bub._wired=true;}
+  if(logo&&!logo._wired){logo.addEventListener('click',waBubNext);logo._wired=true;}
+  /* Gallery */
+  var gal=document.getElementById('wa-gallery');
+  if(gal&&!gal.children.length){
+    PROJECTS.forEach(function(proj){
+      var firstImg=proj.media&&proj.media.find(function(m){return m.t==='img';});
+      var cell=document.createElement('div');
+      cell.style.cssText='cursor:pointer;border:2px solid;border-color:#fff #808080 #808080 #fff;overflow:hidden;background:#0a0a0a;box-shadow:1px 1px 0 #000';
+      cell.title=proj.title;
+      if(firstImg){
+        var img=document.createElement('img');
+        img.src=BASE+firstImg.src;
+        img.style.cssText='width:100%;height:68px;object-fit:cover;display:block';
+        img.onerror=function(){this.style.display='none'};
+        cell.appendChild(img);
+      }else{
+        var ph=document.createElement('div');
+        ph.style.cssText='width:100%;height:68px;display:flex;align-items:center;justify-content:center';
+        ph.innerHTML='<span style="color:#333;font-size:20px">—</span>';
+        cell.appendChild(ph);
+      }
+      var lbl=document.createElement('div');
+      lbl.style.cssText='font-family:\'ltr-ncnd-variable\',sans-serif;font-size:8px;padding:2px 4px;background:#c0c0c0;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:1px solid #808080';
+      lbl.textContent=proj.title;
+      cell.appendChild(lbl);
+      cell.addEventListener('click',function(){closeW('wa');setTimeout(function(){openProject(proj.id);},120);});
+      gal.appendChild(cell);
+    });
+  }
+  /* Shortcuts + secrets (une seule fois) */
+  var sc=document.getElementById('wa-shortcuts');
+  if(sc&&!sc.children.length){
+    [['Échap','Fermer la fenêtre active'],['← →','Naviguer dans le carousel'],['↑ ↓','Changer de catégorie'],['Clic droit','Menu contextuel'],['Entrée','Ouvrir la sélection']].forEach(function(s){
+      var r=document.createElement('div');r.style.cssText='display:flex;align-items:center;gap:10px;margin-bottom:6px';
+      r.innerHTML='<span style="font-family:\'ltr-ncnd-variable\',sans-serif;font-size:10px;padding:1px 7px;border:2px solid;border-color:#fff #808080 #808080 #fff;background:#c0c0c0;color:#000;white-space:nowrap;box-shadow:1px 1px 0 #000;flex-shrink:0">'+s[0]+'</span><span style="font-family:\'ltr-ncnd-variable\',sans-serif;font-size:11px;color:#000">'+s[1]+'</span>';
+      sc.appendChild(r);
+    });
+  }
+  var se=document.getElementById('wa-secrets');
+  if(se&&!se.children.length){
+    [['Jeff','Une célébrité locale surveille ton bureau'],['Inactivité 3min','Une alerte Win98 apparaît'],['Cadre baroque','S\'affiche quand une fenêtre est active'],['#hscroll','Canvas caché sous le bureau']].forEach(function(s){
+      var r=document.createElement('div');r.style.cssText='display:flex;align-items:center;gap:10px;margin-bottom:6px';
+      r.innerHTML='<span style="font-family:\'ltr-ncnd-variable\',sans-serif;font-size:10px;padding:1px 7px;border:2px solid;border-color:#808080 #fff #fff #808080;background:#c0c0c0;color:#000;white-space:nowrap;flex-shrink:0">'+s[0]+'</span><span style="font-family:\'ltr-ncnd-variable\',sans-serif;font-size:11px;color:#000">'+s[1]+'</span>';
+      se.appendChild(r);
+    });
+  }
 }
 setActive(id);
 try{history.replaceState(null,'','#'+id);}catch(e){}
@@ -1950,6 +2032,20 @@ document.getElementById('vhs-modal').addEventListener('click',function(e){if(e.t
   });
 })();
 
+// Onglets fenêtre About
+window.waTab=function(tab){
+  var panels={gallery:document.getElementById('wa-gallery'),profil:document.getElementById('wa-profil'),options:document.getElementById('wa-options')};
+  var btns={gallery:document.getElementById('wa-tab-gal'),profil:document.getElementById('wa-tab-pro'),options:document.getElementById('wa-tab-opt')};
+  Object.keys(panels).forEach(function(k){
+    var p=panels[k];if(!p)return;
+    p.style.display=(k===tab)?(k==='gallery'?'grid':'flex'):'none';
+  });
+  Object.keys(btns).forEach(function(k){
+    var b=btns[k];if(!b)return;
+    if(k===tab){b.style.borderBottomColor='#c0c0c0';b.style.top='2px';b.style.background='#c0c0c0';}
+    else{b.style.borderBottomColor='';b.style.top='0';b.style.background='#b0b0b0';}
+  });
+};
 // Keyboard nav
 /* keydown fusionné ci-dessus */
 
